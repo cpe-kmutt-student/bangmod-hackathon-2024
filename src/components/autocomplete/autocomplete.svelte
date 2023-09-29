@@ -1,0 +1,39 @@
+<script lang="ts">
+	import { twMerge } from 'tailwind-merge';
+	import type { AutocompleteOption } from './types';
+	import Options from './options.svelte';
+
+	export let value = '';
+	export let placeholder = 'Search';
+	export let name = 'name';
+	export let options: AutocompleteOption[] = [];
+	export let emptyState = '';
+
+	function onFlavorSelection(event: CustomEvent<AutocompleteOption>): void {
+		value = event.detail.label;
+	}
+</script>
+
+<div class="relative">
+	<input
+		class={twMerge('z-10 h-8 w-full rounded-md px-2 text-slate-600 placeholder:text-slate-400')}
+		type="search"
+		bind:value
+		{name}
+		{placeholder}
+	/>
+	{#if value}
+		<Options
+			class="absolute top-6 mt-4 w-full"
+			bind:input={value}
+			on:selection={onFlavorSelection}
+			{options}
+			{emptyState}
+			regionNav={twMerge('')}
+			regionList={twMerge('overflow-auto max-h-40 bg-white rounded-md text-slate-300')}
+			regionItem={twMerge('bg-slate-600 hover:bg-slate-700 east-in-out duration-100')}
+			regionEmpty={twMerge('bg-white rounded-md bg-slate-600 text-slate-300 p-1')}
+			regionButton={twMerge('')}
+		/>
+	{/if}
+</div>
