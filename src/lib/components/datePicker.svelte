@@ -11,6 +11,5 @@
 		bind:value={date}
 		on:change={() => console.log(date)}
 		max={new Date().toISOString().slice(0, 10)}
-		min="2000-01-01"
 	/>
 </div>
