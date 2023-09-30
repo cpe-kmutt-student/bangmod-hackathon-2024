@@ -12,13 +12,6 @@ export const getAddress: getAddressFunc = ({ province = "", district = "", subdi
     zipcodes: [],
   }
 
-  // if (
-  //   !province &&
-  //   !district &&
-  //   !subdistrict &&
-  //   !zipcode
-  // ) return result
-
   for (const data of thaiAddress) {
     for (const amphure of data.amphure) {
       const { name_th: districtName, tambon } = amphure;
@@ -49,43 +42,15 @@ export const getAddress: getAddressFunc = ({ province = "", district = "", subdi
   return result;
 }
 
+const transformToAutocompleteOptions = (array: string[]): AutocompleteOption[] => {
+  return array.map((value) => ({ label: value, value }));
+};
+
 export const addressPrepare: AddressPrepare = ({ provinces, districts, subdistricts, zipcodes }) => {
-  // const province: AutocompleteOption[] = []
-  // const district: AutocompleteOption[] = []
-  // const subdistrict: AutocompleteOption[] = []
-  // const zipcode: AutocompleteOption[] = []
-
-  const province = provinces.reduce((result, next) => {
-    result.push({ label: next, value: next })
-    return result
-  }, [] as AutocompleteOption[])
-
-  const district = districts.reduce((result, next) => {
-    result.push({ label: next, value: next })
-    return result
-  }, [] as AutocompleteOption[])
-
-  const subdistrict = subdistricts.reduce((result, next) => {
-    result.push({ label: next, value: next })
-    return result
-  }, [] as AutocompleteOption[])
-
-  const zipcode = zipcodes.reduce((result, next) => {
-    result.push({ label: next, value: next })
-    return result
-  }, [] as AutocompleteOption[])
-
-  return { province, district, subdistrict, zipcode }
-}
-
-export function blurHandler({ province, district, subdistrict, zipcode, updateFunc }: BlurHandlerProps) {
-
-  const { provinces, districts, subdistricts, zipcodes } = getAddress({
-    district,
-    province,
-    subdistrict,
-    zipcode
-  });
-
-  updateFunc({ provinces, districts, subdistricts, zipcodes });
+  return {
+    province: transformToAutocompleteOptions(provinces),
+    district: transformToAutocompleteOptions(districts),
+    subdistrict: transformToAutocompleteOptions(subdistricts),
+    zipcode: transformToAutocompleteOptions(zipcodes),
+  };
 }

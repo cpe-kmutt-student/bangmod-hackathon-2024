@@ -2,6 +2,7 @@
 	import { twMerge } from 'tailwind-merge';
 	import type { AutocompleteOption } from './types';
 	import Options from './options.svelte';
+	import { createEventDispatcher } from 'svelte';
 
 	export let value = '';
 	export let placeholder = 'Search';
@@ -9,8 +10,11 @@
 	export let options: AutocompleteOption[] = [];
 	export let emptyState = '';
 
+	const dispatch = createEventDispatcher();
+
 	function onFlavorSelection(event: CustomEvent<AutocompleteOption>): void {
 		value = event.detail.label;
+		dispatch('select', event);
 	}
 </script>
 
@@ -21,6 +25,7 @@
 		bind:value
 		{name}
 		{placeholder}
+		on:blur={() => dispatch('blur')}
 	/>
 	{#if value}
 		<Options

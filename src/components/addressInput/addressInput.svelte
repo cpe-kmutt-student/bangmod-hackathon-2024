@@ -1,19 +1,26 @@
 <script lang="ts">
 	import Autocomplete from '../autocomplete/autocomplete.svelte';
 	import type { AutocompleteOption } from '../autocomplete/types';
-	import { twMerge } from 'tailwind-merge';
 	import { addressPrepare, getAddress } from './address';
-	// import { ddress } from './address';
 
 	let province = '';
 	let district = '';
 	let subdistrict = '';
 	let zipcode = '';
 
-	let provinceList: AutocompleteOption[] = [];
-	let districtList: AutocompleteOption[] = [];
-	let subdistrictList: AutocompleteOption[] = [];
-	let zipcodeList: AutocompleteOption[] = [];
+	$: address = addressPrepare(getAddress({ province, district, subdistrict, zipcode }));
+
+	$: provinceList = address?.province;
+	$: districtList = address?.district;
+	$: subdistrictList = address?.subdistrict;
+	$: zipcodeList = address?.zipcode;
+
+	function updateAddress() {
+		provinceList = address.province;
+		districtList = address.district;
+		subdistrictList = address.subdistrict;
+		zipcodeList = address.zipcode;
+	}
 
 	function onSubmit(event: SubmitEvent) {
 		event.preventDefault();
@@ -23,32 +30,48 @@
 
 		alert(JSON.stringify({ province, district, subdistrict, zipcode }));
 	}
-
-	let option: AutocompleteOption[] = [
-		{ label: '1', value: '1' },
-		{ label: '1222', value: '1222' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' },
-		{ label: '1', value: '1' }
-	];
 </script>
 
-<form on:submit={onSubmit}>
+<form on:submit={onSubmit} autocomplete="off">
 	<Autocomplete
-		name="test"
-		emptyState="ไม่มี"
-		placeholder="testt"
+		name="province"
+		emptyState="ไม่มีชื่อจังหวัดนี้"
+		placeholder="จังหวัด"
 		bind:value={province}
-		options={option}
+		options={provinceList}
+		on:blur={() => {
+			updateAddress();
+		}}
+	/>
+	<Autocomplete
+		name="district"
+		emptyState="ไม่มีชื่ออำเภอ/เขตนี้"
+		placeholder="อำเภอ / เขต"
+		bind:value={district}
+		options={districtList}
+		on:blur={() => {
+			updateAddress();
+		}}
+	/>
+	<Autocomplete
+		name="subdistrict"
+		emptyState="ไม่มีชื่อตำบลนี้"
+		placeholder="ตำบล"
+		bind:value={subdistrict}
+		options={subdistrictList}
+		on:blur={() => {
+			updateAddress();
+		}}
+	/>
+	<Autocomplete
+		name="province"
+		emptyState="ไม่มีชื่อรหัสไปรษณีย์นี้"
+		placeholder="รหัสไปรษณีย์"
+		bind:value={zipcode}
+		options={zipcodeList}
+		on:blur={() => {
+			updateAddress();
+		}}
 	/>
 	<button type="submit">Submit</button>
 </form>
