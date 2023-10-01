@@ -4,7 +4,7 @@
 	import Options from './options.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let value = '';
+	export let value: string;
 	export let placeholder = 'Search';
 	export let name = 'name';
 	export let options: AutocompleteOption[] = [];
@@ -25,20 +25,26 @@
 		bind:value
 		{name}
 		{placeholder}
-		on:blur={() => dispatch('blur')}
+		autocomplete="off"
+		on:abort
+		on:blur
+		on:change
+		on:focus
+		{...$$restProps}
 	/>
 	{#if value}
-		<Options
-			class="absolute top-6 mt-4 w-full"
-			bind:input={value}
-			on:selection={onFlavorSelection}
-			{options}
-			{emptyState}
-			regionNav={twMerge('')}
-			regionList={twMerge('overflow-auto max-h-40 bg-white rounded-md text-slate-300')}
-			regionItem={twMerge('bg-slate-600 hover:bg-slate-700 east-in-out duration-100')}
-			regionEmpty={twMerge('bg-white rounded-md bg-slate-600 text-slate-300 p-1')}
-			regionButton={twMerge('')}
-		/>
+		<div class="absolute top-6 z-10 mt-4 w-full">
+			<Options
+				bind:input={value}
+				on:selection={onFlavorSelection}
+				{options}
+				{emptyState}
+				regionNav={twMerge('')}
+				regionList={twMerge('overflow-auto max-h-40 bg-white rounded-md text-slate-300')}
+				regionItem={twMerge('bg-slate-600 hover:bg-slate-700 east-in-out duration-100')}
+				regionEmpty={twMerge('bg-white rounded-md bg-slate-600 text-slate-300 p-1')}
+				regionButton={twMerge('')}
+			/>
+		</div>
 	{/if}
 </div>

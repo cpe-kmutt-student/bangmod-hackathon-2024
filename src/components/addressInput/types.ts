@@ -7,22 +7,12 @@ export interface UpdateAddreessProps {
   zipcodes: string[];
 }
 
-export interface BlurHandlerProps {
-  province: string;
-  district: string;
-  subdistrict: string;
-  zipcode: string;
-  updateFunc: (props: UpdateAddreessProps) => void;
-}
-
 export interface GetAddressProps {
   province: string;
   district: string;
   subdistrict: string;
   zipcode: string;
 }
-
-
 
 export interface Address {
   provinces: string[],

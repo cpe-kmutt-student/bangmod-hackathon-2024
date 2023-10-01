@@ -1,6 +1,6 @@
 import { thaiAddress } from "../../data/thai_address";
 import type { AutocompleteOption } from "../autocomplete/types";
-import type { BlurHandlerProps, getAddressFunc, Address, GetAddressProps, AddressPrepare } from "./types"
+import type { getAddressFunc, Address, AddressPrepare } from "./types"
 
 
 
