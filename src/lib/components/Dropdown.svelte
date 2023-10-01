@@ -5,7 +5,7 @@
     }[];
 </script>
 
-<select {...$$restProps}>
+<select {...$$restProps} on:change on:focus on:blur on:click on:invalid>
     {#each choices as choice}
         <option value={choice.value} label={choice.label}>
             {choice.label}
