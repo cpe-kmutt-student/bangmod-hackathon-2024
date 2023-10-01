@@ -24,6 +24,7 @@
 
 	function filterOptions(): AutocompleteOption[] {
 		let _options = [...listedOptions];
+
 		_options = _options.filter((option) => {
 			const inputFormatted = String(input).toLowerCase().trim();
 			let optionFormatted = JSON.stringify([option.label, option.value]).toLowerCase();
@@ -36,7 +37,7 @@
 		dispatch('selection', option);
 	}
 
-	$: optionsFiltered = input ? filterOptions() : [];
+	$: optionsFiltered = input ? filterOptions() : options;
 	$: sliceLimit = limit !== undefined ? limit : optionsFiltered.length;
 
 	$: classesBase = `${$$props.class ?? ''}`;

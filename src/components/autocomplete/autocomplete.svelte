@@ -9,12 +9,24 @@
 	export let name = 'name';
 	export let options: AutocompleteOption[] = [];
 	export let emptyState = '';
+	export let showOptions = false;
+
+	let key = '';
 
 	const dispatch = createEventDispatcher();
+
+	function delay(callback: () => void, time = 100) {
+		setTimeout(callback, time);
+	}
 
 	function onFlavorSelection(event: CustomEvent<AutocompleteOption>): void {
 		value = event.detail.label;
 		dispatch('select', event);
+		showOptions = false;
+	}
+
+	function blurHandler() {
+		if (key != 'Tab') return delay(() => (showOptions = false));
 	}
 </script>
 
@@ -27,12 +39,13 @@
 		{placeholder}
 		autocomplete="off"
 		on:abort
-		on:blur
+		on:blur={blurHandler}
 		on:change
-		on:focus
+		on:keydown={(e) => (key = e.key)}
+		on:focus={() => (showOptions = true)}
 		{...$$restProps}
 	/>
-	{#if value}
+	{#if showOptions}
 		<div class="absolute top-6 z-10 mt-4 w-full">
 			<Options
 				bind:input={value}
