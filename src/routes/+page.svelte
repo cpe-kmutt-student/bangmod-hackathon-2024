@@ -1,5 +1,5 @@
 <script lang="ts">
-	import AddressInput from '../components/addressInput/addressInput.svelte';
+	import AddressInput from '$lib/components/AddressInput.svelte';
 </script>
 
 <div class="flex h-screen text-center dark:bg-slate-800">
