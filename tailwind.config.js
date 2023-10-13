@@ -14,6 +14,12 @@ export default {
 			"extra-gold": "#C89601",
 			"extra-ivory": "#F9F6E8",
 		},
+		fontFamily: {
+			"thai": ["Kanit", "sans-serif"],
+			"english": ["Outfit", "sans-serif"],
+			"decor-1": ["Homemade Apple", "cursive"],
+			"decor-2": ["Old Standard TT", "serif"],
+		},
 		extend: {}
 	},
 	plugins: []
