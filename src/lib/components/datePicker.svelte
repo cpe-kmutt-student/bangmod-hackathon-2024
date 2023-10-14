@@ -1,15 +1,11 @@
 <script>
-	export let label = 'Label';
-	export let date = new Date().toISOString().slice(0, 10);
+	export let date = '';
 </script>
 
-<div class="datePicker">
-	<label for="date">{label}</label>
-	<input
-		type="date"
-		id="date"
-		bind:value={date}
-		on:change={() => console.log(date)}
-		max={new Date().toISOString().slice(0, 10)}
-	/>
-</div>
+<input
+	class="w-full rounded-md border p-2"
+	type="date"
+	id="date"
+	bind:value={date}
+	max={new Date().toISOString().slice(0, 10)}
+/>
