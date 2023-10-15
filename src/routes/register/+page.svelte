@@ -18,6 +18,16 @@
 		PDPA_checkbox.checked = consent;
 		verify_checkbox.checked = verify;
 	}
+
+	const fileSizeLimitHandle = (ev: Event) => {
+		const input = ev.target as HTMLInputElement
+		const files = input.files
+		const TWO_MB = 2097152
+		if (files && files[0].size > TWO_MB){
+			input.value = ""
+			alert("File is larger than 2MB")
+		}
+	}
 </script>
 
 <svelte:head>
@@ -219,7 +229,9 @@
 							type="file"
 							id="teacher_citizen_card"
 							name="teacher_citizen_card"
+							accept="application/pdf,image/jpeg,image/png,image/webp,image/avif"
 							class="h-9 rounded-3xl border border-zinc-300 p-2"
+							on:change={fileSizeLimitHandle}
 						/>
 					</div>
 				</li>
@@ -234,7 +246,9 @@
 							type="file"
 							id="teacher_verify"
 							name="teacher_verify"
+							accept="application/pdf,image/jpeg,image/png,image/webp,image/avif"
 							class="h-9 rounded-3xl border border-zinc-300 p-2"
+							on:change={fileSizeLimitHandle}
 						/>
 					</div>
 				</li>
@@ -447,7 +461,9 @@
 								type="file"
 								id="image"
 								name="students[{idx}][image]"
+								accept="application/pdf,image/jpeg,image/png,image/webp,image/avif"
 								class="h-9 rounded-3xl border border-zinc-300 p-2"
+								on:change={fileSizeLimitHandle}
 							/>
 						</div>
 					</li>
@@ -462,7 +478,9 @@
 								type="file"
 								id="citizen_card"
 								name="students[{idx}][citizen_card]"
+								accept="application/pdf,image/jpeg,image/png,image/webp,image/avif"
 								class="h-9 rounded-3xl border border-zinc-300 p-2"
+								on:change={fileSizeLimitHandle}
 							/>
 						</div>
 					</li>
@@ -476,7 +494,9 @@
 								type="file"
 								id="student_card"
 								name="students[{idx}][student_card]"
+								accept="application/pdf,image/jpeg,image/png,image/webp,image/avif"
 								class="h-9 rounded-3xl border border-zinc-300 p-2"
+								on:change={fileSizeLimitHandle}
 							/>
 						</div>
 					</li>
@@ -490,7 +510,9 @@
 								type="file"
 								id="student_certificate"
 								name="students[{idx}][student_certificate]"
+								accept="application/pdf,image/jpeg,image/png,image/webp,image/avif"
 								class="h-9 rounded-3xl border border-zinc-300 p-2"
+								on:change={fileSizeLimitHandle}
 							/>
 						</div>
 					</li>

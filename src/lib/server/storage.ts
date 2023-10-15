@@ -11,9 +11,12 @@ const S3 = new S3Client({
 	}
 });
 
+// Add limit size to 5 MB on serverside
 const UploadRandomName = async (path: string, file: File | null) => {
 	if (!file?.size) {
 		throw new Error('File is not valid');
+	} else if (file.size > 5242880){
+		throw new Error('File is larger than 5 MB');
 	}
 
 	const filePath = `${path}/${crypto.randomUUID()}.${file.name.slice(
