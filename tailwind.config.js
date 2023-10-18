@@ -1,4 +1,6 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
+
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
@@ -15,6 +17,7 @@ export default {
 			"extra-ivory": "#F9F6E8",
 		},
 		fontFamily: {
+      "sans": ['Kanit', ...defaultTheme.fontFamily.sans],
 			"thai": ["Kanit", "sans-serif"],
 			"english": ["Outfit", "sans-serif"],
 			"decor-1": ["Homemade Apple", "cursive"],
