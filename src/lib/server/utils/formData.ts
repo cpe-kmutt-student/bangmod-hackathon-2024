@@ -61,7 +61,7 @@ const formSerializer = (formData: FormData) => {
 		files.students.push(studentFiles);
 
 		const studentData: Student = {
-			team_id: "",
+			team_id: '',
 			name_prefix: (formData.get(`students[${i}][name_prefix]`) || '') as string,
 			firstname: (formData.get(`students[${i}][firstname]`) || '') as string,
 			lastname: (formData.get(`students[${i}][lastname]`) || '') as string,
@@ -95,4 +95,4 @@ const formSerializer = (formData: FormData) => {
 };
 
 export { formSerializer };
-export type { TeamData, TeamFile, StudentFile}
+export type { TeamData, TeamFile, StudentFile };

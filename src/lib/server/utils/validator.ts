@@ -1,4 +1,4 @@
-import { z, type ZodFormattedError } from 'zod';
+import { type ZodFormattedError, z } from 'zod';
 
 const StudentSchema = z.object({
 	name_prefix: z.string().min(1),

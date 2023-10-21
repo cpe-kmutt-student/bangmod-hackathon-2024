@@ -1,9 +1,11 @@
-import type { Actions } from './$types';
-import { FlattenError, TeamSchema } from '$lib/server/utils/validator';
-import { formSerializer } from '$lib/server/utils/formData';
 import { fail } from '@sveltejs/kit';
-import { UploadRandomName } from '$lib/server/storage';
+
 import { insertStudent, insertTeam } from '$lib/server/database';
+import { UploadRandomName } from '$lib/server/storage';
+import { formSerializer } from '$lib/server/utils/formData';
+import { FlattenError, TeamSchema } from '$lib/server/utils/validator';
+
+import type { Actions } from './$types';
 
 export const actions: Actions = {
 	default: async ({ request }) => {

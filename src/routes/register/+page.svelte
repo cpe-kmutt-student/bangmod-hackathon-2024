@@ -1,8 +1,9 @@
 <!--suppress XmlInvalidId -->
 <!-- Noted that, this is just the example form and should adjust style to match exactly with figma design -->
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import type { ActionData } from './$types';
+
+	import { enhance } from '$app/forms';
 
 	let student_number = 1;
 	let consent: boolean;

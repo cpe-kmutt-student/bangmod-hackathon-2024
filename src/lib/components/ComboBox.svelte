@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { computePosition, autoUpdate, flip, offset, shift } from '@floating-ui/dom';
+	import { autoUpdate, computePosition, flip, offset, shift } from '@floating-ui/dom';
 	import { onDestroy } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import { twMerge } from 'tailwind-merge';
