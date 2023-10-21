@@ -1,78 +1,68 @@
 import { fail } from '@sveltejs/kit';
+import { superValidate } from 'sveltekit-superforms/server';
 
 import { insertStudent, insertTeam } from '$lib/server/database';
-import { UploadRandomName } from '$lib/server/storage';
-import { formSerializer } from '$lib/server/utils/formData';
-import { FlattenError, TeamSchema } from '$lib/server/utils/validator';
+import { deserializeNested, prepareData } from '$lib/server/form';
+import { TeamSchema } from '$lib/server/schema';
+import type { Team, TeamFile } from '$lib/server/schema';
+import { UploadFile } from '$lib/server/storage';
 
 import type { Actions } from './$types';
+
+export const load = async () => {
+	const form = await superValidate(TeamSchema);
+
+	return { form };
+};
 
 export const actions: Actions = {
 	default: async ({ request }) => {
 		const formData = await request.formData();
-		const { data, files } = formSerializer(formData);
+		const { data, files } = deserializeNested(formData) as { data: Team; files: TeamFile };
 
-		const result = TeamSchema.safeParse(data);
+		data.consent = true;
 
-		if (!result.success) {
-			const flattenError = FlattenError(result.error.format());
-			return fail(400, { data: data, error: flattenError });
+		const form = await superValidate(data, TeamSchema);
+
+		if (!form.valid) {
+			console.log(form.errors);
+			return fail(400, { form });
 		}
 
-		const folderName = crypto.randomUUID();
+		const teamId = crypto.randomUUID();
 
-		const teamFileUpload: Promise<string>[] = [
-			UploadRandomName(folderName, files.teacher_citizen_card),
-			UploadRandomName(folderName, files.teacher_verify)
+		const { students, team } = prepareData(teamId, data, files);
+
+		try {
+			console.log(await insertTeam(team));
+			console.log(students[0].team_id)
+			await insertStudent(students);
+		} catch (error) {
+			console.log(error);
+			return fail(500, { form });
+		}
+
+		const uploadPromise: Promise<unknown>[] = [
+			UploadFile(team.teacher_citizen_card, files.teacher_citizen_card),
+			UploadFile(team.teacher_verify, files.teacher_verify)
 		];
 
-		try {
-			const teamFilepath = await Promise.all(teamFileUpload);
-			data.teacher_citizen_card = teamFilepath[0];
-			data.teacher_verify = teamFilepath[1];
-		} catch (err) {
-			console.log(err);
-			return fail(500, { data: data, error: { message: 'Team File upload failed.' } });
+		for (let i = 0; i < files.students.length; i++) {
+			uploadPromise.push(
+				UploadFile(students[i].image, files.students[i].image),
+				UploadFile(students[i].citizen_card, files.students[i].citizen_card),
+				UploadFile(students[i].student_card, files.students[i].student_card),
+				UploadFile(students[i].student_certificate, files.students[i].student_certificate)
+			);
 		}
 
 		try {
-			const teamId = await insertTeam(data);
-			data.students.forEach((i) => (i.team_id = teamId[0].id));
-		} catch (err) {
-			// TODO: Should remove or reuse file when database insert fail, because file is still in S3
-			console.log(err);
-			return fail(500, { data: data, error: { message: 'Insert Team fail.' } });
+			await Promise.all(uploadPromise);
+		} catch (error) {
+			console.log(error);
+			return fail(500, { form });
 		}
 
-		for (const [index, value] of files.students.entries()) {
-			const studentFileUpload: Promise<string>[] = [
-				UploadRandomName(`${folderName}/${index}`, value.image),
-				UploadRandomName(`${folderName}/${index}`, value.citizen_card),
-				UploadRandomName(`${folderName}/${index}`, value.student_card),
-				UploadRandomName(`${folderName}/${index}`, value.student_certificate)
-			];
-			try {
-				const studentFilepath = await Promise.all(studentFileUpload);
-				data.students[index].image = studentFilepath[0];
-				data.students[index].citizen_card = studentFilepath[1];
-				data.students[index].student_card = studentFilepath[2];
-				data.students[index].student_certificate = studentFilepath[3];
-			} catch (err) {
-				// TODO: Should remove or reuse file when database insert fail, because file is still in S3
-				console.log(err);
-				return fail(500, { data: data, error: { message: 'Student File upload failed.' } });
-			}
-		}
-
-		try {
-			await insertStudent(data.students);
-		} catch (err) {
-			console.log(err);
-			return fail(500, { data: data, error: { message: 'Insert Team fail.' } });
-		}
-
-		// TODO: Add email sender API
-
-		return { data: data, error: {} };
+		return { form };
 	}
 };

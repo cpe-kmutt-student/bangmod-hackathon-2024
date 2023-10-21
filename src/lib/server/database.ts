@@ -1,36 +1,17 @@
 import postgres from 'postgres';
 
+import type { Student, Team } from '$lib/server/schema';
+
 import { DATABASE_URL } from '$env/static/private';
 
 const sql = postgres(DATABASE_URL, {
 	idle_timeout: 20,
-	max_lifetime: 60 * 15
+	max_lifetime: 60 * 10
 });
 
-interface Team {
-	name: string;
-	school_name: string;
-	teacher_prefix: string;
-	teacher_firstname: string;
-	teacher_lastname: string;
-	teacher_phone: string;
-	teacher_email: string;
-	teacher_contact: string;
-	teacher_address: string;
-	teacher_sub_district: string;
-	teacher_district: string;
-	teacher_province: string;
-	teacher_zipcode: string;
-	teacher_citizen_card: string;
-	teacher_verify: string;
-	teacher_disease: string;
-	teacher_drug: string;
-	teacher_allergies: string;
-	consent: boolean;
-}
-
-const insertTeam = (team: Team) => {
-	const insertKeys: (keyof Team)[] = [
+const insertTeam = (team: Omit<Team, 'students'>) => {
+	const insertKeys: (keyof Omit<Team, 'students'>)[] = [
+		'id',
 		'name',
 		'school_name',
 		'teacher_prefix',
@@ -56,34 +37,6 @@ const insertTeam = (team: Team) => {
     INSERT INTO team ${sql(team, insertKeys)} returning id
   `;
 };
-
-interface Student {
-	team_id: string;
-	name_prefix: string;
-	firstname: string;
-	lastname: string;
-	nickname: string;
-	date_of_birth: Date;
-	nationality: string;
-	race: string;
-	religion: string;
-	level: 'year 10' | 'year 11' | 'year 12'; // education_level equivalent
-	address: string;
-	sub_district: string;
-	district: string;
-	province: string;
-	zipcode: string;
-	email: string;
-	phone: string;
-	contact: string;
-	image: string;
-	citizen_card: string; // File path
-	student_card: string; // File path
-	student_certificate: string; // File path
-	disease: string; // Medical condition
-	drug: string; // Allergic drug
-	allergies: string; // Allergic food
-}
 
 const insertStudent = (student: Student | Student[]) => {
 	const insertKeys: (keyof Student)[] = [
@@ -119,5 +72,3 @@ const insertStudent = (student: Student | Student[]) => {
 };
 
 export { insertTeam, insertStudent };
-
-export type { Team, Student };

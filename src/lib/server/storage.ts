@@ -13,22 +13,18 @@ const S3 = new S3Client({
 });
 
 // Add limit size to 5 MB on serverside
-const UploadRandomName = async (path: string, file: File | null) => {
+const UploadFile = async (path: string, file: File | null) => {
 	if (!file?.size) {
 		throw new Error('File is not valid');
 	} else if (file.size > 5242880) {
 		throw new Error('File is larger than 5 MB');
 	}
 
-	const filePath = `${path}/${crypto.randomUUID()}.${file.name.slice(
-		((file.name.lastIndexOf('.') - 1) >>> 0) + 2
-	)}`;
-
 	const command = new Upload({
 		client: S3,
 		params: {
 			Bucket: S3_BUCKET_NAME,
-			Key: filePath,
+			Key: path,
 			Body: file
 		}
 	});
@@ -39,9 +35,7 @@ const UploadRandomName = async (path: string, file: File | null) => {
 	// 	Body: await file.arrayBuffer() as Buffer
 	// });
 
-	return command.done().then(() => {
-		return filePath;
-	});
+	return command.done();
 };
 
 const DeleteMultiple = async (path: string[]) => {
@@ -57,4 +51,4 @@ const DeleteMultiple = async (path: string[]) => {
 	return S3.send(command);
 };
 
-export { S3, UploadRandomName, DeleteMultiple };
+export { S3, UploadFile, DeleteMultiple };
