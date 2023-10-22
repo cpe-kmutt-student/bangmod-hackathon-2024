@@ -97,7 +97,7 @@
                     <input
                         required
                         id="PDPA_consent"
-                        class={`h-4 w-4  md:h-6 md:w-6 shrink-0 ${(isClick && !consent) && "appearance-none rounded-sm border border-[#AC001A] " }`}
+                        class={`h-4 w-4 md:h-6 md:w-6 shrink-0  ${(isClick && !consent) && "appearance-none rounded-sm border border-[#AC001A] " }`}
                         type="checkbox"
                         bind:checked={consent}
                         bind:this={PDPA_checkbox}
@@ -121,7 +121,7 @@
             <button
                 type='submit'
                 on:click={()=>{isClick = true}}
-                class='py-4 mt-8 flex items-center justify-center gap-4 w-full sm:w-2/3 mx-auto rounded-full border border-[#265BF6] text-[#265BF6] hover:bg-[#265BF6] hover:text-[#FEFCFC] active:bg-[#FEFCFC] active:text-[#265BF6]'>
+                class={`py-4 mt-8 flex items-center justify-center gap-4 w-full sm:w-2/3 mx-auto rounded-full border ${(!consent || !verify) ? "border-[#D2D2D7] text-[#D2D2D7] " : "border-[#265BF6] text-[#265BF6] hover:bg-[#265BF6] hover:text-[#FEFCFC] active:bg-[#FEFCFC] active:text-[#265BF6] "} `}>
                     <div>
                         ดำเนินการต่อ
                     </div>
