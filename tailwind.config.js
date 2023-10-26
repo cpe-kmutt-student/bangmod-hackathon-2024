@@ -11,6 +11,16 @@ export default {
 		},
 		extend: {
 			colors: {
+				BG: '#FEFCFC',
+				content: '#0D0D02',
+				second: '#D2D2D7',
+				extraBlue: '#265BF6',
+				extraRed: '#AC001A',
+				extraOrange: '#FB7500',
+				extraBrown: '#3A230C',
+				extraYellow: '#FEBB28',
+				extraGold: '#CCAA4B',
+				extraWhite: '#F9F6E8',
 				soapstone: '#fefcfc',
 				asphalt: '#0d0d02',
 				iron: {
