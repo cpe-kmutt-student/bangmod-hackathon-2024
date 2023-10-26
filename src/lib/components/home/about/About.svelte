@@ -1,26 +1,25 @@
 <script lang="ts">
-	import CircleLine from './CircleLine.svelte';
 	import Table from './Table.svelte';
 </script>
 
-<div class="relative snap-start bg-soapstone">
+<div class="relative bg-soapstone">
 	<div
 		class="relative block min-h-screen grid-cols-1 overflow-clip p-14 lg:grid lg:grid-cols-3 lg:gap-20"
 	>
 		<img
-			class="absolute -right-32 -top-44 md:-right-[20rem] md:-top-[25rem] lg:-right-[40rem] lg:-top-[50rem] lg:scale-90"
+			class="absolute -right-32 -top-44 bg-cover md:-right-80 md:-top-[25rem] lg:-right-[40rem] lg:-top-[50rem] lg:scale-90"
 			src="/about/about-1.png"
 			alt=""
 		/>
 		<img
-			class="absolute hidden md:-bottom-[30rem] md:-left-[5rem] md:block lg:-bottom-[50rem] lg:-left-[12rem] lg:scale-75"
+			class="absolute hidden bg-cover md:-bottom-[30rem] md:-left-20 md:block lg:-bottom-[50rem] lg:-left-48 lg:scale-75"
 			src="/about/about-pudding.png"
 			alt=""
 		/>
 
 		<!-- Title -->
 		<div class="flex flex-col">
-			<p class="font-decorate text-[10vw] text-azul-600 lg:text-[8.5vw]">About</p>
+			<p class="font-decorate text-4xl md:text-6xl text-azul-600 lg:text-9xl">About</p>
 		</div>
 
 		<!-- Detail -->
@@ -30,15 +29,15 @@
 				<p>เป็นโครงการที่เปิดโอกาสให้นักเรียนระดับชั้นมัธยมศึกษาตอนปลาย</p>
 				<p>รวมถึงนักศึกษาอาชีวศึกษาในระดับ ปวช. หรือเทียบเท่า ได้เข้ามาแข่งขันการเขียนโปรแกรม</p>
 				<p>
-					โดยใช้ ภาษา <span class="text-[#FB7500]">C หรือ C++</span>
+					โดยใช้ ภาษา <span class="text-moonstone-500">C หรือ C++</span>
 					ซึ่งการแข่งขันนั้นจะเป็นการแข่งขันระหว่างโรงเรียนในรูปแบบทีม
 				</p>
 				<p>
 					ซึ่งแต่ละโรงเรียนสามารถส่งได้
-					<span class="text-[#FB7500]">โรงเรียนละ 1 ทีม ทีมละ 2-3 คน</span>
+					<span class="text-moonstone-500">โรงเรียนละ 1 ทีม ทีมละ 2-3 คน</span>
 				</p>
 				<p>
-					พร้อม <span class="text-[#FB7500]">อาจารย์ที่ปรึกษาทีมละ 1 คน</span>
+					พร้อม <span class="text-moonstone-500">อาจารย์ที่ปรึกษาทีมละ 1 คน</span>
 				</p>
 				<p>โดยอาจารย์ที่ปรึกษาจะต้องสอนอยู่ในสถานศึกษาเดียวกันกับนักเรียน</p>
 				<p>ซึ่งกิจกรรมนี้จะช่วยทําให้ผู้เข้าแข่งขันนั้นได้รับทั้งประสบการณ์ใหม่ ๆ</p>
@@ -84,9 +83,9 @@
 	<div class="flex flex-col gap-4 pb-8 md:gap-8">
 		<img class="" src="/about/about-image-1.png" alt="" />
 		<div class="grid gap-4 md:grid-cols-3">
-			<img class="" src="/about/about-image-2.png" alt="" />
-			<img class="" src="/about/about-image-3.png" alt="" />
-			<img class="" src="/about/about-image-4.png" alt="" />
+			<img class="bg-cover" src="/about/about-image-2.png" alt="" />
+			<img class="bg-cover" src="/about/about-image-3.png" alt="" />
+			<img class="bg-cover" src="/about/about-image-4.png" alt="" />
 		</div>
 	</div>
 </div>
