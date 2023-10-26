@@ -11,6 +11,7 @@ export default {
 		},
 		extend: {
 			colors: {
+				topic: '#CCAA4B',
 				soapstone: '#fefcfc',
 				asphalt: '#0d0d02',
 				iron: {
