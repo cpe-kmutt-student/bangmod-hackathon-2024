@@ -11,7 +11,6 @@ export default {
 		},
 		extend: {
 			colors: {
-				topic: '#CCAA4B',
 				soapstone: '#fefcfc',
 				asphalt: '#0d0d02',
 				iron: {
@@ -67,6 +66,13 @@ export default {
 					'0%': { transform: 'translateX(100%)' },
 					'100%': { transform: 'translateX(0%)' }
 				}
+			},
+			scale: {
+				10: '0.10',
+				15: '0.15',
+				25: '0.25',
+				35: '0.35',
+				45: '0.45'
 			}
 		}
 	},

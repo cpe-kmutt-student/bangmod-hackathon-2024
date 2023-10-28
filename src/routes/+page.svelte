@@ -1,3 +1,7 @@
+<script lang="ts">
+	import Qualification from '$lib/components/home/qualification/Qualification.svelte';
+</script>
+
 <div class="flex h-screen text-center dark:bg-slate-800">
 	<div class="m-auto">
 		<h1 class="text-4xl font-bold text-slate-800 dark:text-slate-200">Bangmod Hackathon 2024</h1>
@@ -5,4 +9,7 @@
 			Welcome to Bangmod Hackathon 2024
 		</p>
 	</div>
+</div>
+<div>
+	<Qualification />
 </div>
