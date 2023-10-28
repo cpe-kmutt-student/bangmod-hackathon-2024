@@ -52,10 +52,12 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 				TILL 25 NOVEMBER
 			</span>
 			<a
-				class="w-full animate-pulse animate-rotate border-y-2 border-scarlet-800 bg-butternut text-center text-4xl font-medium leading-none text-soapstone opacity-0 delay-1000 fill-mode-forwards sm:text-[6vw]"
+				class="w-full animate-rotate border-y-2 border-scarlet-800 text-center text-4xl font-medium leading-none text-soapstone opacity-0 delay-1000 fill-mode-forwards sm:text-[6vw]"
 				href="/register"
 			>
-				REGISTER HERE!
+			<div class="flex justify-center gap-10 items-center w-full h-full bg-butternut hover:bg-butternut/80">
+				<ArrowDown class="z-20 h-9 w-9 sm:h-16 sm:w-16 animate-bounce-left" />REGISTER HERE! <ArrowDown class="z-20 h-9 w-9 sm:h-16 sm:w-16 animate-bounce-right" />
+			</div>
 			</a>
 			<div class="relative mt-4 flex flex-col items-center justify-center">
 				<p class="text-center font-latin text-lg font-light">SCROLL DOWN<br />FOR MORE DETAILS</p>

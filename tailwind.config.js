@@ -63,7 +63,9 @@ export default {
 				sweep: 'sweep 1s',
 				'sweep-back': 'sweep_back 1s',
 				'sweep-center': 'sweep_center 1s',
-				'bounce-down': 'bounce-down 1s infinite'
+				'bounce-down': 'bounce-down 1s infinite',
+				'bounce-left': 'bounce-left 1s infinite',
+				'bounce-right': 'bounce-right 1s infinite'
 			},
 			keyframes: {
 				marquee: {
@@ -115,6 +117,28 @@ export default {
 					},
 					'50%': {
 						transform: 'translateY(24px);',
+						'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1);'
+					}
+				},
+				'bounce-left': {
+					'0%, 100%': {
+						transform: 'rotate(-90deg);',
+						'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1);'
+					},
+					'50%': {
+						transform: 'translateX(24px) rotate(-90deg);',
+						// transform: 'rotate(-90deg);',
+						'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1);'
+					}
+				},
+				'bounce-right': {
+					'0%, 100%': {
+						transform: 'rotate(90deg);',
+						'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1);'
+					},
+					'50%': {
+						transform: 'translateX(-24px) rotate(90deg);',
+						// transform: 'rotate(-90deg);',
 						'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1);'
 					}
 				}
