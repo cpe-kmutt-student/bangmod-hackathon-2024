@@ -7,7 +7,7 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 
 <div {...$$restProps} class={twMerge("flex h-fit min-h-screen text-asphalt", $$props.class)}>
 	<div
-		class="flex min-h-full basis-14 flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2"
+		class="flex min-h-full basis-14 min-w-[36px] flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2"
 	>
 		<div class="w-full basis-12 animate-sweep border border-soapstone p-0.5 sm:basis-16">
 			<div class="h-full w-full border border-soapstone" />
@@ -19,10 +19,10 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 			<div class="h-full w-full border border-soapstone" />
 		</div>
 	</div>
-	<div class="flex h-full min-h-screen grow flex-col">
+	<div class="flex h-full min-h-screen flex-col">
 		<div class="flex grow-0 flex-col items-center justify-center bg-saddle py-2">
 			<div class="w-full basis-12 animate-sweep-center border border-soapstone p-0.5 sm:basis-16">
-				<Marquee class="h-full w-full border border-soapstone bg-azul-600" repeat={2}>
+				<Marquee class="h-full w-full border border-soapstone bg-azul-600">
 					<span class="min-w-0 overflow-hidden font-latin text-xl text-white">
 						Welcome to BangMod Hackathon 2024 official website
 					</span>
@@ -77,7 +77,7 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 		</div>
 	</div>
 	<div
-		class="flex min-h-full basis-14 flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2"
+		class="flex min-h-full basis-14 min-w-[36px] flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2"
 	>
 		<div class="w-full basis-12 animate-sweep-back border border-soapstone p-0.5 sm:basis-16">
 			<div class="h-full w-full border border-soapstone" />

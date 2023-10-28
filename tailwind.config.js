@@ -59,7 +59,6 @@ export default {
 			},
 			animation: {
 				marquee: 'marquee 10s linear infinite',
-				marquee2: 'marquee2 10s linear infinite',
 				rotate: 'rotate 1s',
 				sweep: 'sweep 1s',
 				'sweep-back': 'sweep_back 1s',
@@ -68,12 +67,8 @@ export default {
 			},
 			keyframes: {
 				marquee: {
-					'0%': { transform: 'translateX(0%)' },
-					'100%': { transform: 'translateX(-100%)' }
-				},
-				marquee2: {
-					'0%': { transform: 'translateX(100%)' },
-					'100%': { transform: 'translateX(0%)' }
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(calc(-100% - 1rem))' }
 				},
 				sweep: {
 					'0%': { 'clip-path': 'polygon(2% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 50% 50%)' },
