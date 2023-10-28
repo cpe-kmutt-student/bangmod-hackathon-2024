@@ -1,5 +1,8 @@
 <script lang="ts">
 	import Table from './Table.svelte';
+	import Star from '../../decor/Star.svelte';
+	import Circle from '../../decor/Circle.svelte';
+	import CircleSolid from '../../decor/CircleSolid.svelte';
 </script>
 
 <div class="relative bg-soapstone">
@@ -16,10 +19,43 @@
 			src="/about/about-pudding.png"
 			alt=""
 		/>
+		<div class="absolute hidden md:-left-8 md:bottom-24 md:block lg:bottom-28 lg:left-8">
+			<Star class="scale-75 stroke-azul-600" />
+		</div>
+		<div class="absolute hidden md:bottom-52 md:left-64 md:block lg:bottom-60 lg:left-96">
+			<Star class="scale-75  stroke-[#CCAA4B]" />
+		</div>
+		<div class="absolute hidden md:bottom-4 md:left-[28rem] md:block lg:bottom-12 lg:left-[38rem]">
+			<Star class="scale-75  stroke-orange-500" />
+		</div>
+		<div class="absolute right-12 hidden md:top-[24rem] md:block lg:top-[37rem]">
+			<Star class="scale-75  stroke-orange-500" />
+		</div>
+		<div class="absolute left-4 top-40 lg:left-10 lg:top-60">
+			<Circle />
+		</div>
+		<div class="absolute -right-2 top-[15rem] lg:top-[25rem]">
+			<Circle />
+		</div>
+		<div class="absolute right-32 top-[21rem] lg:left-80 lg:top-[30rem]">
+			<Circle />
+		</div>
+		<div class="absolute bottom-32 right-4 md:bottom-52 md:right-56 lg:bottom-48 lg:left-[55rem]">
+			<Circle />
+		</div>
+		<div class="absolute right-8 top-32 md:right-32 lg:top-72">
+			<CircleSolid />
+		</div>
+		<div class="absolute bottom-[25rem] left-8 md:left-32 lg:bottom-[30rem]">
+			<CircleSolid class="bg-orange-500" />
+		</div>
+		<div class="absolute bottom-6 right-40 md:bottom-32 md:right-20 lg:bottom-64 lg:right-[40rem]">
+			<CircleSolid />
+		</div>
 
 		<!-- Title -->
-		<div class="flex flex-col">
-			<p class="font-decorate text-4xl md:text-6xl text-azul-600 lg:text-9xl">About</p>
+		<div class="flex flex-col lg:mt-6">
+			<p class="font-decorate text-4xl text-azul-600 md:text-6xl lg:text-[7vw]">About</p>
 		</div>
 
 		<!-- Detail -->
