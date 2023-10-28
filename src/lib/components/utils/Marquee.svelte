@@ -10,7 +10,7 @@
 		ready = true;
 	});
 
-	$: repeat = Math.floor(marqueeWidth / 417) || 1;
+	$: repeat = Math.floor(marqueeWidth / 450) || 1;
 </script>
 <svelte:window bind:innerWidth={marqueeWidth}/>
 <div class={twMerge('flex gap-4 overflow-hidden select-none max-w-full', $$props.class)} role='banner'>
