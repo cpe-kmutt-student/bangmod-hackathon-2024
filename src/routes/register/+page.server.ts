@@ -35,7 +35,7 @@ export const actions: Actions = {
 
 		try {
 			console.log(await insertTeam(team));
-			console.log(students[0].team_id)
+			console.log(students[0].team_id);
 			await insertStudent(students);
 		} catch (error) {
 			console.log(error);

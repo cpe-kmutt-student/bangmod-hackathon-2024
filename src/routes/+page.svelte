@@ -1,8 +1,21 @@
-<div class="flex h-screen text-center dark:bg-slate-800">
-    <div class="m-auto">
-        <h1 class="text-4xl font-bold text-slate-800 dark:text-slate-200">Bangmod Hackathon 2024</h1>
-        <p class="text-lg font-normal text-slate-500 dark:text-slate-400 sm:px-16 lg:text-xl xl:px-48">
-            Welcome to Bangmod Hackathon 2024
-        </p>
-    </div>
-</div>
+<script lang="ts">
+	import { About, Award, Hero, Qualification, Timeline } from '$lib/sections/home';
+	import Contact from '$lib/sections/home/Contact.svelte';
+	import Scope from '$lib/sections/home/Scope.svelte';
+</script>
+
+<svelte:head>
+	<title>Bangmod Hackathon 2024</title>
+</svelte:head>
+
+<Hero id='home' />
+<About />
+<Qualification />
+<Award />
+<Timeline />
+<Scope/>
+<Contact/>
+<footer class='flex px-8 lg:px-16 pb-16 font-latin font-light justify-between'>
+	<span>©2023 BangMod Hackathon 2024</span>
+	<a href='#home'>Back to the top ↑</a>
+</footer>

@@ -13,6 +13,10 @@ export default {
 			colors: {
 				soapstone: '#fefcfc',
 				asphalt: '#0d0d02',
+				beer: '#febb28',
+				saddle: '#8a4b18',
+				butternut: '#fb7500',
+				lupine: '#ccaa4a',
 				iron: {
 					50: '#f6f6f7',
 					100: '#efeff0',
@@ -54,8 +58,13 @@ export default {
 				}
 			},
 			animation: {
-				marquee: 'marquee 25s linear infinite',
-				marquee2: 'marquee2 25s linear infinite'
+				marquee: 'marquee 10s linear infinite',
+				marquee2: 'marquee2 10s linear infinite',
+				rotate: 'rotate 1s',
+				sweep: 'sweep 1s',
+				'sweep-back': 'sweep_back 1s',
+				'sweep-center': 'sweep_center 1s',
+				'bounce-down': 'bounce-down 1s infinite'
 			},
 			keyframes: {
 				marquee: {
@@ -65,9 +74,61 @@ export default {
 				marquee2: {
 					'0%': { transform: 'translateX(100%)' },
 					'100%': { transform: 'translateX(0%)' }
+				},
+				sweep: {
+					'0%': { 'clip-path': 'polygon(2% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 50% 50%)' },
+					'25%': { 'clip-path': 'polygon(2% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%)' },
+					'50%': {
+						'clip-path': 'polygon(2% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%, 50% 50%)'
+					},
+					'75%': { 'clip-path': 'polygon(2% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%, 50% 50%)' },
+					'100%': { 'clip-path': 'polygon(2% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 50%)' }
+				},
+				sweep_back: {
+					'0%': { 'clip-path': 'polygon(98% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%)' },
+					'25%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 50% 50%)' },
+					'50%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 100%, 0% 100%, 0% 100%, 50% 50%)' },
+					'75%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 100%, 100% 100%, 100% 100%, 50% 50%)' },
+					'100%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 100%, 100% 100%, 100% 0%, 50% 50%)' }
+				},
+				sweep_center: {
+					'0%': { 'clip-path': 'polygon(50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 50%)' },
+					'25%': {
+						'clip-path': 'polygon(0% 0%, 0% 0%, 0% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%)'
+					},
+					'50%': {
+						'clip-path': 'polygon(0% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 100% 100%, 50% 50%)'
+					},
+					'75%': {
+						'clip-path': 'polygon(50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 50%)'
+					}
+				},
+				rotate: {
+					'0%': {
+						opacity: 0,
+						transform: 'translateY(50px) rotate(2.5deg);'
+					},
+					'100%': {
+						opacity: 1,
+						transform: 'translateY(0px) rotate(0deg);'
+					}
+				},
+				'bounce-down': {
+					'0%, 100%': {
+						transform: 'translateY(0);',
+						'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1);'
+					},
+					'50%': {
+						transform: 'translateY(24px);',
+						'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1);'
+					}
 				}
+			},
+			animationDelay: {
+				400: '400ms',
+				600: '600ms'
 			}
 		}
 	},
-	plugins: []
+	plugins: [require('tailwindcss-animate')]
 };
