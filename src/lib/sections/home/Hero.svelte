@@ -1,13 +1,14 @@
-<script>
-import { twMerge } from 'tailwind-merge';
+<script lang="ts">
+	import { twMerge } from 'tailwind-merge';
 
-import { ArrowDown } from '$lib/components/icons';
-import Marquee from '$lib/components/utils/Marquee.svelte';
+	import { ArrowDown } from '$lib/components/icons';
+	import Marquee from '$lib/components/utils/Marquee.svelte';
+	import TextStagger from '$lib/components/utils/TextStagger.svelte';
 </script>
 
-<div {...$$restProps} class={twMerge("flex h-fit min-h-screen text-asphalt", $$props.class)}>
+<div {...$$restProps} class={twMerge('flex h-fit min-h-screen text-asphalt', $$props.class)}>
 	<div
-		class="flex min-h-full basis-14 lg:shrink-0 min-w-[36px] flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2"
+		class="flex min-h-full min-w-[36px] basis-14 flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2 lg:shrink-0"
 	>
 		<div class="w-full basis-12 animate-sweep border border-soapstone p-0.5 sm:basis-16">
 			<div class="h-full w-full border border-soapstone" />
@@ -19,7 +20,7 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 			<div class="h-full w-full border border-soapstone" />
 		</div>
 	</div>
-	<div class="flex h-full min-h-screen flex-col">
+	<div class="flex h-full min-h-screen w-full flex-col">
 		<div class="flex grow-0 flex-col items-center justify-center bg-saddle py-2">
 			<div class="w-full basis-12 animate-sweep-center border border-soapstone p-0.5 sm:basis-16">
 				<Marquee class="h-full w-full border border-soapstone bg-azul-600">
@@ -30,27 +31,21 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 				</Marquee>
 			</div>
 		</div>
-		<div class="flex grow flex-col font-latin text-azul-600">
+		<TextStagger
+			class="flex flex-col font-latin text-4xl font-thin leading-none text-azul-600 sm:text-[5vw]"
+		>
 			<h1
-				class="text-center md:text-start origin-top-left animate-rotate border-b border-saddle px-2 pt-4 text-4xl font-thin leading-none opacity-0 fill-mode-forwards	 sm:text-[5.8vw]"
+				class="mt-4 w-full border-b border-saddle px-2 text-center leading-none sm:text-[5.8vw] md:text-start"
 			>
 				BANGMOD HACKATHON 2024
 			</h1>
-			<span
-				class="mt-4 origin-top-left animate-rotate border-b border-saddle px-2 text-4xl font-thin leading-none text-beer opacity-0 delay-200 fill-mode-forwards sm:text-[5vw]"
-			>
+			<span class="mt-4 w-full border-b border-saddle px-2 text-beer">
 				APPLICATIONS WILL OPEN
 			</span>
-			<span
-				class="mt-4 origin-top-left animate-rotate border-b border-saddle px-2 text-4xl font-extralight leading-none opacity-0 delay-200 delay-400 fill-mode-forwards sm:text-[5vw]"
-			>
-				FROM 31 OCTOBER
-			</span>
-			<span
-				class="mt-4 origin-top-left animate-rotate border-b border-saddle px-2 text-end text-4xl font-extralight leading-none opacity-0 delay-200 delay-600 fill-mode-forwards sm:text-[5vw]"
-			>
-				TILL 25 NOVEMBER
-			</span>
+			<span class="mt-4 w-full border-b border-saddle px-2"> FROM 31 OCTOBER </span>
+			<span class="mt-4 w-full px-2 text-end"> TILL 25 NOVEMBER </span>
+		</TextStagger>
+		<div class="flex grow flex-col font-latin">
 			<a
 				class="w-full animate-pulse animate-rotate border-y-2 border-scarlet-800 bg-butternut text-center text-4xl font-medium leading-none text-soapstone opacity-0 delay-1000 fill-mode-forwards sm:text-[6vw]"
 				href="/register"
@@ -58,7 +53,7 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 				REGISTER HERE!
 			</a>
 			<div class="relative mt-4 flex flex-col items-center justify-center">
-				<p class="text-center font-latin text-lg font-light">SCROLL DOWN<br />FOR MORE DETAILS</p>
+				<TextStagger class="text-center font-latin text-lg font-light">SCROLL DOWN<br />FOR MORE DETAILS</TextStagger>
 				<ArrowDown class="absolute -bottom-20 h-9 w-9 animate-bounce-down sm:h-16 sm:w-16" />
 			</div>
 		</div>
@@ -77,7 +72,7 @@ import Marquee from '$lib/components/utils/Marquee.svelte';
 		</div>
 	</div>
 	<div
-		class="flex min-h-full basis-14 lg:shrink-0 min-w-[36px] flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2"
+		class="flex min-h-full min-w-[36px] basis-14 flex-col items-center justify-center gap-y-2 bg-saddle px-1 py-2 sm:basis-28 md:px-2 lg:shrink-0"
 	>
 		<div class="w-full basis-12 animate-sweep-back border border-soapstone p-0.5 sm:basis-16">
 			<div class="h-full w-full border border-soapstone" />
