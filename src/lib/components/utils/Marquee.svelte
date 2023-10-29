@@ -2,19 +2,21 @@
 	import { onMount } from 'svelte';
 	import { twMerge } from 'tailwind-merge';
 
-	export let repeat: number = 1;
-
 	let ready = false;
+	let marqueeWidth: number;
+	let repeat: number = 1;
 
 	onMount(() => {
 		ready = true;
 	});
+
+	$: repeat = Math.floor(marqueeWidth / 450) || 1;
 </script>
-<!-- TODO:Need to fix text overlap when using in small width -->
-<div class={twMerge('relative flex min-w-0 overflow-hidden', $$props.class)} role="banner">
+<svelte:window bind:innerWidth={marqueeWidth}/>
+<div class={twMerge('flex gap-4 overflow-hidden select-none max-w-full', $$props.class)} role='banner'>
 	{#if ready}
 		<div
-			class="absolute inset-0 flex min-w-0 animate-marquee items-center justify-around overflow-hidden whitespace-nowrap"
+			class="shrink-0 flex items-center justify-around min-w-full gap-4 animate-marquee"
 		>
 			<!--	eslint-disable-next-line @typescript-eslint/no-unused-vars-->
 			{#each Array(repeat) as _}
@@ -22,7 +24,8 @@
 			{/each}
 		</div>
 		<div
-			class="absolute inset-0 flex min-w-0 animate-marquee2 items-center justify-around overflow-hidden whitespace-nowrap"
+			class="shrink-0 flex items-center justify-around min-w-full gap-4 animate-marquee"
+			aria-hidden="true"
 		>
 			<!--	eslint-disable-next-line @typescript-eslint/no-unused-vars-->
 			{#each Array(repeat) as _}
