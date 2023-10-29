@@ -17,7 +17,9 @@
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.428.0",
-		"@aws-sdk/lib-storage": "^3.428.0"
+		"@aws-sdk/lib-storage": "^3.428.0",
+		"gsap": "^3.12.2",
+		"split-type": "^0.3.4"
 	},
 	"devDependencies": {
 		"@floating-ui/dom": "^1.5.3",
