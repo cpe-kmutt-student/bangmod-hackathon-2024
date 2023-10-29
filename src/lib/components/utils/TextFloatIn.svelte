@@ -3,10 +3,7 @@
     import gsap from 'gsap'
     import SplitType from 'split-type'
 
-    let clazz = ''
-    export {clazz as class}
-
-    let charClass = "translate-y-[50px] transition-transform duration-[0.3s]"
+    let charClass = "translate-y-[2em] transition-transform duration-[0.75s]"
     let lineClass = "[clip-path:polygon(0%_0%,100%_0%,100%_100%,0%_100%)]"
 
     let text: HTMLElement
@@ -22,17 +19,16 @@
         myText.chars?.map((char)=>{
             char.classList.add(...charClass.split(" "))
         })
-
         gsap.to('.char', {
             y: 0,
-            stagger: 0.03,
+            stagger: 0.05,
             delay: 0.2,
-            duration: .1
+            duration: .7
         })
     })
 </script>
 
-<div class={clazz} bind:this={text}>
+<div bind:this={text} {...$$restProps}>
     <slot/>
 </div>
 
