@@ -34,6 +34,7 @@
 
 	const setDate = () => {
 		value = (dateInput.value as string).replace(/(\d+)-(\d+)-(\d+)/, '$3/$2/$1');
+		console.log(value);
 	};
 </script>
 
@@ -45,9 +46,15 @@
 			{#if required}<span class="text-scarlet-800">*</span>{/if}
 		</span>
 		<span class={inputClass}>
-			<Flatpickr on:change={setDate} class=" absolute h-full  focus:outline-none" />
+			<Flatpickr
+				options={{ dateFormat: 'd/m/Y' }}
+				on:change={setDate}
+				class="absolute left-1 h-full w-[90%] p-2 focus:outline-none"
+			/>
 			<Calendar
-				class={errors ? 'absolute right-1 stroke-scarlet-800' : 'absolute right-1 stroke-asphalt'}
+				class={errors
+					? 'absolute right-1  stroke-scarlet-800'
+					: 'absolute right-1   stroke-asphalt'}
 			/>
 		</span>
 	</label>
