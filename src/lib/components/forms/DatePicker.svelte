@@ -47,6 +47,7 @@
 		</span>
 		<span class={inputClass}>
 			<Flatpickr
+				{...$$restProps}
 				options={{ dateFormat: 'd/m/Y' }}
 				on:change={setDate}
 				class="absolute left-1 h-full w-[90%] p-2 focus:outline-none"
