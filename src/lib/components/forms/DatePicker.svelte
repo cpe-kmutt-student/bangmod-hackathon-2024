@@ -29,13 +29,6 @@
 			? twJoin(colorClasses.red, borderClasses.red)
 			: twJoin(colorClasses.base, borderClasses.base)
 	);
-
-	let dateInput: HTMLInputElement;
-
-	const setDate = () => {
-		value = (dateInput.value as string).replace(/(\d+)-(\d+)-(\d+)/, '$3/$2/$1');
-		console.log(value);
-	};
 </script>
 
 <!-- This uses very hacky method -->
@@ -48,8 +41,13 @@
 		<span class={inputClass}>
 			<Flatpickr
 				{...$$restProps}
-				options={{ dateFormat: 'd/m/Y' }}
-				on:change={setDate}
+				options={{
+					dateFormat: 'd/m/Y',
+					enableTime: false,
+					onChange(selectedDates, dateStr) {
+						value = dateStr;
+					}
+				}}
 				class="absolute left-1 h-full w-[90%] p-2 focus:outline-none"
 			/>
 			<Calendar
