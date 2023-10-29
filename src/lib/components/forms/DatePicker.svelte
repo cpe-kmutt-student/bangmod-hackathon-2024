@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { twJoin } from 'tailwind-merge';
+	import Flatpickr from 'svelte-flatpickr';
+	import 'flatpickr/dist/flatpickr.css';
 
 	import { Calendar } from '../icons';
 
@@ -19,7 +21,7 @@
 	};
 
 	const defaultClass =
-		'relative flex items-center h-9 w-full rounded border p-2 font-light disabled:cursor-not-allowed';
+		'relative flex items-center h-9 w-full rounded border p-2 font-light disabled:cursor-not-allowed ';
 
 	$: inputClass = twJoin(
 		defaultClass,
@@ -43,36 +45,10 @@
 			{#if required}<span class="text-scarlet-800">*</span>{/if}
 		</span>
 		<span class={inputClass}>
-			<input
-				{...$$restProps}
-				autocomplete="off"
-				type="text"
-				on:blur
-				on:change
-				on:click={() => {
-					dateInput.showPicker();
-				}}
-				on:contextmenu
-				on:focus
-				on:keydown
-				on:keypress
-				on:keyup
-				on:mouseover
-				on:mouseenter
-				on:mouseleave
-				on:paste
-				on:input
-				class="h-full w-full outline-none"
-				bind:value
+			<Flatpickr on:change={setDate} class=" absolute h-full  focus:outline-none" />
+			<Calendar
+				class={errors ? 'absolute right-1 stroke-scarlet-800' : 'absolute right-1 stroke-asphalt'}
 			/>
-			<input
-				class="pointer-events-none absolute top-0 h-full w-full opacity-0"
-				type="date"
-				tabindex="-1"
-				on:input={setDate}
-				bind:this={dateInput}
-			/>
-			<Calendar class={errors ? 'stroke-scarlet-800' : 'stroke-asphalt'} />
 		</span>
 	</label>
 </div>
