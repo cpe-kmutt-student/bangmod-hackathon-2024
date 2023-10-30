@@ -21,6 +21,7 @@
 
 	const { enhance, errors } = superForm(data.form);
 
+	const teacherNamePrefixItems = ['นาย', 'นาง', 'นางสาว'];
 	const namePrefixItems = ['นาย', 'นางสาว'];
 	const educationLevelItems = ['มัธยมศึกษาปีที่ 4', 'มัธยมศึกษาปีที่ 5', 'มัธยมศึกษาปีที่ 6'];
 </script>
@@ -37,9 +38,8 @@
 	>
 		Registration
 	</h1>
-	<div class='mx-auto mb-0 mt-24 h-[300px] w-[200px] bg-iron-200' />
 	<form method='POST' enctype='multipart/form-data' use:enhance>
-		<fieldset class='m-4 mt-12 space-y-5 mx-auto w-[75%] max-w-[48rem]'>
+		<fieldset class='m-4 mt-12 space-y-5 mx-auto w-3/4 max-w-[48rem]'>
 			<legend class='my-12 text-center text-2xl font-medium'>
 				รายละเอียดเกี่ยวกับทีม
 			</legend>
@@ -72,14 +72,14 @@
 
 		<hr class='mx-24 my-20 border-asphalt' />
 
-		<fieldset class='m-4 space-y-5 mx-auto w-[75%] max-w-[48rem]'>
+		<fieldset class='m-4 space-y-5 mx-auto w-3/4 max-w-[48rem]'>
 			<legend class='my-12 text-center text-2xl font-medium'>ข้อมูลเกี่ยวกับที่ปรึกษา</legend>
 			<div class='flex flex-col gap-x-8 gap-y-4 lg:flex-row 2xl:gap-x-12'>
 				<ComboBox
 					name='teacher_prefix'
 					class='flex-auto lg:basis-44'
 					errors={$errors.teacher_prefix}
-					items={namePrefixItems}
+					items={teacherNamePrefixItems}
 					bind:value={$formContent.teacher_prefix}
 					required
 				>
@@ -91,6 +91,7 @@
 					name='teacher_firstname'
 					errors={$errors.teacher_firstname}
 					bind:value={$formContent.teacher_firstname}
+					placeholder='ขยัน'
 					required
 				>
 					ชื่อจริง (ภาษาไทย)
@@ -101,6 +102,7 @@
 					name='teacher_lastname'
 					errors={$errors.teacher_lastname}
 					bind:value={$formContent.teacher_lastname}
+					placeholder='หมั่นเพียร'
 					required
 				>
 					นามสกุล (ภาษาไทย)
@@ -113,6 +115,7 @@
 					name='teacher_phone'
 					errors={$errors.teacher_phone}
 					bind:value={$formContent.teacher_phone}
+					placeholder='0900000000'
 					required
 				>
 					เบอร์โทรศัพท์
@@ -123,6 +126,7 @@
 					name='teacher_email'
 					errors={$errors.teacher_email}
 					bind:value={$formContent.teacher_email}
+					placeholder='khayan@email.com'
 					required
 				>
 					อีเมล
@@ -132,6 +136,7 @@
 					class='flex-auto lg:basis-1/3'
 					errors={$errors.teacher_contact}
 					bind:value={$formContent.teacher_contact}
+					placeholder='Line: khayan123 หรือ Facebook: ขยัน หมั่นเพียร'
 					required
 				>
 					ช่องทางการติดต่ออื่น ๆ
@@ -184,6 +189,7 @@
 					name='teacher_citizen_card'
 					accept='application/pdf,image/jpeg,image/png,image/webp'
 					errors={$errors?.teacher_citizen_card}
+					required
 				>
 					1. บัตรประชาชนอาจารย์ที่ปรึกษาพร้อมเซ็นกํากับหรือบัตรประจําตัวคนที่ไม่ได้ถือสัญชาติไทย
 					(เฉพาะด้านหน้า)
@@ -192,6 +198,7 @@
 					name='teacher_verify'
 					accept='application/pdf,image/jpeg,image/png,image/webp'
 					errors={$errors?.teacher_verify}
+					required
 				>
 					2. เอกสาร หรือหนังสือยืนยันสถานภาพการเป็นอาจารย์ประจําสถาบันการศึกษา
 					(บัตรประจําตัวครูอาจารย์, บัตรข้าราชการครูและบุคลากรทางการศึกษา)
@@ -203,8 +210,7 @@
 		{#each { length: student_number } as _, idx}
 			<hr class='mx-24 my-20 border-asphalt' />
 
-			<fieldset class='m-4 mt-0 space-y-5 mx-auto w-[75%] max-w-[48rem]'>
-				<div class='mt-0 space-y-4'>
+			<fieldset class='m-4 mt-0 space-y-4 mx-auto w-3/4 max-w-[48rem]'>
 					<legend class='mb-12 mt-0 text-center text-2xl font-medium'>
 						ข้อมูลเกี่ยวกับผู้เข้าแข่งขันท่านที่ {idx + 1}
 					</legend>
@@ -250,6 +256,7 @@
 							name='students[{idx}].date_of_birth'
 							errors={$errors?.students?.[idx].date_of_birth}
 							bind:value={$formContent.students[idx].date_of_birth}
+							placeholder='31/01/2008'
 							required
 						>
 							วัน / เดือน / ปีเกิด
@@ -313,6 +320,7 @@
 							name='students[{idx}].contact'
 							errors={$errors?.students?.[idx].contact}
 							bind:value={$formContent.students[idx].contact}
+							placeholder='Line: khayan123 หรือ Facebook: ขยัน หมั่นเพียร'
 							required
 						>
 							ช่องทางการติดต่ออื่น ๆ
@@ -378,6 +386,7 @@
 								name='students[{idx}].image'
 								accept='application/pdf,image/jpeg,image/png,image/webp'
 								errors={$errors?.students?.[idx].image}
+								required
 							>
 								รูปถ่ายนักเรียนผู้เข้าแข่งขัน
 							</FileInput>
@@ -387,6 +396,7 @@
 								name='students[{idx}].citizen_card'
 								accept='application/pdf,image/jpeg,image/png,image/webp'
 								errors={$errors?.students?.[idx].citizen_card}
+								required
 							>
 								บัตรประชาชนผู้เข้าแข่งขันพร้อมเซ็นกํากับ<br />
 								หรือบัตรประจําตัวคนซึ่งไม่ได้ถือสัญชาติไทย (เฉพาะด้านหน้า)
@@ -397,6 +407,7 @@
 								name='students[{idx}].student_card'
 								accept='application/pdf,image/jpeg,image/png,image/webp'
 								errors={$errors?.students?.[idx].student_card}
+								required
 							>
 								บัตรนักเรียน
 							</FileInput>
@@ -406,18 +417,18 @@
 								name='students[{idx}].student_certificate'
 								accept='application/pdf,image/jpeg,image/png,image/webp'
 								errors={$errors?.students?.[idx].student_certificate}
+								required
 							>
 								ปพ.7 ของผู้เข้าแข่งขันตัวจริง
 							</FileInput>
 						</li>
 					</ol>
-				</div>
 			</fieldset>
 		{/each}
 
-		<hr class='mx-24 my-20 border-asphalt' />
+		<hr class='mx-12 md:mx-24 my-20 border-asphalt' />
 
-		<fieldset class='m-4 mb-8 space-y-5 mx-auto w-[65%] max-w-[48rem]'>
+		<fieldset class='m-4 mb-8 space-y-5 mx-auto w-3/4 max-w-[48rem]'>
 			<p class='mb-6 font-light'>
 				กรณีมีข้อสงสัย หรือพบปัญหาโปรดติดต่อที่เพจ
 				<a href='https://www.facebook.com/BangmodHackathon/'>BangMod Hackathon 2024</a>
@@ -434,7 +445,7 @@
 			<button
 				type='submit'
 				disabled={!verify || !consent}
-				class='mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 px-16 sm:px-20 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300'
+				class='mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 sm:px-20 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300'
 			>
 				ยืนยันการกรอกข้อมูล
 			</button>
