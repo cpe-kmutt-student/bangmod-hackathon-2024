@@ -65,7 +65,9 @@ export default {
 				'sweep-center': 'sweep_center 1s',
 				'bounce-down': 'bounce-down 1s infinite',
 				'bounce-left': 'bounce-left 1s infinite',
-				'bounce-right': 'bounce-right 1s infinite'
+				'bounce-right': 'bounce-right 1s infinite',
+				'metronome': 'metronome 7s infinite',
+				'metronome-reverse': 'metronome-reverse 7s infinite'
 			},
 			keyframes: {
 				marquee: {
@@ -141,6 +143,22 @@ export default {
 						// transform: 'rotate(-90deg);',
 						'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1);'
 					}
+				},
+				'metronome': {
+					'0%, 100%': {
+						transform: `rotate(12deg);`
+					},
+					'50%': {
+						transform: `rotate(-12deg);`
+					},
+				},
+				'metronome-reverse': {
+					'0%, 100%': {
+						transform: `rotate(-12deg);`
+					},
+					'50%': {
+						transform: `rotate(12deg);`
+					},
 				}
 			},
 			animationDelay: {
