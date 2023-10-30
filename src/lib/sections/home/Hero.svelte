@@ -47,13 +47,15 @@
 		</TextStagger>
 		<div class="flex grow flex-col font-latin">
 			<a
-				class="w-full animate-pulse animate-rotate border-y-2 border-scarlet-800 bg-butternut text-center text-4xl font-medium leading-none text-soapstone opacity-0 delay-1000 fill-mode-forwards sm:text-[6vw]"
+				class="w-full border-y-2 border-scarlet-800 bg-butternut text-center text-4xl font-medium leading-none text-soapstone sm:text-[6vw]"
 				href="/register"
 			>
-				REGISTER HERE!
+				<TextStagger baseDelay={1620}>
+					REGISTER HERE!
+				</TextStagger>
 			</a>
 			<div class="relative mt-4 flex flex-col items-center justify-center">
-				<TextStagger class="text-center font-latin text-lg font-light">SCROLL DOWN<br />FOR MORE DETAILS</TextStagger>
+				<TextStagger baseDelay={1900} class="text-center font-latin text-lg font-light">SCROLL DOWN<br />FOR MORE DETAILS</TextStagger>
 				<ArrowDown class="absolute -bottom-20 h-9 w-9 animate-bounce-down sm:h-16 sm:w-16" />
 			</div>
 		</div>

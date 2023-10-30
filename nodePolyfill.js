@@ -1,14 +1,19 @@
 import * as path from 'node:path';
 
-import type { Adapter, Builder } from '@sveltejs/kit';
 import { build } from 'esbuild';
 import { nodeModulesPolyfillPlugin } from 'esbuild-plugins-node-modules-polyfill';
 import { glob } from 'glob';
 
-export function nodeCompat(adapter: Adapter) {
+/**
+ * @param {import('@sveltejs/kit').Adapter} adapter
+ */
+export function nodeCompat(adapter) {
 	return {
 		name: `${adapter.name} & node compat`,
-		async adapt(builder: Builder) {
+		/**
+		 * @param {import('@sveltejs/kit').Builder} builder
+		 */
+		async adapt(builder) {
 			const build_dir = builder.getBuildDirectory('node-compat');
 
 			builder.rimraf(build_dir);
@@ -19,6 +24,7 @@ export function nodeCompat(adapter: Adapter) {
 			});
 
 			await build({
+				platform: 'browser',
 				conditions: ['worker', 'workerd', 'browser'],
 				entryPoints: sources,
 				outdir: build_dir,

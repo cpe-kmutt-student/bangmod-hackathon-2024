@@ -2,7 +2,13 @@
 	import { twMerge } from 'tailwind-merge';
 </script>
 
-<div {...$$restProps} class={twMerge("flex flex-col gap-x-20 px-6 py-12 lg:flex-row lg:px-16 lg:py-20", $$props.class)}>
+<div
+	{...$$restProps}
+	class={twMerge(
+		'flex min-h-screen flex-col gap-x-20 px-6 py-12 lg:flex-row lg:px-16 lg:py-20',
+		$$props.class
+	)}
+>
 	<h2
 		class="basis-1/3 self-center font-decorate text-5xl leading-normal text-azul-600 lg:self-start lg:text-8xl xl:text-9xl"
 	>
@@ -80,7 +86,7 @@
 		</div>
 	</div>
 </div>
-<div class="mb-8 flex w-full flex-col gap-y-4">
+<div class="mb-8 flex min-h-screen w-full flex-col gap-y-4">
 	<img alt="นักเรียนกำลังช่วยกันนั่งคิดวิธีแก้โจทย์ปัญหาเการเขียนโปรแกรม" src="/Image_1.webp" />
 	<div class="grid gap-4 md:grid-cols-3">
 		<img

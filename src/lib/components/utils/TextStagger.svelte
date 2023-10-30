@@ -6,10 +6,12 @@
 	let textElement: HTMLElement;
 	let ready = false;
 
+	export let baseDelay = 0;
+
 	onMount(() => {
 		const splitTexts = new SplitType(textElement);
-		splitTexts.chars?.forEach((i, index) => {
-			i.style.setProperty('animation-delay', `${index * 20}ms`)
+		splitTexts.chars?.forEach((element, index) => {
+			element.style.setProperty('animation-delay', `${(index * 20) + baseDelay}ms`)
 		})
 
 		ready = true;
@@ -34,7 +36,7 @@
 
 	@keyframes floatUp {
 		from {
-			transform: rotate(5deg) translateY(50px);
+			transform: rotate(5deg) translateY(2rem);
 			opacity: 0;
 		}
 		to {

@@ -129,8 +129,13 @@
 	];
 </script>
 
-<hr class="border-asphalt" />
-<div {...$$restProps} class={twMerge('grid divide-x divide-asphalt md:grid-cols-4', $$props.class)}>
+<div
+	{...$$restProps}
+	class={twMerge(
+		'grid divide-x divide-asphalt border-y border-asphalt md:grid-cols-4',
+		$$props.class
+	)}
+>
 	<div class="col-span-1 flex items-center justify-center">
 		<h2
 			class="mt-4 font-decorate text-7xl leading-loose text-lupine md:mt-0 md:-rotate-90 md:text-8xl md:leading-none"
@@ -139,10 +144,15 @@
 		</h2>
 	</div>
 	<div class="font-light md:col-span-3">
-		{#each timelines as timeline}
+		{#each timelines as timeline, idx}
 			<div>
 				<h3 class="my-3 px-2 text-5xl">{timeline.name}</h3>
-				<div class="flex flex-col divide-y divide-asphalt border-y border-asphalt">
+				<div
+					class={twJoin(
+						'flex flex-col divide-y divide-asphalt border-asphalt',
+						idx + 1 >= timelines.length ? 'border-t' : 'border-y'
+					)}
+				>
 					{#each timeline.tabs as tab}
 						<div class="flex w-full font-latin text-2xl">
 							<div class="w-24 shrink-0 bg-{tab.color} text-center text-soapstone">{tab.name}</div>

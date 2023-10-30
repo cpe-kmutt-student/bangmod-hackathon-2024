@@ -58,7 +58,7 @@ export default {
 				}
 			},
 			animation: {
-				marquee: 'marquee 10s linear infinite',
+				marquee: 'marquee 30s linear infinite',
 				rotate: 'rotate 1s',
 				sweep: 'sweep 1s',
 				'sweep-back': 'sweep_back 1s',
@@ -121,7 +121,9 @@ export default {
 			},
 			animationDelay: {
 				400: '400ms',
-				600: '600ms'
+				600: '600ms',
+				'20s': '20s',
+				'50s': '50s'
 			}
 		}
 	},

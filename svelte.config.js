@@ -1,7 +1,7 @@
 import adapter from '@sveltejs/adapter-cloudflare';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
-import { nodeCompat } from './src/lib/server/nodePolyfill.js';
+import { nodeCompat } from './nodePolyfill.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
