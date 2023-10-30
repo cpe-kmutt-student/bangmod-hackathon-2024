@@ -1,4 +1,4 @@
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 
 import { insertStudent, insertTeam } from '$lib/server/database';
@@ -8,9 +8,15 @@ import type { Team, TeamFile } from '$lib/server/schema';
 import { sendEmail } from '$lib/server/sendEmail';
 import { UploadFile } from '$lib/server/storage';
 
-import type { Actions } from './$types';
+import type { Actions, PageServerLoad } from './$types';
 
-export const load = async () => {
+export const load: PageServerLoad = async ({ url }) => {
+	const consent = url.searchParams.get('consent');
+	const verify = url.searchParams.get('verify');
+	if(!consent || !verify){
+		throw redirect(302, "/policies")
+	}
+
 	const form = await superValidate(TeamSchema);
 
 	return { form };
@@ -36,7 +42,7 @@ export const actions: Actions = {
 
 		try {
 			console.log(await insertTeam(team));
-			console.log(students[0].team_id)
+			console.log(students[0].team_id);
 			await insertStudent(students);
 		} catch (error) {
 			console.log(error);
@@ -61,9 +67,9 @@ export const actions: Actions = {
 			await Promise.all(uploadPromise);
 			await sendEmail({
 				subject: 'สมัคร Bangmod Hackathon 2024 สำเร็จแล้ว',
-				text: 'แก้ไขได้ตามใจชอบเลยครับตรงนี้',
-				to: `${team.teacher_email}, ${students.map(s => s.email).join(', ')}`
-			})
+				html: '<p>สมัคร Bangmod Hackathon 2024 สำเร็จแล้ว</p>',
+				to: `${team.teacher_email}, ${students.map((s) => s.email).join(', ')}`
+			});
 		} catch (error) {
 			console.log(error);
 			return fail(500, { form });
