@@ -14,7 +14,7 @@
 
 	import type { PageData } from './$types';
 
-	import {browser} from "$app/environment";
+	import { browser } from '$app/environment';
 
 	$: if (browser) window.localStorage.form = JSON.stringify($formContent);
 
@@ -34,16 +34,16 @@
 </svelte:head>
 
 <div
-	class="text-md border-asphalt text-asphalt relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border text-sm md:mt-20"
+	class="text-md relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border border-asphalt text-sm text-asphalt md:mt-20"
 >
 	<h1
-		class="bg-white font-decorate absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 px-4 text-center text-4xl tracking-tight md:px-8 md:text-5xl"
+		class="absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-center font-decorate text-4xl tracking-tight md:px-8 md:text-5xl"
 	>
 		Registration
 	</h1>
 	<form method="POST" enctype="multipart/form-data" use:enhance>
 		<fieldset class="m-4 mx-auto mt-12 w-3/4 max-w-[48rem] space-y-5">
-			<legend class="my-12 text-center text-2xl font-medium"> รายละเอียดเกี่ยวกับทีม </legend>
+			<legend class="my-12 text-center text-2xl font-medium"> รายละเอียดเกี่ยวกับทีม</legend>
 			<Input type="text" name="name" errors={$errors.name} bind:value={$formContent.name} required>
 				ชื่อทีม
 			</Input>
@@ -71,7 +71,7 @@
 			</div>
 		</fieldset>
 
-		<hr class="border-asphalt mx-24 my-20" />
+		<hr class="mx-24 my-20 border-asphalt" />
 
 		<fieldset class="m-4 mx-auto w-3/4 max-w-[48rem] space-y-5">
 			<legend class="my-12 text-center text-2xl font-medium">ข้อมูลเกี่ยวกับที่ปรึกษา</legend>
@@ -209,7 +209,7 @@
 
 		<!--	eslint-disable-next-line @typescript-eslint/no-unused-vars-->
 		{#each { length: student_number } as _, idx}
-			<hr class="border-asphalt mx-24 my-20" />
+			<hr class="mx-24 my-20 border-asphalt" />
 
 			<fieldset class="m-4 mx-auto mt-0 w-3/4 max-w-[48rem] space-y-4">
 				<legend class="mb-12 mt-0 text-center text-2xl font-medium">
@@ -427,7 +427,7 @@
 			</fieldset>
 		{/each}
 
-		<hr class="border-asphalt mx-12 my-20 md:mx-24" />
+		<hr class="mx-12 my-20 border-asphalt md:mx-24" />
 
 		<fieldset class="m-4 mx-auto mb-8 w-3/4 max-w-[48rem] space-y-5">
 			<p class="mb-6 font-light">
@@ -446,7 +446,7 @@
 			<button
 				type="submit"
 				disabled={!$verify || !$consent}
-				class="border-azul-600 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300 mx-auto my-32 flex items-center gap-12 rounded-full border px-12 py-2 sm:px-20"
+				class="mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300 sm:px-20"
 			>
 				ยืนยันการกรอกข้อมูล
 			</button>
