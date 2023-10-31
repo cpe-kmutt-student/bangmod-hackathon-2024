@@ -35,15 +35,15 @@
 			title: 'การแข่งขันรอบคัดเลือกครั้งที่ 2 และรอบชิงชนะเลิศ (On-Site)',
 			small: true,
 			showStart: true,
-			startTime: new Date('19 Jan 2023 00:00:00 GMT+0700'),
-			endTime: new Date('19 Jan 2023 23:59:59 GMT+0700')
+			startTime: new Date('19 Jan 2024 00:00:00 GMT+0700'),
+			endTime: new Date('19 Jan 2024 23:59:59 GMT+0700')
 		},
 		{
 			title: 'ประกาศผลผู้ผ่านการคัดเลือกรอบคัดเลือกครั้งที่ 2 และรอบชิงชนะเลิศ',
 			small: true,
 			showStart: true,
-			startTime: new Date('19 Jan 2023 00:00:00 GMT+0700'),
-			endTime: new Date('19 Jan 2023 23:59:59 GMT+0700')
+			startTime: new Date('19 Jan 2024 00:00:00 GMT+0700'),
+			endTime: new Date('19 Jan 2024 23:59:59 GMT+0700')
 		}
 	];
 
