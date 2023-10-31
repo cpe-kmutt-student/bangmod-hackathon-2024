@@ -11,9 +11,6 @@ dependencies:
   '@aws-sdk/lib-storage':
     specifier: ^3.428.0
     version: 3.428.0(@aws-sdk/client-s3@3.428.0)
-  nodemailer:
-    specifier: ^6.9.7
-    version: 6.9.7
 
 devDependencies:
   '@floating-ui/dom':
@@ -76,6 +73,9 @@ devDependencies:
   lodash.set:
     specifier: ^4.3.2
     version: 4.3.2
+  nodemailer:
+    specifier: ^6.9.7
+    version: 6.9.7
   postcss:
     specifier: ^8.4.31
     version: 8.4.31
@@ -4071,7 +4071,7 @@ packages:
   /nodemailer@6.9.7:
     resolution: {integrity: sha512-rUtR77ksqex/eZRLmQ21LKVH5nAAsVicAtAYudK7JgwenEDZ0UIQ1adUGqErz7sMkWYxWTTU1aeP2Jga6WQyJw==}
     engines: {node: '>=6.0.0'}
-    dev: false
+    dev: true
 
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
