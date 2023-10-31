@@ -1,6 +1,7 @@
 import { writeFileSync } from 'node:fs';
 import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { nodeModulesPolyfillPlugin } from 'esbuild-plugins-node-modules-polyfill';
 
 import * as esbuild from 'esbuild';
 
@@ -47,8 +48,8 @@ export default function (options = {}) {
 			});
 
 			await esbuild.build({
-				platform: 'node',
-				conditions: ['worker', 'browser'],
+				platform: 'browser',
+				conditions: ['worker', 'workerd', 'browser'],
 				sourcemap: 'linked',
 				target: 'es2022',
 				entryPoints: [`${tmp}/_worker.js`],
@@ -59,7 +60,15 @@ export default function (options = {}) {
 				loader: {
 					'.wasm': 'copy'
 				},
-				external: ['cloudflare:*']
+				external: ['cloudflare:*'],
+				plugins: [
+					nodeModulesPolyfillPlugin({
+						globals: {
+							process: true,
+							Buffer: true
+						}
+					})
+				]
 			});
 		}
 	};
