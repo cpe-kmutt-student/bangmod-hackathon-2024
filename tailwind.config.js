@@ -6,6 +6,7 @@ export default {
 	theme: {
 		fontFamily: {
 			sans: ['Kanit', ...defaultTheme.fontFamily.sans],
+			serif: ['Old Standard TT', ...defaultTheme.fontFamily.serif],
 			latin: ['Outfit'],
 			decorate: ['Homemade Apple']
 		},

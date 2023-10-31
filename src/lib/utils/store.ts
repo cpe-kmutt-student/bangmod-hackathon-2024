@@ -114,8 +114,5 @@ const stored =
 		: null;
 
 const formContent = writable(stored || defaultValue);
-formContent.subscribe((value) => {
-	if (browser) window.localStorage.form = JSON.stringify(value);
-});
 
 export { formContent };
