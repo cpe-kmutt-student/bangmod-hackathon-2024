@@ -5,7 +5,15 @@ declare global {
 		// interface Error {}
 		// interface Locals {}
 		// interface PageData {}
-		// interface Platform {}
+		interface Platform {
+			env: {
+				BUCKET: R2Bucket;
+			};
+			context: {
+				waitUntil(promise: Promise<unknown>): void;
+			};
+			caches: CacheStorage & { default: Cache };
+		}
 	}
 }
 
