@@ -15,7 +15,7 @@
 		class="static z-10 m-0 flex h-full w-full items-center justify-between bg-[#3E245D]/70 p-0 px-5 backdrop-blur-md md:hidden md:bg-transparent"
 	>
 		<span class="w-10 rounded-md p-2" />
-		<a href="/" class="h-20 p-2">
+		<a href="/#hero" class="h-20 p-2">
 			<img src="logo.webp" alt="bangmod hackathon 2023 logo" class="h-[100%] w-auto" />
 		</a>
 		<button class="rounded-md p-2" on:click={() => (navbar = !navbar)}>

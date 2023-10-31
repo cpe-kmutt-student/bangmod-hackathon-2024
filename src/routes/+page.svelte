@@ -15,7 +15,8 @@
 	<title>Bangmod Hackathon 2024</title>
 </svelte:head>
 
-<div class="h-full w-full overflow-x-hidden">
+
+<div on:scroll={()=>console.log("Document")} class="h-full w-full overflow-x-hidden">
 	<Navbar />
 
 	<Hero />

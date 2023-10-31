@@ -1,34 +1,31 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { inview } from 'svelte-inview';
 
 	import { Section, currentSection } from '$lib/components/homes/Navbar/navbar';
 
+	import { browser } from '$app/environment';
+
 	let backMountain: HTMLImageElement;
 	let logo: HTMLElement;
+	let hero: HTMLElement;
 
-	const scrollParallax = (event: MouseEvent) => {
-		console.log("Scroll")
-		if (!backMountain || !logo) return;
-		const y = event.target.scrollTop;
-		console.log(y);
+	$: if (backMountain) {
+		backMountain.style.transform = `scale(${hero.getBoundingClientRect().top * 0.0025 + 1})`;
+	}
 
-		backMountain.style.transform = `scale(${y * 0.0025 + 1})`;
-
-		if (window.innerWidth > 1024) return;
-		logo.style.top = `${y * 1.05}px`;
-	};
-
-	onMount(() => {
-		window.addEventListener('scroll', scrollParallax);
-
-		return () => window.removeEventListener('scroll', scrollParallax);
-	});
+	$: if (browser && window.innerWidth <= 1024 && logo) {
+		console.log('Hello');
+		logo.style.top = `${hero.getBoundingClientRect().top * 1.05}px`;
+	}
 </script>
 
 <div
+	bind:this={hero}
 	use:inview={{ rootMargin: '-10%' }}
-	on:inview_enter={() => ($currentSection = Section.Hero)}
+	on:inview_enter={() => {
+		$currentSection = Section.Hero;
+	}}
+	id="hero"
 	class="relative h-screen w-full bg-gradient-to-b from-[#3E245D] via-[#EF4D91] to-[#FEEFA0]"
 >
 	<div
