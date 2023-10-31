@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ url }) => {
 	}
 
 	const form = await superValidate(TeamSchema);
-	console.log(form);
+	console.log(JSON.stringify(form));
 
 	return { form };
 };
@@ -46,7 +46,7 @@ export const actions: Actions = {
 			await insertStudent(students);
 		} catch (error) {
 			console.log(error);
-			return fail(500, { form });
+			return fail(501, { form });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [
@@ -67,7 +67,7 @@ export const actions: Actions = {
 			await Promise.all(uploadPromise);
 		} catch (error) {
 			console.log(error);
-			return fail(500, { form });
+			return fail(501, { form });
 		}
 
 		return { form };
