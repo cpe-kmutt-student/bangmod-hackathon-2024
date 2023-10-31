@@ -60,7 +60,12 @@ export default function (options = {}) {
 				loader: {
 					'.wasm': 'copy'
 				},
-				external: ['cloudflare:*']
+				external: [
+					'cloudflare:*',
+					'node:events',
+					'node:buffer',
+					'node:stream'
+				]
 			});
 		}
 	};
