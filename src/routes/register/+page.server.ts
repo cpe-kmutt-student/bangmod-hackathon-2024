@@ -11,13 +11,15 @@ import { UploadFile } from '$lib/server/storage';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ url }) => {
+	console.log('Loading Data');
 	const consent = url.searchParams.get('consent');
 	const verify = url.searchParams.get('verify');
-	if(!consent || !verify){
-		throw redirect(302, "/policies")
+	if (!consent || !verify) {
+		throw redirect(302, '/policies');
 	}
 
 	const form = await superValidate(TeamSchema);
+	console.log(form);
 
 	return { form };
 };

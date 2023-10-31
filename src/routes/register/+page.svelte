@@ -14,6 +14,10 @@
 
 	import type { PageData } from './$types';
 
+	import {browser} from "$app/environment";
+
+	$: if (browser) window.localStorage.form = JSON.stringify($formContent);
+
 	let student_number = 2;
 
 	export let data: PageData;
