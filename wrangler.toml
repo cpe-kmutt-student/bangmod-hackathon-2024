@@ -1,0 +1,11 @@
+name = "bangmod-hackathon-2024"
+account_id = "c3c2990e88540a177e1af72afb62be32"
+
+main = "./.cloudflare/worker.js"
+site.bucket = "./.cloudflare/public"
+
+build.command = "pnpm run build"
+
+compatibility_date = "2021-11-12"
+workers_dev = true
+node_compat = true

@@ -39,35 +39,35 @@ export const actions: Actions = {
 
 		const { students, team } = prepareData(teamId, data, files);
 
-		try {
-			console.log(await insertTeam(team));
-			console.log(students[0].team_id);
-			await insertStudent(students);
-		} catch (error) {
-			console.log(error);
-			return fail(501, { form });
-		}
-
-		const uploadPromise: Promise<unknown>[] = [
-			UploadFile(team.teacher_citizen_card, files.teacher_citizen_card),
-			UploadFile(team.teacher_verify, files.teacher_verify)
-		];
-
-		for (let i = 0; i < files.students.length; i++) {
-			uploadPromise.push(
-				UploadFile(students[i].image, files.students[i].image),
-				UploadFile(students[i].citizen_card, files.students[i].citizen_card),
-				UploadFile(students[i].student_card, files.students[i].student_card),
-				UploadFile(students[i].student_certificate, files.students[i].student_certificate)
-			);
-		}
-
-		try {
-			await Promise.all(uploadPromise);
-		} catch (error) {
-			console.log(error);
-			return fail(501, { form });
-		}
+		// try {
+		// 	console.log(await insertTeam(team));
+		// 	console.log(students[0].team_id);
+		// 	await insertStudent(students);
+		// } catch (error) {
+		// 	console.log(error);
+		// 	return fail(501, { form });
+		// }
+		//
+		// const uploadPromise: Promise<unknown>[] = [
+		// 	UploadFile(team.teacher_citizen_card, files.teacher_citizen_card),
+		// 	UploadFile(team.teacher_verify, files.teacher_verify)
+		// ];
+		//
+		// for (let i = 0; i < files.students.length; i++) {
+		// 	uploadPromise.push(
+		// 		UploadFile(students[i].image, files.students[i].image),
+		// 		UploadFile(students[i].citizen_card, files.students[i].citizen_card),
+		// 		UploadFile(students[i].student_card, files.students[i].student_card),
+		// 		UploadFile(students[i].student_certificate, files.students[i].student_certificate)
+		// 	);
+		// }
+		//
+		// try {
+		// 	await Promise.all(uploadPromise);
+		// } catch (error) {
+		// 	console.log(error);
+		// 	return fail(501, { form });
+		// }
 
 		throw redirect(302, '/register/completed');
 	}
