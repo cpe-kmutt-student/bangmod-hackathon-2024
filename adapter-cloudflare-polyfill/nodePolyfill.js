@@ -19,7 +19,7 @@ export function nodeCompat(adapter) {
 			builder.rimraf(build_dir);
 
 			const server_dir = builder.getServerDirectory();
-			console.log(server_dir)
+			console.log(server_dir);
 			const sources = await glob(path.join(server_dir, '**/*.js'), {
 				nodir: true
 			});
