@@ -28,16 +28,10 @@
 				<p class="text-purple-900">15,000 บาท</p>
 				<p class="text-purple-900">พร้อมโล่รางวัลประกาศเกียรติคุณ</p>
 			</Card>
-		</div>
-		<div class="flex flex-wrap justify-center">
 			<Card src="reward/second-medal.webp">
 				<h3 class="font-bold text-purple-900 lg:text-base">รางวัลรองชนะเลิศอันดับ 2</h3>
 				<p class="text-purple-900">5,000 บาท</p>
 				<p class="text-purple-900">พร้อมโล่รางวัลประกาศเกียรติคุณ</p>
-			</Card>
-			<Card src="reward/bronze-medal.webp">
-				<h3 class="font-bold text-purple-900 lg:text-base">รางวัลชมเชย 2 รางวัล</h3>
-				<p class="text-purple-900">รางวัลละ 2,000 บาท</p>
 			</Card>
 		</div>
 	</div>
