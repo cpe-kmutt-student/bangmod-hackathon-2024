@@ -59,8 +59,8 @@ export default {
 				}
 			},
 			gridTemplateColumns: {
-				'28': 'repeat(28, minmax(0, 1fr))'
-			},
+				28: 'repeat(28, minmax(0, 1fr))'
+			}
 		}
 	}
 };

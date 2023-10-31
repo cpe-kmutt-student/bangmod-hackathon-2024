@@ -58,35 +58,19 @@ const StudentFileSchema = z.object({
 	image: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				file?.type === 'application/pdf',
-			'Only .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	citizen_card: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				file?.type === 'application/pdf',
-			'Only .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	student_card: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				file?.type === 'application/pdf',
-			'Only .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	student_certificate: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				file?.type === 'application/pdf',
-			'Only .pdf formats are supported.'
-		)
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.')
 });
 
 const TeamSchema = z.object({
@@ -116,18 +100,11 @@ const TeamFileSchema = z.object({
 	teacher_citizen_card: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) => file?.type === 'application/pdf',
-			'Only .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	teacher_verify: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				file?.type === 'application/pdf',
-			'Only .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	students: z.array(StudentFileSchema).min(2).max(3)
 });
 
