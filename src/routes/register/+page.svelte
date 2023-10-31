@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import { superForm } from 'sveltekit-superforms/client';
 
 	import {
@@ -12,7 +13,7 @@
 	import { consent, verify } from '$lib/stores/consent';
 	import { formContent } from '$lib/utils/store';
 
-	import type { PageData } from './$types';
+	import type { ActionData, PageData } from './$types';
 
 	import { browser } from '$app/environment';
 
@@ -35,6 +36,10 @@
 		'ประกาศนียบัตรวิชาชีพชั้นปีที่ 3',
 		'เทียบเท่ามัธยมศึกษาตอนปลาย'
 	];
+
+	export let form: ActionData;
+
+	$: errorModal = form && form.error;
 </script>
 
 <svelte:head>
@@ -461,3 +466,41 @@
 		</fieldset>
 	</form>
 </div>
+{#if errorModal}
+	<div transition:fade class="fixed top-1 left-1 md:left-5 md:top-5 max-h-full w-fit max-w-[15rem]">
+		<!-- Modal content -->
+		<div class="relative rounded-lg bg-white shadow">
+			<!-- Modal header -->
+			<div class="flex items-start justify-between rounded-t border-b p-4">
+				<h3 class="text-md font-semibold text-scarlet-800 md:text-xl">Error occur !</h3>
+				<button
+					type="button"
+					class="ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+					on:click={() => (errorModal = false)}
+				>
+					<svg
+						class="h-3 w-3 stroke-scarlet-800"
+						aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 14 14"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+						/>
+					</svg>
+					<span class="sr-only">Close modal</span>
+				</button>
+			</div>
+			<!-- Modal body -->
+			<div class="space-y-6 p-6">
+				<p class="text-base font-light leading-relaxed text-asphalt whitespace-pre-line">
+					{form.error}
+				</p>
+			</div>
+		</div>
+	</div>
+{/if}

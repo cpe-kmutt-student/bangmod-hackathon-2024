@@ -1,11 +1,11 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 
-import { supabase } from '$lib/server/supabase';
 import { deserializeNested, prepareData } from '$lib/server/form';
 import { TeamSchema } from '$lib/server/schema';
 import type { Team, TeamFile } from '$lib/server/schema';
 import { UploadFile } from '$lib/server/storage';
+import { supabase } from '$lib/server/supabase';
 
 import type { Actions, PageServerLoad } from './$types';
 
@@ -32,7 +32,7 @@ export const actions: Actions = {
 
 		if (!form.valid) {
 			console.log(form.errors);
-			return fail(400, { form });
+			return fail(400, { form, error: "Form is not valid.\nSome input might be incorrect." });
 		}
 
 		const teamId = crypto.randomUUID();
@@ -41,12 +41,13 @@ export const actions: Actions = {
 
 		const { error: teamInsertError } = await supabase.from('team').insert(team);
 		if (teamInsertError) {
-			return fail(500, { form });
+			console.log(teamInsertError);
+			return fail(500, { form, error: teamInsertError });
 		}
 
 		const { error: studentInsertError } = await supabase.from('student').insert(students);
 		if (studentInsertError) {
-			return fail(500, { form });
+			return fail(500, { form, error: studentInsertError });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [
@@ -67,7 +68,7 @@ export const actions: Actions = {
 			await Promise.all(uploadPromise);
 		} catch (error) {
 			console.log(error);
-			return fail(501, { form });
+			return fail(501, { form, error: error });
 		}
 
 		throw redirect(302, '/register/completed');
