@@ -17,7 +17,6 @@ export const load: PageServerLoad = async ({ url }) => {
 	}
 
 	const form = await superValidate(TeamSchema);
-	console.log(JSON.stringify(form));
 
 	return { form };
 };
