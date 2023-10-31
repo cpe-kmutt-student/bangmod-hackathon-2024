@@ -1,8 +1,37 @@
-<div class="flex h-screen text-center dark:bg-slate-800">
-    <div class="m-auto">
-        <h1 class="text-4xl font-bold text-slate-800 dark:text-slate-200">Bangmod Hackathon 2024</h1>
-        <p class="text-lg font-normal text-slate-500 dark:text-slate-400 sm:px-16 lg:text-xl xl:px-48">
-            Welcome to Bangmod Hackathon 2024
-        </p>
-    </div>
+<script lang="ts">
+	import {
+		Contact,
+		Hero,
+		Information,
+		Navbar,
+		Qualification,
+		Reward,
+		Scope,
+		TimeLine
+	} from '$lib/components/homes';
+</script>
+
+<svelte:head>
+	<title>Bangmod Hackathon 2024</title>
+</svelte:head>
+
+<div class="h-full w-full overflow-x-hidden">
+	<Navbar />
+
+	<Hero />
+
+	<div class="h-full w-full">
+		<div
+			class="relative z-30 bg-gradient-to-b from-[#3E245D] via-[#B04F9C] to-[#40245E] md:mt-[5.75rem]"
+		>
+			<div class="container mx-auto w-full space-y-48 py-24">
+				<Information />
+				<Qualification />
+				<Reward />
+				<TimeLine />
+				<Scope />
+				<Contact />
+			</div>
+		</div>
+	</div>
 </div>

@@ -14,6 +14,10 @@ export default {
 			colors: {
 				soapstone: '#fefcfc',
 				asphalt: '#0d0d02',
+				beer: '#febb28',
+				saddle: '#8a4b18',
+				butternut: '#fb7500',
+				lupine: '#ccaa4a',
 				iron: {
 					50: '#f6f6f7',
 					100: '#efeff0',
@@ -54,21 +58,9 @@ export default {
 					950: '#52000c'
 				}
 			},
-			animation: {
-				marquee: 'marquee 25s linear infinite',
-				marquee2: 'marquee2 25s linear infinite'
+			gridTemplateColumns: {
+				'28': 'repeat(28, minmax(0, 1fr))'
 			},
-			keyframes: {
-				marquee: {
-					'0%': { transform: 'translateX(0%)' },
-					'100%': { transform: 'translateX(-100%)' }
-				},
-				marquee2: {
-					'0%': { transform: 'translateX(100%)' },
-					'100%': { transform: 'translateX(0%)' }
-				}
-			}
 		}
-	},
-	plugins: []
+	}
 };
