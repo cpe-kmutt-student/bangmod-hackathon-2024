@@ -1,7 +1,7 @@
 import * as path from 'node:path';
 
 import { build } from 'esbuild';
-import { nodeModulesPolyfillPlugin } from 'esbuild-plugins-node-modules-polyfill';
+import ESBuildNodePolyfillsPlugin from 'esbuild-plugin-node-polyfills';
 import { glob } from 'glob';
 
 /**
@@ -35,12 +35,7 @@ export function nodeCompat(adapter) {
 				},
 				external: ['cloudflare:*'],
 				plugins: [
-					nodeModulesPolyfillPlugin({
-						globals: {
-							process: true,
-							Buffer: true
-						}
-					})
+					ESBuildNodePolyfillsPlugin
 				]
 			});
 

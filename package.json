@@ -17,8 +17,7 @@
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "^3.428.0",
-		"@aws-sdk/lib-storage": "^3.428.0",
-		"esbuild-plugins-node-modules-polyfill": "^1.6.1"
+		"@aws-sdk/lib-storage": "^3.428.0"
 	},
 	"devDependencies": {
 		"@floating-ui/dom": "^1.5.3",
@@ -32,6 +31,7 @@
 		"@typescript-eslint/parser": "^6.7.5",
 		"autoprefixer": "^10.4.16",
 		"esbuild": "^0.19.5",
+		"esbuild-plugin-node-polyfills": "^1.0.2",
 		"eslint": "^8.51.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-import-resolver-typescript": "^3.6.1",
