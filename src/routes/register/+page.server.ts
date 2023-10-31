@@ -75,6 +75,6 @@ export const actions: Actions = {
 			return fail(501, { form });
 		}
 
-		return { form };
+		throw redirect(302, "/register/completed");
 	}
 };
