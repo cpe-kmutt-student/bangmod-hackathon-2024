@@ -196,7 +196,7 @@
 			<div class="space-y-8 font-light">
 				<FileInput
 					name="teacher_citizen_card"
-					accept="application/pdf,image/jpeg,image/png,image/webp"
+					accept="application/pdf"
 					errors={$errors?.teacher_citizen_card}
 					required
 				>
@@ -205,7 +205,7 @@
 				</FileInput>
 				<FileInput
 					name="teacher_verify"
-					accept="application/pdf,image/jpeg,image/png,image/webp"
+					accept="application/pdf"
 					errors={$errors?.teacher_verify}
 					required
 				>
@@ -393,7 +393,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].image"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].image}
 							required
 						>
@@ -403,7 +403,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].citizen_card"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].citizen_card}
 							required
 						>
@@ -414,7 +414,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].student_card"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].student_card}
 							required
 						>
@@ -424,7 +424,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].student_certificate"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].student_certificate}
 							required
 						>
