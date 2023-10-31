@@ -34,9 +34,7 @@ const StudentSchema = z.object({
 	nationality: z.string().min(1),
 	race: z.string().min(1),
 	religion: z.string().min(1),
-	level: z
-		.enum(['มัธยมศึกษาปีที่ 4', 'มัธยมศึกษาปีที่ 5', 'มัธยมศึกษาปีที่ 6'])
-		.default('' as 'มัธยมศึกษาปีที่ 6'),
+	level: z.string().min(1),
 	address: z.string().min(1),
 	sub_district: z.string().min(1),
 	district: z.string().min(1),
