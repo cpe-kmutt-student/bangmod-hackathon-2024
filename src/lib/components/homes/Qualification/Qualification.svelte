@@ -6,7 +6,7 @@
 </script>
 
 <section
-	use:inview
+	use:inview={{rootMargin: '-10%'}}
 	on:inview_enter={() => ($currentSection = Section.Qualification)}
 	class="flex flex-col items-center justify-around py-12 lg:py-24"
 >
@@ -36,7 +36,7 @@
 				<p class="text-purple-700">โดยอาจารย์ที่ปรึกษาต้องสอนในสถานศึกษานั้น ๆ</p>
 			</Card>
 			<Card src="qualification/school.webp">
-				<p class="text-purple-700">แต่ละสถานศึกษาสามารถ ส่งผู้เข้าแข่งขันได้มากที่สุด 2 ทีม</p>
+				<p class="text-purple-700">แต่ละสถานศึกษาสามารถ ส่งผู้เข้าแข่งขันได้มากที่สุด 1 ทีม</p>
 			</Card>
 		</div>
 	</div>

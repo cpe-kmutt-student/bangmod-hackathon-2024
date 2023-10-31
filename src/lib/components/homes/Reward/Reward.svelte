@@ -6,7 +6,7 @@
 </script>
 
 <section
-	use:inview
+	use:inview={{rootMargin: '-10%'}}
 	on:inview_enter={() => ($currentSection = Section.Reward)}
 	id="reward-section"
 	class="flex min-h-screen flex-col items-center justify-center py-12 lg:py-24"

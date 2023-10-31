@@ -1,28 +1,38 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { inview } from 'svelte-inview';
 
 	import { Section, currentSection } from '$lib/components/homes/Navbar/navbar';
 
-	let backMountain: HTMLElement;
+	let backMountain: HTMLImageElement;
 	let logo: HTMLElement;
-	const scrollParallax = () => {
+
+	const scrollParallax = (event: MouseEvent) => {
+		console.log("Scroll")
 		if (!backMountain || !logo) return;
-		const y = window.scrollY;
+		const y = event.target.scrollTop;
+		console.log(y);
 
 		backMountain.style.transform = `scale(${y * 0.0025 + 1})`;
 
 		if (window.innerWidth > 1024) return;
 		logo.style.top = `${y * 1.05}px`;
 	};
+
+	onMount(() => {
+		window.addEventListener('scroll', scrollParallax);
+
+		return () => window.removeEventListener('scroll', scrollParallax);
+	});
 </script>
 
-<svelte:window on:scroll={scrollParallax} />
 <div
-	use:inview
+	use:inview={{ rootMargin: '-10%' }}
 	on:inview_enter={() => ($currentSection = Section.Hero)}
 	class="relative h-screen w-full bg-gradient-to-b from-[#3E245D] via-[#EF4D91] to-[#FEEFA0]"
 >
 	<div
+		bind:this={logo}
 		class="
           absolute z-20 h-full w-full translate-y-48 transform md:z-30 xl:z-40 2xl:flex
           2xl:-translate-y-36
@@ -63,7 +73,43 @@
         lg:-translate-y-2 lg:scale-[1.0]
       "
 	>
-		<img class="z-10 w-full" src="bg1.webp" alt="" />
+		<img bind:this={backMountain} class="z-10 w-full" src="bg1.webp" alt="" />
 		<div class="-mt-2 h-8 w-full bg-gradient-to-r from-[#763874] to-[#8F4581] md:h-32 lg:h-64" />
 	</div>
 </div>
+
+<style>
+	.lamp {
+		animation-name: floatUp;
+		animation-iteration-count: infinite;
+	}
+
+	#lampBack1 {
+		animation-duration: 20s;
+		animation-delay: 4s;
+	}
+
+	#lampBack2 {
+		animation-duration: 17s;
+		animation-delay: 2s;
+	}
+
+	#lampMid {
+		animation-duration: 25s;
+		animation-delay: 1s;
+	}
+
+	#lampFront {
+		animation-duration: 17s;
+		animation-delay: 3s;
+	}
+
+	@keyframes floatUp {
+		0% {
+			bottom: 0;
+		}
+		100% {
+			bottom: 110%;
+		}
+	}
+</style>

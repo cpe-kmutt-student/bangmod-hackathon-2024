@@ -5,7 +5,7 @@
 </script>
 
 <section
-	use:inview
+	use:inview={{rootMargin: '-10%'}}
 	on:inview_enter={() => ($currentSection = Section.Info)}
 	id="information-section"
 	class="flex h-screen flex-col items-center justify-center py-12 text-white md:flex-row md:space-x-8 lg:py-24"
@@ -20,10 +20,10 @@
 
 	<div class="flex w-full flex-col md:w-3/4">
 		<div class="hidden w-fit rounded-xl bg-yellow-600 px-8 py-4 text-xl font-bold md:block">
-			Bangmod Hackathon 2023 คืออะไร ?
+			Bangmod Hackathon 2024 คืออะไร ?
 		</div>
 		<p class="mt-4 text-center text-sm leading-8 tracking-wider md:text-left">
-			โครงการแข่งขันการเขียนโปรแกรมคอมพิวเตอร์ Bangmod Hackathon 2023
+			โครงการแข่งขันการเขียนโปรแกรมคอมพิวเตอร์ Bangmod Hackathon 2024
 			เป็นโครงการที่เปิดโอกาสให้นักเรียนระดับชั้นมัธยมศึกษาตอนปลาย รวมถึงนักศึกษาอาชีวศึกษาในระดับ
 			ปวช. หรือเทียบเท่า ได้เข้ามาแข่งขันการเขียน โปรแกรม โดยใช้ภาษา C หรือ C++
 			ซึ่งการแข่งขันนั้นจะเป็นการแข่งขันในรูปแบบทีม ทำให้ผู้เข้าแข่งขันนั้นได้รับทั้งประสบการณ์ใหม่

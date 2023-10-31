@@ -58,75 +58,9 @@ export default {
 					950: '#52000c'
 				}
 			},
-			animation: {
-				marquee: 'marquee 30s linear infinite',
-				rotate: 'rotate 1s',
-				sweep: 'sweep 1s',
-				'sweep-back': 'sweep_back 1s',
-				'sweep-center': 'sweep_center 1s',
-				'bounce-down': 'bounce-down 1s infinite'
+			gridTemplateColumns: {
+				'28': 'repeat(28, minmax(0, 1fr))'
 			},
-			keyframes: {
-				marquee: {
-					'0%': { transform: 'translateX(0)' },
-					'100%': { transform: 'translateX(calc(-100% - 1rem))' }
-				},
-				sweep: {
-					'0%': { 'clip-path': 'polygon(2% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 50% 50%)' },
-					'25%': { 'clip-path': 'polygon(2% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%)' },
-					'50%': {
-						'clip-path': 'polygon(2% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%, 50% 50%)'
-					},
-					'75%': { 'clip-path': 'polygon(2% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%, 50% 50%)' },
-					'100%': { 'clip-path': 'polygon(2% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 50% 50%)' }
-				},
-				sweep_back: {
-					'0%': { 'clip-path': 'polygon(98% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%)' },
-					'25%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 50% 50%)' },
-					'50%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 100%, 0% 100%, 0% 100%, 50% 50%)' },
-					'75%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 100%, 100% 100%, 100% 100%, 50% 50%)' },
-					'100%': { 'clip-path': 'polygon(98% 0%, 0% 0%, 0% 100%, 100% 100%, 100% 0%, 50% 50%)' }
-				},
-				sweep_center: {
-					'0%': { 'clip-path': 'polygon(50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 50%)' },
-					'25%': {
-						'clip-path': 'polygon(0% 0%, 0% 0%, 0% 0%, 100% 0%, 100% 0%, 100% 0%, 50% 50%)'
-					},
-					'50%': {
-						'clip-path': 'polygon(0% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 100% 100%, 50% 50%)'
-					},
-					'75%': {
-						'clip-path': 'polygon(50% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 50% 100%, 50% 50%)'
-					}
-				},
-				rotate: {
-					'0%': {
-						opacity: 0,
-						transform: 'translateY(50px) rotate(2.5deg);'
-					},
-					'100%': {
-						opacity: 1,
-						transform: 'translateY(0px) rotate(0deg);'
-					}
-				},
-				'bounce-down': {
-					'0%, 100%': {
-						transform: 'translateY(0);',
-						'animation-timing-function': 'cubic-bezier(0.8, 0, 1, 1);'
-					},
-					'50%': {
-						transform: 'translateY(24px);',
-						'animation-timing-function': 'cubic-bezier(0, 0, 0.2, 1);'
-					}
-				}
-			},
-			animationDelay: {
-				400: '400ms',
-				600: '600ms',
-				'20s': '20s',
-				'50s': '50s'
-			}
 		}
-	},
-	plugins: [require('tailwindcss-animate')]
+	}
 };
