@@ -32,7 +32,7 @@ export const actions: Actions = {
 
 		if (!form.valid) {
 			console.log(form.errors);
-			return fail(400, { form, error: "Form is not valid.\nSome input might be incorrect." });
+			return fail(400, { form, error: 'Form is not valid.\nSome input might be incorrect.' });
 		}
 
 		const teamId = crypto.randomUUID();

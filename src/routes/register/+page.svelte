@@ -1,4 +1,5 @@
 <script lang="ts">
+
 	import { fade } from 'svelte/transition';
 	import { superForm } from 'sveltekit-superforms/client';
 
@@ -10,6 +11,7 @@
 		FileInput,
 		Input
 	} from '$lib/components/forms';
+	import { Spinner } from '$lib/components/icons';
 	import { consent, verify } from '$lib/stores/consent';
 	import { formContent } from '$lib/utils/store';
 
@@ -20,10 +22,14 @@
 	$: if (browser) window.localStorage.form = JSON.stringify($formContent);
 
 	let student_number = 2;
+	let submitting = false;
 
 	export let data: PageData;
 
-	const { enhance, errors } = superForm(data.form);
+	const { enhance, errors } = superForm(data.form, {
+		onSubmit: () => (submitting = true),
+		onResult: () => (submitting = false)
+	});
 
 	const teacherNamePrefixItems = ['นาย', 'นาง', 'นางสาว'];
 	const namePrefixItems = ['นาย', 'นางสาว'];
@@ -458,16 +464,19 @@
 
 			<button
 				type="submit"
-				disabled={!$verify || !$consent}
+				disabled={!$verify || !$consent || submitting}
 				class="mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300 sm:px-20"
 			>
-				ยืนยันการกรอกข้อมูล
+				{#if submitting}
+					<Spinner class="h-6 w-6" />
+				{/if}
+				<span class="h-6">ยืนยันการกรอกข้อมูล</span>
 			</button>
 		</fieldset>
 	</form>
 </div>
 {#if errorModal}
-	<div transition:fade class="fixed top-1 left-1 md:left-5 md:top-5 max-h-full w-fit max-w-[15rem]">
+	<div transition:fade class="fixed left-1 top-1 max-h-full w-fit max-w-[15rem] md:left-5 md:top-5">
 		<!-- Modal content -->
 		<div class="relative rounded-lg bg-white shadow">
 			<!-- Modal header -->
@@ -497,7 +506,7 @@
 			</div>
 			<!-- Modal body -->
 			<div class="space-y-6 p-6">
-				<p class="text-base font-light leading-relaxed text-asphalt whitespace-pre-line">
+				<p class="whitespace-pre-line text-base font-light leading-relaxed text-asphalt">
 					{form.error}
 				</p>
 			</div>
