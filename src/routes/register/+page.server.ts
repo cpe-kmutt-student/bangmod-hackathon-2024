@@ -1,7 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 
-import { insertStudent, insertTeam } from '$lib/server/database';
+import { supabase } from '$lib/server/supabase';
 import { deserializeNested, prepareData } from '$lib/server/form';
 import { TeamSchema } from '$lib/server/schema';
 import type { Team, TeamFile } from '$lib/server/schema';
@@ -39,35 +39,36 @@ export const actions: Actions = {
 
 		const { students, team } = prepareData(teamId, data, files);
 
-		// try {
-		// 	console.log(await insertTeam(team));
-		// 	console.log(students[0].team_id);
-		// 	await insertStudent(students);
-		// } catch (error) {
-		// 	console.log(error);
-		// 	return fail(501, { form });
-		// }
-		//
-		// const uploadPromise: Promise<unknown>[] = [
-		// 	UploadFile(team.teacher_citizen_card, files.teacher_citizen_card),
-		// 	UploadFile(team.teacher_verify, files.teacher_verify)
-		// ];
-		//
-		// for (let i = 0; i < files.students.length; i++) {
-		// 	uploadPromise.push(
-		// 		UploadFile(students[i].image, files.students[i].image),
-		// 		UploadFile(students[i].citizen_card, files.students[i].citizen_card),
-		// 		UploadFile(students[i].student_card, files.students[i].student_card),
-		// 		UploadFile(students[i].student_certificate, files.students[i].student_certificate)
-		// 	);
-		// }
-		//
-		// try {
-		// 	await Promise.all(uploadPromise);
-		// } catch (error) {
-		// 	console.log(error);
-		// 	return fail(501, { form });
-		// }
+		const { error: teamInsertError } = await supabase.from('team').insert(team);
+		if (teamInsertError) {
+			return fail(500, { form });
+		}
+
+		const { error: studentInsertError } = await supabase.from('student').insert(students);
+		if (studentInsertError) {
+			return fail(500, { form });
+		}
+
+		const uploadPromise: Promise<unknown>[] = [
+			UploadFile(team.teacher_citizen_card, files.teacher_citizen_card),
+			UploadFile(team.teacher_verify, files.teacher_verify)
+		];
+
+		for (let i = 0; i < files.students.length; i++) {
+			uploadPromise.push(
+				UploadFile(students[i].image, files.students[i].image),
+				UploadFile(students[i].citizen_card, files.students[i].citizen_card),
+				UploadFile(students[i].student_card, files.students[i].student_card),
+				UploadFile(students[i].student_certificate, files.students[i].student_certificate)
+			);
+		}
+
+		try {
+			await Promise.all(uploadPromise);
+		} catch (error) {
+			console.log(error);
+			return fail(501, { form });
+		}
 
 		throw redirect(302, '/register/completed');
 	}
