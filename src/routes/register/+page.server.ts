@@ -1,6 +1,7 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { superValidate } from 'sveltekit-superforms/server';
 
+import { prepareMail, sendEmail } from '$lib/server/email';
 import { deserializeNested, prepareData } from '$lib/server/form';
 import { TeamSchema } from '$lib/server/schema';
 import type { Team, TeamFile } from '$lib/server/schema';
@@ -66,6 +67,18 @@ export const actions: Actions = {
 
 		try {
 			await Promise.all(uploadPromise);
+			await sendEmail(prepareMail(students, team), [
+				{
+					name: `${team.teacher_prefix}${team.teacher_firstname} ${team.teacher_lastname}`,
+					email: team.teacher_email
+				},
+				...students.map((student) => {
+					return {
+						name: `${student.name_prefix}${student.firstname} ${student.lastname}`,
+						email: student.email
+					};
+				})
+			]);
 		} catch (error) {
 			console.log(error);
 			return fail(501, { form, error: error });
