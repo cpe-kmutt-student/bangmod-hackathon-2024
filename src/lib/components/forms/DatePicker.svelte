@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { twJoin } from 'tailwind-merge';
+	import Flatpickr from 'svelte-flatpickr';
+	import 'flatpickr/dist/flatpickr.css';
 
 	import { Calendar } from '../icons';
 
@@ -19,7 +21,7 @@
 	};
 
 	const defaultClass =
-		'relative flex items-center h-9 w-full rounded border p-2 font-light disabled:cursor-not-allowed';
+		'relative flex items-center h-9 w-full rounded border p-2 font-light disabled:cursor-not-allowed ';
 
 	$: inputClass = twJoin(
 		defaultClass,
@@ -27,12 +29,6 @@
 			? twJoin(colorClasses.red, borderClasses.red)
 			: twJoin(colorClasses.base, borderClasses.base)
 	);
-
-	let dateInput: HTMLInputElement;
-
-	const setDate = () => {
-		value = (dateInput.value as string).replace(/(\d+)-(\d+)-(\d+)/, '$3/$2/$1');
-	};
 </script>
 
 <!-- This uses very hacky method -->
@@ -43,36 +39,22 @@
 			{#if required}<span class="text-scarlet-800">*</span>{/if}
 		</span>
 		<span class={inputClass}>
-			<input
+			<Flatpickr
 				{...$$restProps}
-				autocomplete="off"
-				type="text"
-				on:blur
-				on:change
-				on:click={() => {
-					dateInput.showPicker();
+				options={{
+					dateFormat: 'd/m/Y',
+					enableTime: false,
+					onChange(selectedDates, dateStr) {
+						value = dateStr;
+					}
 				}}
-				on:contextmenu
-				on:focus
-				on:keydown
-				on:keypress
-				on:keyup
-				on:mouseover
-				on:mouseenter
-				on:mouseleave
-				on:paste
-				on:input
-				class="h-full w-full outline-none"
-				bind:value
+				class="absolute left-1 h-full w-[90%] p-2 focus:outline-none"
 			/>
-			<input
-				class="pointer-events-none absolute top-0 h-full w-full opacity-0"
-				type="date"
-				tabindex="-1"
-				on:input={setDate}
-				bind:this={dateInput}
+			<Calendar
+				class={errors
+					? 'absolute right-1  stroke-scarlet-800'
+					: 'absolute right-1   stroke-asphalt'}
 			/>
-			<Calendar class={errors ? 'stroke-scarlet-800' : 'stroke-asphalt'} />
 		</span>
 	</label>
 </div>

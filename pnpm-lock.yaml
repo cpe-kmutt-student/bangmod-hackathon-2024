@@ -46,6 +46,9 @@ devDependencies:
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.31)
+  carbon-components-svelte:
+    specifier: ^0.81.2
+    version: 0.81.2
   eslint:
     specifier: ^8.51.0
     version: 8.51.0
@@ -64,6 +67,9 @@ devDependencies:
   eslint-plugin-tailwindcss:
     specifier: ^3.13.0
     version: 3.13.0(tailwindcss@3.3.3)
+  flatpickr:
+    specifier: ^4.6.13
+    version: 4.6.13
   lodash.set:
     specifier: ^4.3.2
     version: 4.3.2
@@ -88,6 +94,9 @@ devDependencies:
   svelte-check:
     specifier: ^3.5.2
     version: 3.5.2(postcss@8.4.31)(svelte@4.2.1)
+  svelte-flatpickr:
+    specifier: ^3.3.3
+    version: 3.3.3(svelte@4.2.1)
   sveltekit-superforms:
     specifier: ^1.8.0
     version: 1.8.0(@sveltejs/kit@1.25.2)(svelte@4.2.1)(zod@3.22.4)
@@ -2059,6 +2068,12 @@ packages:
     resolution: {integrity: sha512-W7CrtIModMAxobGhz8iXmDfuJiiKg1WADMO/9x7/CLNin5cpSbuBjooyoIUVB5eyCc36QuTVlkVa1iB2S5+/eA==}
     dev: true
 
+  /carbon-components-svelte@0.81.2:
+    resolution: {integrity: sha512-VEyCQLrkrGWUSxVcrRuQN+2NJsdhtbf6aGUO4Z/iVhB2etmn0eF3qYlL/khNzfVevj++nQnIMAdAGMaDC1+/4g==}
+    dependencies:
+      flatpickr: 4.6.9
+    dev: true
+
   /chai@4.3.10:
     resolution: {integrity: sha512-0UXG04VuVbruMUYbJ6JctvH0YnC/4q3/AkT18q4NaITo91CUm0liMS9VqzT9vZhVQ/1eqPanMWjBM+Juhfb/9g==}
     engines: {node: '>=4'}
@@ -2707,6 +2722,14 @@ packages:
       flatted: 3.2.9
       keyv: 4.5.4
       rimraf: 3.0.2
+    dev: true
+
+  /flatpickr@4.6.13:
+    resolution: {integrity: sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==}
+    dev: true
+
+  /flatpickr@4.6.9:
+    resolution: {integrity: sha512-F0azNNi8foVWKSF+8X+ZJzz8r9sE1G4hl06RyceIaLvyltKvDl6vqk9Lm/6AUUCi5HWaIjiUbk7UpeE/fOXOpw==}
     dev: true
 
   /flatted@3.2.9:
@@ -4074,6 +4097,15 @@ packages:
       espree: 9.6.1
       postcss: 8.4.31
       postcss-scss: 4.0.9(postcss@8.4.31)
+      svelte: 4.2.1
+    dev: true
+
+  /svelte-flatpickr@3.3.3(svelte@4.2.1):
+    resolution: {integrity: sha512-ZollniPUOXyRrY+ZMJvp8yovYExOuPed5bDx4fG0SRwAaQ88o9PP/CiW21PR3ndt4qDvu/LMpxkaSbp2obD0tg==}
+    peerDependencies:
+      svelte: '>= 3.31.0 < 5.0'
+    dependencies:
+      flatpickr: 4.6.13
       svelte: 4.2.1
     dev: true
 
