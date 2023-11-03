@@ -67,6 +67,13 @@ export default {
 					'0%': { transform: 'translateX(100%)' },
 					'100%': { transform: 'translateX(0%)' }
 				}
+			},
+			scale: {
+				10: '0.10',
+				15: '0.15',
+				25: '0.25',
+				35: '0.35',
+				45: '0.45'
 			}
 		}
 	},
