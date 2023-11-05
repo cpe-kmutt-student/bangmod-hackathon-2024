@@ -132,7 +132,7 @@
 <div
 	{...$$restProps}
 	class={twMerge(
-		'grid divide-x divide-asphalt border-y border-asphalt md:grid-cols-4',
+		'grid divide-x divide-asphalt border-y border-asphalt md:grid-cols-4 bg-sandy',
 		$$props.class
 	)}
 >

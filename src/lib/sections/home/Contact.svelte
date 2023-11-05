@@ -4,7 +4,7 @@
 	import IceCream from '$lib/components/vectors/IceCream.svelte';
 </script>
 
-<div {...$$restProps} class={twMerge('flex w-full flex-col lg:flex-row', $$props.class)}>
+<div {...$$restProps} class={twMerge('flex w-full flex-col lg:flex-row bg-sandy', $$props.class)}>
 	<div class="flex w-full flex-col px-8 pt-4 md:px-16">
 		<h1 class="my-16 text-center font-decorate text-6xl lg:text-8xl leading-loose text-lupine lg:text-start">
 			get in touch

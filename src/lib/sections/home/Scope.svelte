@@ -89,7 +89,7 @@
 	];
 </script>
 
-<div {...$$restProps} class={twMerge('flex min-h-screen flex-col py-8 lg:py-16', $$props.class)}>
+<div {...$$restProps} class={twMerge('flex min-h-screen flex-col py-8 lg:py-16 bg-sandy', $$props.class)}>
 	<h2 class="text-center font-decorate text-4xl leading-normal text-lupine lg:mb-16 lg:text-7xl">
 		Scope of competition content
 	</h2>

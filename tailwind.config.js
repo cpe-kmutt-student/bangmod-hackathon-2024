@@ -55,7 +55,12 @@ export default {
 					800: '#ac001a',
 					900: '#94081d',
 					950: '#52000c'
-				}
+				},
+				sandy: '#FFE7BF',
+				burgundy: '#A10035',
+				aubergine: '#4A1727',
+				froly: '#FF869E',
+				eastbay: '#414C7D'
 			},
 			animation: {
 				marquee: 'marquee 30s linear infinite',

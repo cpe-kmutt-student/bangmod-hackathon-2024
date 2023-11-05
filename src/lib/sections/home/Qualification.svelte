@@ -5,10 +5,10 @@
 	import { IceCreamRibbon } from '$lib/components/vectors';
 
 	const qualifications = [
-		'รับสมัครผู้เข้าแข่งขันเป็นทีม ทีมละ 2-3 คน',
-		'ผู้เข้าแข่งขันต้องเป็นนักเรียนที่กำลังศึกษาอยู่ในระดับชั้นมัธยมศึกษาตอนปลาย หรือนักศึกษาอาชีวศึกษาในระดับประกาศนียบัตรวิชาชีพ (ปวช.) หรือเทียบเท่า',
-		'ต้องมีอาจารย์ที่ปรึกษาทีมละ 1 คน โดยอาจารย์ที่ปรึกษาต้องสอนในสถานศึกษาเดียวกันกับผู้เข้าแข่งขัน',
-		'แต่ละสถานศึกษาสามารถ ส่งผู้เข้าแข่งขันได้ 1 ทีมต่อ 1 สถานศึกษาเท่านั้น'
+		'รับสมัครเป็นทีม ทีมละ 2-3 คน',
+		'ผู้สมัครต้องเป็นนักเรียน ระดับชั้นมัธยมศึกษาตอนต้น, มัธยมศึกษาตอนปลาย หรือ นักศึกษาอาชีวศึกษา ในระดับปวช. หรือเทียบเท่า',
+		'อาจารย์ที่ปรึกษาทีม 1 คน โดยอาจารย์ที่ปรึกษาต้องเป็น อาจารย์ที่สอนในสถานศึกษานั้น ๆ',
+		'แต่ละสถานศึกษาสามารถส่งผู้เข้าแข่งขันได้มากที่สุด 1 ทีม'
 	];
 
 	const teacher_files = [
@@ -23,58 +23,61 @@
 	];
 </script>
 
-<div {...$$restProps} class={twMerge('py-8 lg:py-16', $$props.class)}>
-	<h2 class="mb-16 text-center font-decorate text-4xl leading-normal text-lupine lg:text-8xl">
-		Applicant qualifications
-	</h2>
-	<IceCreamRibbon />
-	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24 md:flex-row">
-		<h3 class="text-3xl text-azul-600 md:basis-1/3">คุณสมบัติผู้สมัคร</h3>
-		<div class="flex basis-2/3 flex-col gap-y-12 text-xl font-light">
-			{#each qualifications as qualify}
-				<div class="flex">
-					<div class="basis-1/6 md:basis-1/4">
-						<ArrowRight class="stroke-azul-600" />
-					</div>
-					<p class="basis-5/6 md:basis-3/4">{qualify}</p>
+<div {...$$restProps} class={twMerge('py-8 lg:py-16 lg:pt-20 bg-sandy flex flex-col gap-14', $$props.class)}>
+	<!-- <IceCreamRibbon /> -->
+	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24">
+		<h3 class="text-5xl font-medium text-burgundy tracking-wide md:basis-1/3">คุณสมบัติผู้สมัคร</h3>
+		<div class="h-[0.2rem] bg-burgundy w-full"></div>
+		<div class="w-full flex justify-center">
+			<div class="w-full max-w-5xl flex gap-x-10 justify-around">
+				<div class="bg-white border-2 border-black w-fit flex justify-center items-center">
+					<img src="/sunday_team.svg" alt="">
 				</div>
-			{/each}
+				<div class="flex flex-col gap-y-8 text-xl max-w-xl">
+					{#each qualifications as qualify}
+						<ul class="flex list-disc">
+							<li class="">{qualify}</li>
+						</ul>
+					{/each}
+				</div>
+			</div>
 		</div>
 	</div>
-	<hr class="my-14 w-full border-asphalt" />
-	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24 md:flex-row">
-		<h3 class="basis-1/3 text-3xl text-butternut">เอกสารที่ต้องใช้ในการสมัคร</h3>
-		<div class="flex basis-2/3 flex-col gap-y-12 text-xl font-light">
-			<div class="flex md:justify-end">
-				<h4 class="basis-3/4 text-2xl text-saddle">อาจารย์</h4>
-			</div>
-			{#each teacher_files as teacher_file}
-				<div class="flex">
-					<div class="basis-1/6 md:basis-1/4">
-						<ArrowRight class="stroke-butternut" />
-					</div>
-					<p class="basis-5/6 md:basis-3/4">
-						{teacher_file}
-					</p>
+	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24">
+		<h3 class="text-5xl font-medium text-burgundy tracking-wide md:basis-1/3">เอกสารที่ใช้ในการรับสมัคร</h3>
+		<div class="h-[0.2rem] bg-burgundy w-full"></div>
+		<div class="w-full flex justify-center">
+			<div class="w-full max-w-5xl flex gap-x-10 justify-around">
+				<div class="bg-white border-2 p-2 border-black w-fit flex justify-center items-center">
+					<img src="/sunday_teacher.svg" alt="">
 				</div>
-			{/each}
-			<div class="flex justify-end">
-				<hr class="basis-full border-butternut md:basis-3/4" />
-			</div>
-			<div class="flex md:justify-end">
-				<h4 class="basis-3/4 text-2xl text-saddle">นักเรียน</h4>
-			</div>
-			{#each student_files as student_file}
-				<div class="flex">
-					<div class="basis-1/6 md:basis-1/4">
-						<ArrowRight class="stroke-butternut" />
-					</div>
-					<p class="basis-5/6 md:basis-3/4">
-						{student_file}
-					</p>
+				<div class="flex flex-col gap-y-8 text-xl max-w-xl">
+					<h2 class="font-bold tracking-wide">อาจารย์ที่ปรึกษา</h2>
+					{#each teacher_files as teacher_file}
+						<ul class="flex list-disc">
+							<li class="">{teacher_file}</li>
+						</ul>
+					{/each}
 				</div>
-			{/each}
+			</div>
 		</div>
+
+		<div class="w-full flex justify-center">
+			<div class="w-full max-w-5xl flex gap-x-10 justify-around">
+				<div class="bg-white border-2 border-black w-fit flex justify-center items-center">
+					<img src="/sunday_student.svg" alt="">
+				</div>
+				<div class="flex flex-col gap-y-8 text-xl max-w-xl">
+					<h2 class="font-bold tracking-wide">นักเรียน</h2>
+					{#each student_files as student_file}
+						<ul class="flex list-disc">
+							<li class="">{student_file}</li>
+						</ul>
+					{/each}
+				</div>
+			</div>
+		</div>
+
 	</div>
-	<IceCreamRibbon class="mt-20" />
+	<!-- <IceCreamRibbon class="mt-20" /> -->
 </div>

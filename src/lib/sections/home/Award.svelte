@@ -5,42 +5,50 @@
 
 	const awards = [
 		{
-			name: 'WINNER',
+			name: 'รางวัลชนะเลิศ',
 			badge: TrophyWinner,
-			reward: 'รางวัลชนะเลิศ\n30,000 บาท\nพร้อมโล่รางวัลประกาศเกียรติคุณ'
+			reward: '30,000 บาท\nพร้อมโล่รางวัลประกาศเกียรติคุณ'
 		},
 		{
-			name: 'FIRST RUNNER-UP',
+			name: 'รางวัลรองชนะเลิศอันดับ 1',
 			badge: TrophySecond,
-			reward: 'รางวัลรองชนะเลิศอันดับ 1\n15,000 บาท\nพร้อมโล่รางวัลประกาศเกียรติคุณ'
+			reward: '15,000 บาท\nพร้อมโล่รางวัลประกาศเกียรติคุณ'
 		},
 		{
-			name: 'SECOND RUNNER-UP',
+			name: 'รางวัลรองชนะเลิศอันดับ 2',
 			badge: TrophyThird,
-			reward: 'รางวัลรองชนะเลิศอันดับ 2\n5,000 บาท\nพร้อมโล่รางวัลประกาศเกียรติคุณ'
+			reward: '5,000 บาท\nพร้อมโล่รางวัลประกาศเกียรติคุณ'
 		},
-		{
-			name: 'HONORABLE MENTION',
-			badge: TrophyHonored,
-			reward: 'รางวัลชมเชย\nจำนวน 2 รางวัล\nรางวัลละ 2,000 บาท'
-		}
+		// {
+		// 	name: 'HONORABLE MENTION',
+		// 	badge: TrophyHonored,
+		// 	reward: 'รางวัลชมเชย\nจำนวน 2 รางวัล\nรางวัลละ 2,000 บาท'
+		// }
 	];
 </script>
 
-<div {...$$restProps} class={twMerge('pt-8 lg:pt-16', $$props.class)}>
-	<h2 class="mb-12 text-center font-decorate text-7xl leading-normal text-lupine md:text-8xl">
-		Awards
-	</h2>
-	<hr class="border-asphalt" />
-	<div class="flex flex-col p-4 md:flex-row">
-		{#each awards as award}
-			<div class="flex basis-1/4 flex-col items-center p-4">
-				<h3 class="text-center font-latin text-3xl">{award.name}</h3>
-				<svelte:component this={award.badge} class="my-8 h-full w-full" />
-				<p class="self-start whitespace-pre-line text-xl font-light">
-					{award.reward}
-				</p>
+<div {...$$restProps} class={twMerge('pt-8 lg:pt-16 bg-sandy h-screen', $$props.class)}>
+	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24 h-full">
+		<h3 class="text-5xl font-medium text-burgundy tracking-wide">รางวัล</h3>
+		<div class="h-[0.2rem] bg-burgundy w-full"></div>
+		<div class="w-full flex justify-center">
+			<div class="flex flex-col md:flex-row gap-4">
+				{#each awards as award}
+					<div class="flex flex-col items-center">
+						<svelte:component this={award.badge} class="h-full w-full pb-4" />
+						<h3 class="text-center text-2xl font-bold">{award.name}</h3>
+						<p class="self-start whitespace-pre-line text-xl font-light text-center">
+							{award.reward}
+						</p>
+					</div>
+				{/each}
 			</div>
-		{/each}
+		</div>
 	</div>
 </div>
+
+<style>
+	
+
+	
+</style>
