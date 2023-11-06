@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import { superForm } from 'sveltekit-superforms/client';
 
 	import {
@@ -9,20 +10,43 @@
 		FileInput,
 		Input
 	} from '$lib/components/forms';
+	import { Spinner } from '$lib/components/icons';
 	import { consent, verify } from '$lib/stores/consent';
-	import { formContent } from '$lib/utils/store';
+	import { formContent } from '$lib/stores/form';
 
-	import type { PageData } from './$types';
+	import type { ActionData, PageData } from './$types';
+
+	import { browser } from '$app/environment';
+
+	$: if (browser) window.localStorage.form = JSON.stringify($formContent);
 
 	let student_number = 2;
+	let submitting = false;
 
 	export let data: PageData;
 
-	const { enhance, errors } = superForm(data.form);
+	const { enhance, errors } = superForm(data.form, {
+		onSubmit: () => (submitting = true),
+		onResult: () => (submitting = false)
+	});
 
 	const teacherNamePrefixItems = ['นาย', 'นาง', 'นางสาว'];
 	const namePrefixItems = ['นาย', 'นางสาว'];
-	const educationLevelItems = ['มัธยมศึกษาปีที่ 4', 'มัธยมศึกษาปีที่ 5', 'มัธยมศึกษาปีที่ 6'];
+	const educationLevelItems = [
+		'มัธยมศึกษาปีที่ 4',
+		'มัธยมศึกษาปีที่ 5',
+		'มัธยมศึกษาปีที่ 6',
+		'ประกาศนียบัตรวิชาชีพชั้นปีที่ 1',
+		'ประกาศนียบัตรวิชาชีพชั้นปีที่ 2',
+		'ประกาศนียบัตรวิชาชีพชั้นปีที่ 3',
+		'เทียบเท่ามัธยมศึกษาตอนปลาย'
+	];
+
+	export let form: ActionData;
+
+	let errorModal: boolean;
+
+	$: errorModal = (form && form.error) as boolean;
 </script>
 
 <svelte:head>
@@ -30,16 +54,16 @@
 </svelte:head>
 
 <div
-	class="text-md border-asphalt text-asphalt relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border text-sm md:mt-20"
+	class="text-md relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border border-asphalt text-sm text-asphalt md:mt-20"
 >
 	<h1
-		class="bg-white font-decorate absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 px-4 text-center text-4xl tracking-tight md:px-8 md:text-5xl"
+		class="absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-center font-decorate text-4xl tracking-tight md:px-8 md:text-5xl"
 	>
 		Registration
 	</h1>
 	<form method="POST" enctype="multipart/form-data" use:enhance>
 		<fieldset class="m-4 mx-auto mt-12 w-3/4 max-w-[48rem] space-y-5">
-			<legend class="my-12 text-center text-2xl font-medium"> รายละเอียดเกี่ยวกับทีม </legend>
+			<legend class="my-12 text-center text-2xl font-medium"> รายละเอียดเกี่ยวกับทีม</legend>
 			<Input type="text" name="name" errors={$errors.name} bind:value={$formContent.name} required>
 				ชื่อทีม
 			</Input>
@@ -67,7 +91,7 @@
 			</div>
 		</fieldset>
 
-		<hr class="border-asphalt mx-24 my-20" />
+		<hr class="mx-24 my-20 border-asphalt" />
 
 		<fieldset class="m-4 mx-auto w-3/4 max-w-[48rem] space-y-5">
 			<legend class="my-12 text-center text-2xl font-medium">ข้อมูลเกี่ยวกับที่ปรึกษา</legend>
@@ -174,17 +198,17 @@
 					อาหารที่แพ้ / ประเภทอาหาร (เช่น มังสวิรัติ, ฮาลาล)
 				</Input>
 				<Input class="lg:col-span-2" name="teacher_drug" bind:value={$formContent.teacher_drug}
-					>ยาที่แพ้</Input
+				>ยาที่แพ้</Input
 				>
 			</div>
 			<Input name="teacher_disease" bind:value={$formContent.teacher_disease}
-				>โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ</Input
+			>โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ</Input
 			>
 			<div>เอกสารประกอบการสมัคร</div>
 			<div class="space-y-8 font-light">
 				<FileInput
 					name="teacher_citizen_card"
-					accept="application/pdf,image/jpeg,image/png,image/webp"
+					accept="application/pdf"
 					errors={$errors?.teacher_citizen_card}
 					required
 				>
@@ -193,7 +217,7 @@
 				</FileInput>
 				<FileInput
 					name="teacher_verify"
-					accept="application/pdf,image/jpeg,image/png,image/webp"
+					accept="application/pdf"
 					errors={$errors?.teacher_verify}
 					required
 				>
@@ -205,7 +229,7 @@
 
 		<!--	eslint-disable-next-line @typescript-eslint/no-unused-vars-->
 		{#each { length: student_number } as _, idx}
-			<hr class="border-asphalt mx-24 my-20" />
+			<hr class="mx-24 my-20 border-asphalt" />
 
 			<fieldset class="m-4 mx-auto mt-0 w-3/4 max-w-[48rem] space-y-4">
 				<legend class="mb-12 mt-0 text-center text-2xl font-medium">
@@ -381,7 +405,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].image"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].image}
 							required
 						>
@@ -391,7 +415,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].citizen_card"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].citizen_card}
 							required
 						>
@@ -402,7 +426,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].student_card"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].student_card}
 							required
 						>
@@ -412,7 +436,7 @@
 					<li class="ml-3 pl-2">
 						<FileInput
 							name="students[{idx}].student_certificate"
-							accept="application/pdf,image/jpeg,image/png,image/webp"
+							accept="application/pdf"
 							errors={$errors?.students?.[idx].student_certificate}
 							required
 						>
@@ -423,7 +447,7 @@
 			</fieldset>
 		{/each}
 
-		<hr class="border-asphalt mx-12 my-20 md:mx-24" />
+		<hr class="mx-12 my-20 border-asphalt md:mx-24" />
 
 		<fieldset class="m-4 mx-auto mb-8 w-3/4 max-w-[48rem] space-y-5">
 			<p class="mb-6 font-light">
@@ -434,18 +458,59 @@
 			<div class="grid gap-y-4 font-light lg:grid-cols-3">
 				<CheckBox bind:checked={$consent}>ยินยอมการนําข้อมูลส่วนตัวไปใช้</CheckBox>
 				<CheckBox class="lg:col-span-2" bind:checked={$verify}
-					>รับรองว่าข้อมูลทั้งหมดเป็นความจริง
+				>รับรองว่าข้อมูลทั้งหมดเป็นความจริง
 					หากทีมงานตรวจสอบแล้วพบว่าข้อมูลไม่ตรงตามเงื่อนไขจะขอใช้อํานาจในการตัดสิทธิ์
 				</CheckBox>
 			</div>
 
 			<button
 				type="submit"
-				disabled={!$verify || !$consent}
-				class="border-azul-600 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300 mx-auto my-32 flex items-center gap-12 rounded-full border px-12 py-2 sm:px-20"
+				disabled={!$verify || !$consent || submitting}
+				class="mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300 sm:px-20"
 			>
-				ยืนยันการกรอกข้อมูล
+				{#if submitting}
+					<Spinner class="h-6 w-6" />
+				{/if}
+				<span class="h-6">ยืนยันการกรอกข้อมูล</span>
 			</button>
 		</fieldset>
 	</form>
 </div>
+{#if errorModal}
+	<div transition:fade class="fixed left-1 top-1 max-h-full w-fit max-w-[15rem] md:left-5 md:top-5">
+		<!-- Modal content -->
+		<div class="relative rounded-lg bg-white shadow">
+			<!-- Modal header -->
+			<div class="flex items-start justify-between rounded-t border-b p-4">
+				<h3 class="text-md font-semibold text-scarlet-800 md:text-xl">An error occurred !</h3>
+				<button
+					type="button"
+					class="ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+					on:click={() => (errorModal = false)}
+				>
+					<svg
+						class="h-3 w-3 stroke-scarlet-800"
+						aria-hidden="true"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 14 14"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+						/>
+					</svg>
+					<span class="sr-only">Close modal</span>
+				</button>
+			</div>
+			<!-- Modal body -->
+			<div class="space-y-6 p-6">
+				<p class="whitespace-pre-line text-base font-light leading-relaxed text-asphalt">
+					{form?.error}
+				</p>
+			</div>
+		</div>
+	</div>
+{/if}

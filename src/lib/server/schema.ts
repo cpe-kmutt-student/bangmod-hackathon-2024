@@ -34,9 +34,7 @@ const StudentSchema = z.object({
 	nationality: z.string().min(1),
 	race: z.string().min(1),
 	religion: z.string().min(1),
-	level: z
-		.enum(['มัธยมศึกษาปีที่ 4', 'มัธยมศึกษาปีที่ 5', 'มัธยมศึกษาปีที่ 6'])
-		.default('' as 'มัธยมศึกษาปีที่ 6'),
+	level: z.string().min(1),
 	address: z.string().min(1),
 	sub_district: z.string().min(1),
 	district: z.string().min(1),
@@ -60,43 +58,19 @@ const StudentFileSchema = z.object({
 	image: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				['image/jpeg', 'image/png', 'application/pdf', 'image/webp', 'image/avif'].includes(
-					file?.type
-				),
-			'Only .jpg, .jpeg, .png, .webp and .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	citizen_card: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				['image/jpeg', 'image/png', 'application/pdf', 'image/webp', 'image/avif'].includes(
-					file?.type
-				),
-			'Only .jpg, .jpeg, .png, .webp and .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	student_card: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				['image/jpeg', 'image/png', 'application/pdf', 'image/webp', 'image/avif'].includes(
-					file?.type
-				),
-			'Only .jpg, .jpeg, .png, .webp and .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	student_certificate: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				['image/jpeg', 'image/png', 'application/pdf', 'image/webp', 'image/avif'].includes(
-					file?.type
-				),
-			'Only .jpg, .jpeg, .png, .webp and .pdf formats are supported.'
-		)
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.')
 });
 
 const TeamSchema = z.object({
@@ -126,23 +100,11 @@ const TeamFileSchema = z.object({
 	teacher_citizen_card: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				['image/jpeg', 'image/png', 'application/pdf', 'image/webp', 'image/avif'].includes(
-					file?.type
-				),
-			'Only .jpg, .jpeg, .png, .webp and .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	teacher_verify: z
 		.instanceof(File)
 		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
-		.refine(
-			(file) =>
-				['image/jpeg', 'image/png', 'application/pdf', 'image/webp', 'image/avif'].includes(
-					file?.type
-				),
-			'Only .jpg, .jpeg, .png, .webp and .pdf formats are supported.'
-		),
+		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	students: z.array(StudentFileSchema).min(2).max(3)
 });
 
