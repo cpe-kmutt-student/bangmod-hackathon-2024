@@ -13,7 +13,7 @@
 	} from '$lib/components/forms';
 	import { Spinner } from '$lib/components/icons';
 	import { consent, verify } from '$lib/stores/consent';
-	import { formContent } from '$lib/utils/store';
+	import { formContent } from '$lib/stores/form';
 
 	import type { ActionData, PageData } from './$types';
 
@@ -45,7 +45,9 @@
 
 	export let form: ActionData;
 
-	$: errorModal = form && form.error;
+	let errorModal: boolean;
+
+	$: errorModal = (form && form.error) as boolean;
 </script>
 
 <svelte:head>
@@ -481,7 +483,7 @@
 		<div class="relative rounded-lg bg-white shadow">
 			<!-- Modal header -->
 			<div class="flex items-start justify-between rounded-t border-b p-4">
-				<h3 class="text-md font-semibold text-scarlet-800 md:text-xl">Error occur !</h3>
+				<h3 class="text-md font-semibold text-scarlet-800 md:text-xl">An error occurred !</h3>
 				<button
 					type="button"
 					class="ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
@@ -507,7 +509,7 @@
 			<!-- Modal body -->
 			<div class="space-y-6 p-6">
 				<p class="whitespace-pre-line text-base font-light leading-relaxed text-asphalt">
-					{form.error}
+					{form?.error}
 				</p>
 			</div>
 		</div>

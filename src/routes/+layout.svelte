@@ -17,10 +17,3 @@
 		<slot />
 	</div>
 {/key}
-
-<style>
-	div {
-		position: absolute;
-		inset: 0;
-	}
-</style>
