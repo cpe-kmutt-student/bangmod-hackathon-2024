@@ -38,7 +38,7 @@ const prepareMail = (students: Student[], team: Omit<Team, 'students'>) => {
 		return `
 			<h2>ผู้เข้าแข่งขันท่านที่ ${i + 1}</h2>
 			<dt>ชื่อ:</dt>
-			<dd>${student.name_prefix}${student.name_prefix} ${student.name_prefix}</dd>
+			<dd>${student.name_prefix}${student.firstname} ${student.lastname}</dd>
 			<dt>ชื่อเล่น:</dt>
 			<dd>${student.nickname}</dd>
 			<dt>วันเกิด:</dt>
