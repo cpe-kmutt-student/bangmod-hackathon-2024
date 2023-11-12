@@ -44,7 +44,7 @@ export const actions: Actions = {
 			TeamFileSchema.parse(files);
 		}catch (error) {
 			console.log(error);
-			return fail(501, { form, error: "Files format or size is not valid" });
+			return fail(501, { form, error: "Files is not PDF or File's size is larger than 5 MB" });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [
