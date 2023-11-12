@@ -1,5 +1,5 @@
 <div
-        class="text-md relative mx-auto flex flex-col items-center justify-center h-3/4 mb-12 mt-12 w-[95%] max-w-screen-lg border border-asphalt text-sm text-asphalt md:mt-20"
+        class="text-md relative mx-auto flex flex-col items-center justify-center h-3/4 mb-12 mt-12 w-[95%] max-w-screen-lg text-sm text-asphalt md:mt-20"
 >
     <h1
             class="bg-white px-4 text-center font-decorate text-4xl tracking-tight md:px-8 md:text-5xl"

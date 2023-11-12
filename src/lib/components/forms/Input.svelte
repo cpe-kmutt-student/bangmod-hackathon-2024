@@ -46,6 +46,7 @@
 			on:input
 			class={inputClass}
 			bind:value
+			required={required}
 		/>
 		<span
 			class={twJoin(

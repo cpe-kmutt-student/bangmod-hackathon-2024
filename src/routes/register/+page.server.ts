@@ -3,7 +3,7 @@ import { superValidate } from 'sveltekit-superforms/server';
 
 import { prepareMail, sendEmail } from '$lib/server/email';
 import { deserializeNested, prepareData } from '$lib/server/form';
-import { TeamSchema } from '$lib/server/schema';
+import {TeamFileSchema, TeamSchema} from '$lib/server/schema';
 import type { Team, TeamFile } from '$lib/server/schema';
 import { UploadFile } from '$lib/server/storage';
 import { supabase } from '$lib/server/supabase';
@@ -40,15 +40,11 @@ export const actions: Actions = {
 
 		const { students, team } = prepareData(teamId, data, files);
 
-		const { error: teamInsertError } = await supabase.from('team').insert(team);
-		if (teamInsertError) {
-			console.log(teamInsertError);
-			return fail(500, { form, error: teamInsertError });
-		}
-
-		const { error: studentInsertError } = await supabase.from('student').insert(students);
-		if (studentInsertError) {
-			return fail(500, { form, error: studentInsertError });
+		try {
+			TeamFileSchema.parse(files);
+		}catch (error) {
+			console.log(error);
+			return fail(501, { form, error: "Files format or size is not valid" });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [
@@ -67,22 +63,34 @@ export const actions: Actions = {
 
 		try {
 			await Promise.all(uploadPromise);
-			await sendEmail(prepareMail(students, team), [
-				{
-					name: `${team.teacher_prefix}${team.teacher_firstname} ${team.teacher_lastname}`,
-					email: team.teacher_email
-				},
-				...students.map((student) => {
-					return {
-						name: `${student.name_prefix}${student.firstname} ${student.lastname}`,
-						email: student.email
-					};
-				})
-			]);
 		} catch (error) {
 			console.log(error);
 			return fail(501, { form, error: error });
 		}
+
+		const { error: teamInsertError } = await supabase.from('team').insert(team);
+		if (teamInsertError) {
+			console.log(teamInsertError);
+			return fail(500, { form, error: teamInsertError });
+		}
+
+		const { error: studentInsertError } = await supabase.from('student').insert(students);
+		if (studentInsertError) {
+			return fail(500, { form, error: studentInsertError });
+		}
+
+		await sendEmail(prepareMail(students, team), [
+			{
+				name: `${team.teacher_prefix}${team.teacher_firstname} ${team.teacher_lastname}`,
+				email: team.teacher_email
+			},
+			...students.map((student) => {
+				return {
+					name: `${student.name_prefix}${student.firstname} ${student.lastname}`,
+					email: student.email
+				};
+			})
+		]);
 
 		throw redirect(302, '/register/completed');
 	}
