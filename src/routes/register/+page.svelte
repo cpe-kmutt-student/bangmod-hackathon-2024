@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	import { fade } from 'svelte/transition';
 	import { superForm } from 'sveltekit-superforms/client';
 
@@ -214,7 +213,7 @@
 					required
 				>
 					1. บัตรประชาชนอาจารย์ที่ปรึกษาพร้อมเซ็นกํากับหรือบัตรประจําตัวคนที่ไม่ได้ถือสัญชาติไทย
-					(เฉพาะด้านหน้า)
+					(เฉพาะด้านหน้า) <span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
 				</FileInput>
 				<FileInput
 					name="teacher_verify"
@@ -224,6 +223,7 @@
 				>
 					2. เอกสาร หรือหนังสือยืนยันสถานภาพการเป็นอาจารย์ประจําสถาบันการศึกษา
 					(บัตรประจําตัวครูอาจารย์, บัตรข้าราชการครูและบุคลากรทางการศึกษา)
+					<span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
 				</FileInput>
 			</div>
 		</fieldset>
@@ -410,7 +410,7 @@
 							errors={$errors?.students?.[idx].image}
 							required
 						>
-							รูปถ่ายนักเรียนผู้เข้าแข่งขัน
+							รูปถ่ายนักเรียนผู้เข้าแข่งขัน <span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
 						</FileInput>
 					</li>
 					<li class="ml-3 pl-2">
@@ -421,7 +421,8 @@
 							required
 						>
 							บัตรประชาชนผู้เข้าแข่งขันพร้อมเซ็นกํากับ<br />
-							หรือบัตรประจําตัวคนซึ่งไม่ได้ถือสัญชาติไทย (เฉพาะด้านหน้า)
+							หรือบัตรประจําตัวคนซึ่งไม่ได้ถือสัญชาติไทย (เฉพาะด้านหน้า)<br />
+							<span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
 						</FileInput>
 					</li>
 					<li class="ml-3 pl-2">
@@ -431,7 +432,7 @@
 							errors={$errors?.students?.[idx].student_card}
 							required
 						>
-							บัตรนักเรียน
+							บัตรนักเรียน <span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
 						</FileInput>
 					</li>
 					<li class="ml-3 pl-2">
@@ -441,7 +442,7 @@
 							errors={$errors?.students?.[idx].student_certificate}
 							required
 						>
-							ปพ.7 ของผู้เข้าแข่งขันตัวจริง
+							ปพ.7 ของผู้เข้าแข่งขันตัวจริง <span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
 						</FileInput>
 					</li>
 				</ol>
@@ -458,8 +459,8 @@
 			</p>
 			<div class="grid gap-y-4 font-light lg:grid-cols-3">
 				<CheckBox bind:checked={$consent}>ยินยอมการนําข้อมูลส่วนตัวไปใช้</CheckBox>
-				<CheckBox class="lg:col-span-2" bind:checked={$verify}
-					>รับรองว่าข้อมูลทั้งหมดเป็นความจริง
+				<CheckBox class="lg:col-span-2" bind:checked={$verify}>
+					รับรองว่าข้อมูลทั้งหมดเป็นความจริง
 					หากทีมงานตรวจสอบแล้วพบว่าข้อมูลไม่ตรงตามเงื่อนไขจะขอใช้อํานาจในการตัดสิทธิ์
 				</CheckBox>
 			</div>
