@@ -44,7 +44,7 @@ export const actions: Actions = {
 			TeamFileSchema.parse(files);
 		}catch (error) {
 			console.log(error);
-			return fail(501, { form, error: "Files format or size is not valid" });
+			return fail(501, { form, error: error });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [

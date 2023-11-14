@@ -509,7 +509,7 @@
 			<!-- Modal body -->
 			<div class="space-y-6 p-6">
 				<p class="whitespace-pre-line text-base font-light leading-relaxed text-asphalt">
-					{form?.error}
+					{JSON.stringify(form?.error)}
 				</p>
 			</div>
 		</div>
