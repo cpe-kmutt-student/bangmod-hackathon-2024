@@ -82,78 +82,87 @@
 					'Spanning Trees',
 					'วิธิการเดินผ่านต้นไม้ (Traversal Strategies: Defining the Node Order for Ordered Trees)',
 					'Decorated Graphs with Edge/Node Labels, Weights, Colors',
-					'Multi graphs และ Graphs ที่มี Self-loops',
+					'Multi graphs และ Graphs ที่มี Self-loops'
 				]
 			}
 		]
 	];
 </script>
 
-<div {...$$restProps} class={twMerge('flex min-h-screen flex-col py-8 lg:py-16 bg-sandy', $$props.class)}>
-	<h2 class="text-center font-decorate text-4xl leading-normal text-lupine lg:mb-16 lg:text-7xl">
-		Scope of competition content
-	</h2>
-	<div class="mx-8 flex flex-1 flex-col lg:mx-16">
-		<ul
-			class="relative -my-0.5 flex grow-0 list-none flex-wrap md:w-1/2"
-			data-tabs="tabs"
-			role="list"
-		>
-			<li
-				class={twJoin(
-					'flex-auto rounded-t text-center',
-					selectedTab === 0
-						? 'z-50 bg-azul-600 text-soapstone'
-						: 'z-0 border-x border-t border-asphalt'
-				)}
+<div
+	{...$$restProps}
+	class={twMerge('flex min-h-screen flex-col bg-sandy py-8 lg:py-16', $$props.class)}
+>
+	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24">
+		
+		<h3 class="font-mali text-4xl font-medium tracking-wide text-burgundy md:basis-1/3 md:text-5xl">
+			ขอบเขตเนื้อหาที่ใช้ในการแข่งขัน
+		</h3>
+		<div class="h-[0.2rem] bg-burgundy w-full"></div>
+
+		<div class="mx-8 flex flex-1 flex-col lg:mx-16">
+			<ul
+				class="relative -my-0.5 flex grow-0 list-none flex-wrap md:w-1/2"
+				data-tabs="tabs"
+				role="list"
 			>
-				<button
-					class="flex h-full w-full items-center justify-center"
-					role="tab"
-					aria-selected="true"
-					on:click={() => (selectedTab = 0)}
+				<li
+					class={twJoin(
+						'flex-auto rounded-t text-center',
+						selectedTab === 0
+							? 'z-50 bg-azul-600 text-soapstone'
+							: 'z-0 border-x border-t border-asphalt'
+					)}
 				>
-					พื้นฐานวิทยาการคอมพิวเตอร์
-				</button>
-			</li>
-			<li
-				class={twJoin(
-					'flex-auto rounded-t text-center',
-					selectedTab === 1
-						? 'z-50 bg-azul-600 text-soapstone'
-						: 'z-0 border-x border-t border-asphalt'
-				)}
+					<button
+						class="flex h-full w-full items-center justify-center"
+						role="tab"
+						aria-selected="true"
+						on:click={() => (selectedTab = 0)}
+					>
+						พื้นฐานวิทยาการคอมพิวเตอร์
+					</button>
+				</li>
+				<li
+					class={twJoin(
+						'flex-auto rounded-t text-center',
+						selectedTab === 1
+							? 'z-50 bg-azul-600 text-soapstone'
+							: 'z-0 border-x border-t border-asphalt'
+					)}
+				>
+					<button
+						class="flex h-full w-full items-center justify-center py-4"
+						role="tab"
+						aria-selected="false"
+						on:click={() => (selectedTab = 1)}
+					>
+						อัลกอริทึม
+					</button>
+				</li>
+			</ul>
+			<div
+				class="min-h-[24rem] rounded-b rounded-tr border border-asphalt bg-azul-600 p-8 text-soapstone"
 			>
-				<button
-					class="flex h-full w-full items-center justify-center py-4"
-					role="tab"
-					aria-selected="false"
-					on:click={() => (selectedTab = 1)}
-				>
-					อัลกอริทึม
-				</button>
-			</li>
-		</ul>
-		<div
-			class="min-h-[24rem] rounded-b rounded-tr border border-asphalt bg-azul-600 p-8 text-soapstone"
-		>
-			{#each scopes[selectedTab] as scope}
-				<hr class="my-4" />
-				<h3 in:fade|global>{scope.name}</h3>
-				{#if scope.lists.length}
-					<div class="my-6 flex flex-col gap-y-6">
-						{#each scope.lists as list, idx}
-							<div in:fly|global={{ x: -50, delay: idx * 50 }} class="flex items-center">
-								<div class="shrink-0 basis-1/6 md:basis-1/12">
-									<ArrowRight class="h-4 stroke-soapstone" />
+				{#each scopes[selectedTab] as scope}
+					<hr class="my-4" />
+					<h3 in:fade|global>{scope.name}</h3>
+					{#if scope.lists.length}
+						<div class="my-6 flex flex-col gap-y-6">
+							{#each scope.lists as list, idx}
+								<div in:fly|global={{ x: -50, delay: idx * 50 }} class="flex items-center">
+									<div class="shrink-0 basis-1/6 md:basis-1/12">
+										<ArrowRight class="h-4 stroke-soapstone" />
+									</div>
+									<p>{list}</p>
 								</div>
-								<p>{list}</p>
-							</div>
-						{/each}
-					</div>
-				{/if}
-			{/each}
-			<hr class="my-4" />
+							{/each}
+						</div>
+					{/if}
+				{/each}
+				<hr class="my-4" />
+			</div>
 		</div>
 	</div>
+
 </div>

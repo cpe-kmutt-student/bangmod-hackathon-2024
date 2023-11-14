@@ -132,20 +132,19 @@
 <div
 	{...$$restProps}
 	class={twMerge(
-		'grid divide-x divide-asphalt border-y border-asphalt md:grid-cols-4 bg-sandy',
+		'pt-16 bg-aubergine min-h-screen',
 		$$props.class
 	)}
 >
-	<div class="col-span-1 flex items-center justify-center">
-		<h2
-			class="mt-4 font-decorate text-7xl leading-loose text-lupine md:mt-0 md:-rotate-90 md:text-8xl md:leading-none"
-		>
-			timeline
-		</h2>
+	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24">
+		<h3 class="font-mali text-4xl font-medium tracking-wide text-white md:basis-1/3 md:text-5xl">
+			ไทม์ไลน์
+		</h3>
+		<div class="h-[0.2rem] w-full bg-white"></div>
 	</div>
 	<div class="font-light md:col-span-3">
 		{#each timelines as timeline, idx}
-			<div>
+			<!-- <div>
 				<h3 class="my-3 px-2 text-5xl">{timeline.name}</h3>
 				<div
 					class={twJoin(
@@ -160,7 +159,7 @@
 						</div>
 					{/each}
 				</div>
-			</div>
+			</div> -->
 		{/each}
 	</div>
 </div>

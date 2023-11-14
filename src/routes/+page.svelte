@@ -4,14 +4,16 @@
 	import Scope from '$lib/sections/home/Scope.svelte';
 
 	const sections = {
-		top: "หน้าแรก",
-		about: "รายละเอียด",
-		qualification: "คุณสมบัติ",
-		award: "รางวัล",
-		timeline: "ไทม์ไลน์",
-		scope: "ขอบเขตเนื้อหา",
-		contact: "ติดต่อสอบถาม",
+		top: 'หน้าแรก',
+		about: 'รายละเอียด',
+		qualification: 'คุณสมบัติ',
+		award: 'รางวัล',
+		timeline: 'ไทม์ไลน์',
+		scope: 'ขอบเขตเนื้อหา',
+		contact: 'ติดต่อสอบถาม'
 	};
+	let nav = 0;
+	$: nav = nav % 2;
 </script>
 
 <svelte:head>
@@ -19,23 +21,64 @@
 </svelte:head>
 
 <nav>
-	<div class='fixed z-50 bg-[#803049bd] w-full flex items-center text-white'>
-		<div class='flex w-full items-center justify-around'>
-			{#each Object.entries(sections)  as [section, name]}
-				<a href={`#${section}`} class='py-4 w-full flex justify-center hover:bg-aubergine/50'>{name}</a>
+	<div class="fixed z-50 flex w-full items-center text-white">
+		<div class="hidden w-full items-center justify-around md:flex">
+			{#each Object.entries(sections) as [section, name]}
+				<a
+					href={`#${section}`}
+					class="flex w-full justify-center bg-[#774B4D] py-4 hover:bg-aubergine/50">{name}</a
+				>
 			{/each}
-			<a href="register" class='py-4 w-full flex justify-center bg-[#803049bd] hover:bg-aubergine/50 text-xl'>สมัคร</a>
+			<a href="register" class="flex w-full justify-center bg-[#69273c] py-4 hover:bg-aubergine/50"
+				>สมัคร</a
+			>
+		</div>
+		<div class="flex md:hidden w-full items-center justify-end bg-[#774B4D]">
+			<button
+				class="md:hidden"
+				aria-label="open hamburger"
+				on:click={() => {
+					nav += 1;
+				}}
+			>
+				<svg
+					class="h-8 w-8 m-2"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<line x1="3" y1="12" x2="21" y2="12"></line>
+					<line x1="3" y1="6" x2="21" y2="6"></line>
+					<line x1="3" y1="18" x2="21" y2="18"></line>
+				</svg>
+			</button>
+			{#if nav == 1}
+				<div class="fixed top-12 r-0 flex w-full flex-col items-center justify-center bg-[#774B4D]">
+					{#each Object.entries(sections) as [section, name]}
+						<a
+							href={`#${section}`}
+							class="flex w-full py-2 justify-center bg-[#774B4D] hover:bg-aubergine/50">{name}</a
+						>
+					{/each}
+					<a href="register" class="flex w-full py-2 justify-center bg-[#69273c] hover:bg-aubergine/50"
+						>สมัคร</a
+					>
+				</div>
+			{/if}
 		</div>
 	</div>
 </nav>
-<Hero id='home' />
-<About id='about' />
-<Qualification id='qualification' />
-<Award id='award' />
-<Timeline id='timeline' />
-<Scope id='scope' />
-<Contact id='contact' />
-<footer class='flex px-8 lg:px-16 pb-16 font-latin font-light justify-between'>
+<Hero id="home" />
+<About id="about" />
+<Qualification id="qualification" />
+<Award id="award" />
+<Timeline id="timeline" />
+<Scope id="scope" />
+<Contact id="contact" />
+<footer class="flex justify-between bg-sandy px-8 pb-16 font-latin font-light lg:px-16">
 	<span>©2023 BangMod Hackathon 2024</span>
-	<a href='#home'>Back to the top ↑</a>
+	<a href="#home">Back to the top ↑</a>
 </footer>

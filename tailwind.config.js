@@ -5,9 +5,11 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			sans: ['Kanit', ...defaultTheme.fontFamily.sans],
+			sans: ['Maitree', ...defaultTheme.fontFamily.sans],
 			latin: ['Outfit'],
-			decorate: ['Homemade Apple']
+			decorate: ['Homemade Apple'],
+			circle: ['Tenor Sans'],
+			mali: ['Mali'],
 		},
 		extend: {
 			colors: {
