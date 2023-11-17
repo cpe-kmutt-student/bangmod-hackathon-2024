@@ -125,7 +125,7 @@ xl-desktop -->
 							{timeline.date}
 						</span>
 					</div>
-					<div class="text-white text-center pt-4 {idx == 7 ? "hidden": ""}">
+					<div class="text-white text-center w-full justify-center pt-4 {idx == 7 ? "hidden": ""}">
 						⇣
 					</div>
 				</div>
