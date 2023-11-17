@@ -1,5 +1,4 @@
 <script>
-
 	import { twMerge } from 'tailwind-merge';
 	import ArrowDown from '$lib/components/icons/ArrowDown.svelte';
 
@@ -115,7 +114,7 @@
 		<div class="container mx-auto flex flex-col gap-16">
 			{#each scopes as { topic, contents }, idx}
 				<div>
-					<div
+					<button
 						on:click={() => toggleDropdown(idx)}
 						class="flex w-full items-center justify-between border border-black bg-aubergine p-8 text-3xl font-bold text-white md:px-12"
 					>
@@ -125,7 +124,7 @@
 								? '0deg'
 								: '90deg'}); transition: transform 0.3s ease;"
 						/>
-					</div>
+					</button>
 					{#if openTabs.includes(idx)}
 						<div class="border bg-white text-[#47537C] md:px-4">
 							<ul class="list-inside p-8">
