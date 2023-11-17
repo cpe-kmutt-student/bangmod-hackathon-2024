@@ -196,7 +196,7 @@
 								{#each contents as { name, lists }, idx}
 									<li class="tex list-decimal py-1 font-bold">{name}</li>
 									{#if lists.length > 0}
-										<ul class="list-inside list-[lower-alpha] py-1 pl-6">
+										<ul class="list-outside list-[lower-alpha] py-1 pl-6">
 											{#each lists as item (item)}
 												<li>{item}</li>
 											{/each}
