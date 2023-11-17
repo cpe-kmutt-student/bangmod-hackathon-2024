@@ -67,7 +67,7 @@
 	class="text-md border-asphalt text-asphalt relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border text-sm md:mt-20"
 >
 	<h1
-		class="bg-white font-decorate absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 px-4 text-center text-4xl tracking-tight md:px-8 md:text-5xl"
+		class="bg-white font-mali absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 px-4 text-center text-4xl tracking-tight md:px-8 md:text-5xl"
 	>
 		Privacy Policies
 	</h1>

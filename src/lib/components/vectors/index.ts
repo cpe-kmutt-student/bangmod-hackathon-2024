@@ -5,4 +5,4 @@ export { default as IceCreamRibbon } from './IceCreamRibbon.svelte';
 export { default as TrophyWinner } from './TrophyWinner.svelte';
 export { default as TrophySecond } from './TrophySecond.svelte';
 export { default as TrophyThird } from './TrophyThird.svelte';
-export { default as TrophyHonored } from './TrophyHonored.svelte';
+export { default as Icon } from './Icon.svelte';

@@ -3,7 +3,7 @@ import { superValidate } from 'sveltekit-superforms/server';
 
 import { prepareMail, sendEmail } from '$lib/server/email';
 import { deserializeNested, prepareData } from '$lib/server/form';
-import {TeamFileSchema, TeamSchema} from '$lib/server/schema';
+import { TeamFileSchema, TeamSchema } from '$lib/server/schema';
 import type { Team, TeamFile } from '$lib/server/schema';
 import { UploadFile } from '$lib/server/storage';
 import { supabase } from '$lib/server/supabase';
@@ -42,7 +42,7 @@ export const actions: Actions = {
 
 		try {
 			TeamFileSchema.parse(files);
-		}catch (error) {
+		} catch (error) {
 			console.log(error);
 			return fail(501, { form, error: error });
 		}

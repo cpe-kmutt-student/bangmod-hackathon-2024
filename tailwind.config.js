@@ -5,10 +5,12 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			sans: ['Kanit', ...defaultTheme.fontFamily.sans],
+			sans: ['Maitree', ...defaultTheme.fontFamily.sans],
 			serif: ['Old Standard TT', ...defaultTheme.fontFamily.serif],
 			latin: ['Outfit'],
-			decorate: ['Homemade Apple']
+			decorate: ['Homemade Apple'],
+			circle: ['Tenor Sans'],
+			mali: ['Mali']
 		},
 		extend: {
 			colors: {
@@ -18,6 +20,11 @@ export default {
 				saddle: '#8a4b18',
 				butternut: '#fb7500',
 				lupine: '#ccaa4a',
+				sandy: '#FFE7BF',
+				burgundy: '#A10035',
+				aubergine: '#4A1727',
+				froly: '#FF869E',
+				eastbay: '#414C7D',
 				iron: {
 					50: '#f6f6f7',
 					100: '#efeff0',
