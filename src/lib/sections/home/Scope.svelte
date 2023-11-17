@@ -1,11 +1,7 @@
 <script>
-	import { fade, fly } from 'svelte/transition';
-	import { twJoin, twMerge } from 'tailwind-merge';
 
-	import { ArrowRight } from '$lib/components/icons';
+	import { twMerge } from 'tailwind-merge';
 	import ArrowDown from '$lib/components/icons/ArrowDown.svelte';
-
-	let selectedTab = 0;
 
 	const scopes = [
 		{
@@ -116,70 +112,6 @@
 		</h3>
 		<div class="h-[0.2rem] w-full bg-burgundy"></div>
 
-		<!-- <div class="mx-8 flex flex-1 flex-col lg:mx-16">
-			<ul
-				class="relative -my-0.5 flex grow-0 list-none flex-wrap md:w-1/2"
-				data-tabs="tabs"
-				role="list"
-			>
-				<li
-					class={twJoin(
-						'flex-auto rounded-t text-center',
-						selectedTab === 0
-							? 'z-50 bg-azul-600 text-soapstone'
-							: 'z-0 border-x border-t border-asphalt'
-					)}
-				>
-					<button
-						class="flex h-full w-full items-center justify-center"
-						role="tab"
-						aria-selected="true"
-						on:click={() => (selectedTab = 0)}
-					>
-						พื้นฐานวิทยาการคอมพิวเตอร์
-					</button>
-				</li>
-				<li
-					class={twJoin(
-						'flex-auto rounded-t text-center',
-						selectedTab === 1
-							? 'z-50 bg-azul-600 text-soapstone'
-							: 'z-0 border-x border-t border-asphalt'
-					)}
-				>
-					<button
-						class="flex h-full w-full items-center justify-center py-4"
-						role="tab"
-						aria-selected="false"
-						on:click={() => (selectedTab = 1)}
-					>
-						อัลกอริทึม
-					</button>
-				</li>
-			</ul>
-			<div
-				class="min-h-[24rem] rounded-b rounded-tr border border-asphalt bg-azul-600 p-8 text-soapstone"
-			>
-				{#each scopes[selectedTab] as scope}
-					<hr class="my-4" />
-					<h3 in:fade|global>{scope.name}</h3>
-					{#if scope.lists.length}
-						<div class="my-6 flex flex-col gap-y-6">
-							{#each scope.lists as list, idx}
-								<div in:fly|global={{ x: -50, delay: idx * 50 }} class="flex items-center">
-									<div class="shrink-0 basis-1/6 md:basis-1/12">
-										<ArrowRight class="h-4 stroke-soapstone" />
-									</div>
-									<p>{list}</p>
-								</div>
-							{/each}
-						</div>
-					{/if}
-				{/each}
-				<hr class="my-4" />
-			</div>
-		</div> -->
-
 		<div class="container mx-auto flex flex-col gap-16">
 			{#each scopes as { topic, contents }, idx}
 				<div>
@@ -188,10 +120,14 @@
 						class="flex w-full items-center justify-between border border-black bg-aubergine p-8 text-3xl font-bold text-white md:px-12"
 					>
 						<span>{topic}</span>
-						<ArrowDown style="transform: rotate({openTabs.includes(idx) ? '0deg' : '90deg'}); transition: transform 0.3s ease;" />
+						<ArrowDown
+							style="transform: rotate({openTabs.includes(idx)
+								? '0deg'
+								: '90deg'}); transition: transform 0.3s ease;"
+						/>
 					</div>
 					{#if openTabs.includes(idx)}
-						<div class="text-[#47537C] border bg-white md:px-4">
+						<div class="border bg-white text-[#47537C] md:px-4">
 							<ul class="list-inside p-8">
 								{#each contents as { name, lists }, idx}
 									<li class="tex list-decimal py-1 font-bold">{name}</li>
