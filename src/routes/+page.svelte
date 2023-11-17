@@ -8,18 +8,40 @@
 		Scope,
 		Timeline
 	} from '$lib/components/homes';
+	import { Hamburger } from '$lib/components/icons';
 
-	const sections = {
-		home: 'หน้าแรก',
-		about: 'รายละเอียด',
-		qualification: 'คุณสมบัติ',
-		award: 'รางวัล',
-		timeline: 'ไทม์ไลน์',
-		scope: 'ขอบเขตเนื้อหา',
-		contact: 'ติดต่อสอบถาม'
-	};
-	let nav = 0;
-	$: nav = nav % 2;
+	const sections = [
+		{
+			section: 'home',
+			title: 'หน้าแรก'
+		},
+		{
+			section: 'about',
+			title: 'รายละเอียด'
+		},
+		{
+			section: 'qualification',
+			title: 'คุณสมบัติ'
+		},
+		{
+			section: 'award',
+			title: 'รางวัล'
+		},
+		{
+			section: 'timeline',
+			title: 'ไทม์ไลน์'
+		},
+		{
+			section: 'scope',
+			title: 'ขอบเขตเนื้อหา'
+		},
+		{
+			section: 'contact',
+			title: 'ติดต่อสอบถาม'
+		}
+	];
+
+	let nav = false;
 </script>
 
 <svelte:head>
@@ -29,7 +51,7 @@
 <nav>
 	<div class="fixed z-50 flex w-full items-center text-white">
 		<div class="hidden w-full items-center justify-around md:flex">
-			{#each Object.entries(sections) as [section, name]}
+			{#each sections as { section, title }}
 				<a
 					href={`#${section}`}
 					class="flex w-full justify-center bg-[#774B4D] py-4 hover:bg-aubergine/50"
@@ -37,47 +59,46 @@
 						if (section === 'home') {
 							document.body.scrollIntoView();
 						}
-					}}>{name}</a
+					}}
 				>
+					{title}
+				</a>
 			{/each}
-			<a href="register" class="flex w-full justify-center bg-[#69273c] py-4 hover:bg-aubergine/50"
-				>สมัคร</a
-			>
+			<a href="register" class="flex w-full justify-center bg-[#69273c] py-4 hover:bg-aubergine/50">
+				สมัคร
+			</a>
 		</div>
 		<div class="flex w-full items-center justify-end bg-[#774B4D] md:hidden">
 			<button
 				class="md:hidden"
 				aria-label="open hamburger"
 				on:click={() => {
-					nav += 1;
+					nav = !nav;
 				}}
 			>
-				<svg
-					class="m-2 h-8 w-8"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<line x1="3" y1="12" x2="21" y2="12"></line>
-					<line x1="3" y1="6" x2="21" y2="6"></line>
-					<line x1="3" y1="18" x2="21" y2="18"></line>
-				</svg>
+				<Hamburger />
 			</button>
-			{#if nav === 1}
+			{#if nav}
 				<div class="r-0 fixed top-12 flex w-full flex-col items-center justify-center bg-[#774B4D]">
-					{#each Object.entries(sections) as [section, name]}
+					{#each sections as { section, title }}
 						<a
 							href={`#${section}`}
-							class="flex w-full justify-center bg-[#774B4D] py-2 hover:bg-aubergine/50">{name}</a
+							class="flex w-full justify-center bg-[#774B4D] py-2 hover:bg-aubergine/50"
+							on:click={() => {
+								if (section === 'home') {
+									document.body.scrollIntoView();
+								}
+							}}
 						>
+							{title}
+						</a>
 					{/each}
 					<a
 						href="register"
-						class="flex w-full justify-center bg-[#69273c] py-2 hover:bg-aubergine/50">สมัคร</a
+						class="flex w-full justify-center bg-[#69273c] py-2 hover:bg-aubergine/50"
 					>
+						สมัคร
+					</a>
 				</div>
 			{/if}
 		</div>

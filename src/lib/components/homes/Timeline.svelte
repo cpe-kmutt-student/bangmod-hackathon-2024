@@ -49,7 +49,9 @@ xl-desktop -->
 		<div class="h-[0.2rem] w-full bg-white"></div>
 	</div>
 	<div class="flex items-center justify-center py-16">
-		<div class="hidden relative lg:flex justify-evenly lg:-left-12 2xl:-left-20 2xl:w-5/6 2xl:max-w-[2240px]">
+		<div
+			class="relative hidden justify-evenly lg:-left-12 lg:flex 2xl:-left-20 2xl:w-5/6 2xl:max-w-[2240px]"
+		>
 			<div
 				class="absolute bottom-2/4 left-0 h-1.5 bg-froly lg:w-[110%] 2xl:-left-6 2xl:w-[93vw] 2xl:max-w-[2400px]"
 			>
@@ -57,199 +59,88 @@ xl-desktop -->
 			</div>
 			{#each timelines as timeline, idx}
 				<span
-					class="{idx % 2 === 0
-						? 'top-0'
-						: 'bottom-0'} relative flex h-[36rem] lg:w-28 xl:w-32 2xl:w-5/6 2xl:min-w-[10rem] 2xl:max-w-[1rem]"
+					class={twJoin(
+						'relative flex h-[36rem] lg:w-28 xl:w-32 2xl:w-5/6 2xl:min-w-[10rem] 2xl:max-w-[1rem]',
+						idx % 2 === 0 ? 'top-0' : 'bottom-0'
+					)}
 				>
-					<div
-						class="{idx % 2 === 0
-							? 'self-start'
-							: 'self-end'} absolute flex h-72 items-center lg:w-48 xl:w-56 2xl:w-[19rem]"
+					<span
+						class={twJoin(
+							'absolute flex h-72 items-center lg:w-48 xl:w-56 2xl:w-[19rem]',
+							idx % 2 === 0 ? 'self-start' : 'self-end'
+						)}
 					>
-						<div
-							class="relative flex w-full flex-col items-center justify-evenly rounded-xl border border-froly {isDatePassed(
-								timeline.date
-							)
-								? 'bg-sandy'
-								: 'bg-[#47537C] text-sandy'}"
+						<span
+							class={twJoin(
+								'relative flex w-full flex-col items-center justify-evenly rounded-xl border border-froly',
+								isDatePassed(timeline.date) ? 'bg-sandy' : 'bg-[#47537C] text-sandy'
+							)}
 						>
-							<div
-								class="{idx % 2 === 0
-									? 'lg:-bottom-20 lg:h-20 2xl:-bottom-[4.5rem] 2xl:h-[4.5rem]'
-									: 'lg:-top-[5.5rem] lg:h-[5.5rem] xl:-top-20 xl:h-20  '} absolute w-1.5 bg-froly lg:left-24 xl:left-28 2xl:left-36"
-							></div>
+							<span
+								class={twJoin(
+									'absolute w-1.5 bg-froly lg:left-24 xl:left-28 2xl:left-36',
+									idx % 2 === 0
+										? 'lg:-bottom-20 lg:h-20 2xl:-bottom-[4.5rem] 2xl:h-[4.5rem]'
+										: 'lg:-top-[5.5rem] lg:h-[5.5rem] xl:-top-20 xl:h-20'
+								)}
+							/>
 							<span
 								class="flex items-center pt-4 text-center text-base lg:min-h-[56px] lg:px-1 lg:text-sm xl:min-h-[64px] xl:px-2 xl:text-base 2xl:min-h-[72px] 2xl:px-4 2xl:text-xl"
-								>{timeline.name}</span
 							>
+								{timeline.name}
+							</span>
 							<span
 								class="flex h-16 w-full items-center justify-center pb-4 lg:text-base xl:text-lg 2xl:text-2xl"
 							>
 								{timeline.date}
 							</span>
-						</div>
-					</div>
+						</span>
+					</span>
 				</span>
 			{/each}
 		</div>
 
-		<div class="flex lg:hidden flex-col w-full mx-12 gap-4">
+		<div class="mx-12 flex w-full flex-col gap-4 lg:hidden">
 			{#each timelines as timeline, idx}
-			<span
-				class="{idx % 2 === 0
-					? ''
-					: ''} flex flex-col"
-			>
-				<div
-					class="self-center w-2/3"
-				>
-					<div
-						class="relative flex w-full flex-col items-center justify-evenly rounded-xl border border-froly p-2 {isDatePassed(
-							timeline.date
-						)
-							? 'bg-sandy hover:bg-red-200 focus:bg-red-200'
-							: 'bg-[#47537C] hover:bg-[#8592be] text-sandy hover:text-black'} hover:shadow-md"
-					>
-						<div
-							class="{idx % 2 === 0
-								? 'lg:-bottom-20 lg:h-20 2xl:-bottom-[4.5rem] 2xl:h-[4.5rem]'
-								: 'lg:-top-[5.5rem] lg:h-[5.5rem] xl:-top-20 xl:h-20  '} absolute w-1.5 bg-froly lg:left-24 xl:left-28 2xl:left-36"
-						></div>
+				<span class="flex flex-col">
+					<span class="w-2/3 self-center">
 						<span
-							class="flex items-center pt-4 text-center text-lg font-mali font-bold"
-							>{timeline.name}</span
+							class={twJoin(
+								'relative flex w-full flex-col items-center justify-evenly rounded-xl border border-froly p-2 hover:shadow-md',
+								isDatePassed(timeline.date)
+									? 'bg-sandy hover:bg-red-200 focus:bg-red-200'
+									: 'bg-[#47537C] text-sandy hover:bg-[#8592be] hover:text-black'
+							)}
 						>
-						<span
-							class="flex h-16 w-full items-center justify-center pb-4"
-						>
-							{timeline.date}
+							<span
+								class={twJoin(
+									'absolute w-1.5 bg-froly lg:left-24 xl:left-28 2xl:left-36',
+									idx % 2 === 0
+										? 'lg:-bottom-20 lg:h-20 2xl:-bottom-[4.5rem] 2xl:h-[4.5rem]'
+										: 'lg:-top-[5.5rem] lg:h-[5.5rem] xl:-top-20 xl:h-20 '
+								)}
+							/>
+							<span class="flex items-center pt-4 text-center font-mali text-lg font-bold">
+								{timeline.name}
+							</span>
+							<span class="flex h-16 w-full items-center justify-center pb-4">
+								{timeline.date}
+							</span>
 						</span>
-					</div>
-					<div class="text-white text-center pt-4 {idx == 7 ? "hidden": ""}">
-						⇣
-					</div>
-				</div>
-			</span>
-		{/each}
+						<span
+							class={twJoin(
+								'pt-4 text-center text-white',
+								idx + 1 === timelines.length ? 'hidden' : ''
+							)}
+						>
+							⇣
+						</span>
+					</span>
+				</span>
+			{/each}
 		</div>
 	</div>
 </div>
-
-<!-- const timelines = [
-	{
-		name: 'เปิดรับสมัคร',
-		tabs: [
-			{
-				name: 'DATE',
-				detail: '31 OCTOBER 2023',
-				color: 'azul-600',
-				font: ''
-			}
-		]
-	},
-	{
-		name: 'ปิดรับสมัคร',
-		tabs: [
-			{
-				name: 'DATE',
-				detail: '25 NOVEMBER 2023',
-				color: 'azul-600',
-				font: ''
-			}
-		]
-	},
-	{
-		name: 'การแข่งขันรอบคัดเลือก 36 ทีม',
-		tabs: [
-			{
-				name: 'TYPE',
-				detail: 'ONLINE',
-				color: 'butternut',
-				font: ''
-			},
-			{
-				name: 'DATE',
-				detail: '25 DECEMBER 2023',
-				color: 'azul-600',
-				font: ''
-			}
-		]
-	},
-	{
-		name: 'ประกาศผล',
-		tabs: [
-			{
-				name: 'DETAIL',
-				detail: 'ผู้ผ่านการแข่งขันรอบคัดเลือก 36 ทีม',
-				color: 'lupine',
-				font: 'font-sans'
-			},
-			{
-				name: 'DATE',
-				detail: '29 DECEMBER 2023',
-				color: 'azul-600',
-				font: ''
-			}
-		]
-	},
-	{
-		name: 'การแข่งขันรอบคัดเลือก 12 ทีม',
-		tabs: [
-			{
-				name: 'TYPE',
-				detail: 'ONSITE',
-				color: 'butternut',
-				font: ''
-			},
-			{
-				name: 'DATE',
-				detail: '19 JANUARY 2024',
-				color: 'azul-600',
-				font: ''
-			}
-		]
-	},
-	{
-		name: 'การแข่งขันรอบคัดเลือก 2 ทีม',
-		tabs: [
-			{
-				name: 'TYPE',
-				detail: 'ONSITE',
-				color: 'butternut',
-				font: ''
-			},
-			{
-				name: 'DATE',
-				detail: '19 JANUARY 2024',
-				color: 'azul-600',
-				font: ''
-			}
-		]
-	},
-	{
-		name: 'การแข่งขันรอบชิงชนะเลิศ',
-		tabs: [
-			{
-				name: 'TYPE',
-				detail: 'ONSITE',
-				color: 'butternut',
-				font: ''
-			},
-			{
-				name: 'DATE',
-				detail: '19 JANUARY 2024',
-				color: 'azul-600',
-				font: ''
-			}
-		]
-	},
-	{
-		name: 'ประกาศผลรางวัลการแข่งขัน',
-		type: 'ONSITE',
-		date: '19 JANUARY 2023',
-		color: 'azul-600'
-	}
-	; -->
 
 <style>
 	.triangle {

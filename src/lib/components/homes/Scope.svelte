@@ -1,7 +1,8 @@
-<script>
-	import { twMerge } from 'tailwind-merge';
+<script lang="ts">
+	import { slide } from 'svelte/transition';
+	import { twJoin, twMerge } from 'tailwind-merge';
 
-	import ArrowDown from '$lib/components/icons/ArrowDown.svelte';
+	import { ArrowDown } from '$lib/components/icons';
 
 	const scopes = [
 		{
@@ -91,11 +92,8 @@
 		}
 	];
 
-	/**
-	 * @type {number[]}
-	 */
-	let openTabs = [0, 1];
-	const toggleDropdown = (/** @type {number} */ index) => {
+	let openTabs: number[] = [0, 1];
+	const toggleDropdown = (index: number) => {
 		openTabs = openTabs.includes(index)
 			? openTabs.filter((i) => i !== index)
 			: [...openTabs, index];
@@ -110,7 +108,7 @@
 		<h3 class="font-mali text-4xl font-medium tracking-wide text-burgundy md:basis-1/3 md:text-5xl">
 			ขอบเขตเนื้อหาที่ใช้ในการแข่งขัน
 		</h3>
-		<div class="h-[0.2rem] w-full bg-burgundy"></div>
+		<div class="h-[0.2rem] w-full bg-burgundy" />
 
 		<div class="container mx-auto flex flex-col gap-16">
 			{#each scopes as { topic, contents }, idx}
@@ -121,15 +119,16 @@
 					>
 						<span>{topic}</span>
 						<ArrowDown
-							style="transform: rotate({openTabs.includes(idx)
-								? '0deg'
-								: '90deg'}); transition: transform 0.3s ease;"
+							class={twJoin(
+								'transition-transform',
+								openTabs.includes(idx) ? 'rotate-0' : 'rotate-90'
+							)}
 						/>
 					</button>
 					{#if openTabs.includes(idx)}
-						<div class="border bg-white text-[#47537C] md:px-4">
+						<div transition:slide class="border bg-white text-[#47537C] md:px-4">
 							<ul class="list-inside p-8">
-								{#each contents as { name, lists }, idx}
+								{#each contents as { name, lists }}
 									<li class="tex list-decimal py-1 font-bold">{name}</li>
 									{#if lists.length > 0}
 										<ul class="list-outside list-[lower-alpha] py-1 pl-6">

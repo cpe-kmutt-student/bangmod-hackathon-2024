@@ -20,6 +20,11 @@ export default {
 				saddle: '#8a4b18',
 				butternut: '#fb7500',
 				lupine: '#ccaa4a',
+				sandy: '#FFE7BF',
+				burgundy: '#A10035',
+				aubergine: '#4A1727',
+				froly: '#FF869E',
+				eastbay: '#414C7D',
 				iron: {
 					50: '#f6f6f7',
 					100: '#efeff0',
@@ -58,12 +63,7 @@ export default {
 					800: '#ac001a',
 					900: '#94081d',
 					950: '#52000c'
-				},
-				sandy: '#FFE7BF',
-				burgundy: '#A10035',
-				aubergine: '#4A1727',
-				froly: '#FF869E',
-				eastbay: '#414C7D'
+				}
 			},
 			gridTemplateColumns: {
 				28: 'repeat(28, minmax(0, 1fr))'

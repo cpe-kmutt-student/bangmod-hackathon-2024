@@ -26,33 +26,38 @@
 						</div>
 						<div class="flex w-full items-center p-2">BANGMOD HACKATHON 2024</div>
 					</div>
-					<a href="https://www.facebook.com/BangmodHackathon"
-						><div
+					<a href="https://www.facebook.com/BangmodHackathon">
+						<div
 							class="flex h-full items-center justify-center whitespace-nowrap border-l border-black bg-aubergine p-2 py-8 text-sm text-white hover:opacity-90 md:min-w-[11rem] md:text-lg lg:min-w-[14rem] xl:min-w-[16rem]"
 						>
 							CHAT NOW
-						</div></a
-					>
+						</div>
+					</a>
 				</div>
 
 				<div class="flex w-full border border-black bg-white text-xl font-bold md:text-xl">
 					<div class="flex h-full items-center justify-center border-r border-black">
 						<div class="p-4">
-							<img src="/tel_logo.png" alt="telephone logo" class="w-16 md:w-24 max-w-28 max-h-28" />
+							<img
+								src="/tel_logo.png"
+								alt="telephone logo"
+								class="max-w-28 max-h-28 w-16 md:w-24"
+							/>
 						</div>
 					</div>
-					<div class="flex w-full flex-col">
-						{#each staffs as { name, phone }, idx}
-							<div class="flex w-full {idx !== 0 && 'border-t'} border-black">
-								<span class="flex w-full items-center justify-center text-sm md:text-lg"
-									>{phone}</span
-								>
+					<div class="flex w-full flex-col divide-y">
+						{#each staffs as { name, phone }}
+							<div class="flex w-full border-black">
+								<span class="flex w-full items-center justify-center text-sm md:text-lg">
+									{phone}
+								</span>
 								<span
 									class="flex h-full min-w-[4rem] items-center justify-center whitespace-nowrap border-l border-black bg-[#47537C] py-8 text-sm text-white md:min-w-[11rem] md:text-lg lg:min-w-[14rem] xl:min-w-[16rem]"
 								>
 									{name}
 								</span>
-							</div>{/each}
+							</div>
+						{/each}
 					</div>
 				</div>
 			</div>
@@ -60,8 +65,10 @@
 	</div>
 </div>
 <div class="bg-[#47537C]">
-	<div class="container mx-auto py-8 text-center font-mali text-sm md:text-xl leading-loose text-white">
-		ภาควิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ <br /> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี <br />ชั้น 10
-		อาคารวิศววัฒนะ 126 ถนนประชาอุทิศ แขวงบางมด เขตทุ่งครุ กรุงเทพฯ 10140
+	<div
+		class="container mx-auto py-8 text-center font-mali text-sm leading-loose text-white md:text-xl"
+	>
+		ภาควิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ <br /> มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
+		<br />ชั้น 10 อาคารวิศววัฒนะ 126 ถนนประชาอุทิศ แขวงบางมด เขตทุ่งครุ กรุงเทพฯ 10140
 	</div>
 </div>

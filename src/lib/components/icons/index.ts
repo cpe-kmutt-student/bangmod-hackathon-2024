@@ -5,3 +5,4 @@ export { default as Upload } from './Upload.svelte';
 export { default as ArrowDown } from './ArrowDown.svelte';
 export { default as ArrowRight } from './ArrowRight.svelte';
 export { default as Spinner } from './Spinner.svelte';
+export { default as Hamburger } from './Hamburger.svelte';
