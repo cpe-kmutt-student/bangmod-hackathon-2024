@@ -1,54 +1,59 @@
 <script>
 	import { twMerge } from 'tailwind-merge';
 
-	import IceCream from '$lib/components/vectors/IceCream.svelte';
+	const staffs = [
+		{ name: 'เฟิร์ท', phone: '061-628-7673' },
+		{ name: 'เจร', phone: '095-928-3465' },
+		{ name: 'เบค', phone: '086-980-6454' }
+	];
 </script>
 
-<div {...$$restProps} class={twMerge('flex w-full flex-col bg-sandy lg:flex-row', $$props.class)}>
-	<div class="flex w-full flex-col px-8 pt-4 md:px-16">
-		<h1
-			class="my-16 text-center font-decorate text-6xl leading-loose text-lupine lg:text-start lg:text-8xl"
-		>
-			get in touch
-		</h1>
-		<div class="mb-12 grid w-full gap-y-16 text-3xl lg:grid-cols-2">
-			<div class="space-y-4">
-				<h2 class="font-latin text-azul-600">PHONE NUMBER</h2>
-				<div class="flex flex-col gap-y-2 text-2xl font-light">
-					<div class="flex">
-						<div class="basis-1/3">พี่เฟิร์ท</div>
-						<div class="font-latin">061 - 628 - 7673</div>
-					</div>
-					<div class="flex">
-						<div class="basis-1/3">พี่เจน</div>
-						<div class="font-latin">095 - 928 - 3465</div>
-					</div>
-					<div class="flex">
-						<div class="basis-1/3">พี่น้ำตาล</div>
-						<div class="font-latin">098 - 710 - 3020</div>
-					</div>
+<div
+	{...$$restProps}
+	class={twMerge('flex flex-col bg-sandy px-12 font-mali md:px-24', $$props.class)}
+>
+	<div class="flex w-full flex-col justify-center gap-y-8 pb-16">
+		<h3 class="text-4xl font-medium tracking-wide text-burgundy md:basis-1/3 md:text-5xl">
+			สอบถามเพิ่มเติมได้ที่
+		</h3>
+		<div class="h-[0.2rem] w-full bg-burgundy"></div>
+		<div class="container mx-auto flex max-w-[1024px] flex-col gap-12">
+			<div class="flex border border-black bg-white text-xl font-bold md:text-2xl lg:text-3xl">
+				<div class="flex min-w-[8rem] items-center justify-center lg:min-w-[14rem]">logo</div>
+				<div class="flex w-full items-center">BANGMOD HACKATHON 2024</div>
+				<a href="https://www.facebook.com/BangmodHackathon" 
+					><div
+						class="flex h-full min-w-[9rem] items-center justify-center whitespace-nowrap border-l border-black bg-aubergine py-8 text-white md:min-w-[11rem] lg:min-w-[14rem] xl:min-w-[16rem] hover:opacity-90"
+					>
+						CHAT NOW
+					</div></a
+				>
+			</div>
+
+			<div class="flex border border-black bg-white text-xl font-bold md:text-2xl lg:text-3xl">
+				<div
+					class="flex min-w-[8rem] items-center justify-center border-r border-black lg:min-w-[14rem]"
+				>
+					logo
+				</div>
+				<div class="flex w-full flex-col">
+					{#each staffs as { name, phone }, idx}
+						<div class="flex w-full {idx !== 0 && 'border-t'} border-black">
+							<span class="flex w-full items-center justify-center">{phone}</span>
+							<span
+								class="flex h-full min-w-[9rem] items-center justify-center whitespace-nowrap border-l border-black bg-[#47537C] py-8 text-white md:min-w-[11rem] lg:min-w-[14rem] xl:min-w-[16rem]"
+							>
+								{name}
+							</span>
+						</div>{/each}
 				</div>
 			</div>
-			<div class="space-y-4">
-				<h2 class="font-latin text-azul-600">Facebook</h2>
-				<a class="font-latin text-2xl font-light" href="https://www.facebook.com/BangmodHackathon/">
-					BangMod Hackathon 2024
-				</a>
-			</div>
-			<div class="space-y-4 lg:col-span-2">
-				<h2 class="font-latin text-azul-600">ADDRESS</h2>
-				<p class="text-2xl font-light">
-					ภาควิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
-					<br />ชั้น 10 อาคารวิศววัฒนะ 126 ถนนประชาอุทิศ แขวงบางมด เขตทุ่งครุ กรุงเทพฯ 10140
-				</p>
-			</div>
 		</div>
-		<div class="flex">
-			<span class="font-latin text-xl font-light">BangMod Hackathon 2024</span>
-		</div>
-	</div>
-	<div class="flex w-full basis-1/3 items-center justify-center px-16 py-16 pt-36">
-		<IceCream class="h-1/2 w-1/2 lg:h-full lg:w-full" />
 	</div>
 </div>
-<hr class="border-zinc-300 bg-sandy p-8 lg:m-16" />
+<div class="bg-[#47537C]">
+	<div class="font-mali container mx-auto py-8 text-center text-2xl leading-loose text-white">
+		ภาควิชาวิศวกรรมคอมพิวเตอร์ คณะวิศวกรรมศาสตร์ มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี <br />ชั้น 10
+		อาคารวิศววัฒนะ 126 ถนนประชาอุทิศ แขวงบางมด เขตทุ่งครุ กรุงเทพฯ 10140
+	</div>
+</div>
