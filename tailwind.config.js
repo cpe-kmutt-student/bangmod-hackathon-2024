@@ -5,10 +5,12 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			sans: ['Kanit', ...defaultTheme.fontFamily.sans],
+			sans: ['Maitree', ...defaultTheme.fontFamily.sans],
 			serif: ['Old Standard TT', ...defaultTheme.fontFamily.serif],
 			latin: ['Outfit'],
-			decorate: ['Homemade Apple']
+			decorate: ['Homemade Apple'],
+			circle: ['Tenor Sans'],
+			mali: ['Mali']
 		},
 		extend: {
 			colors: {
@@ -56,7 +58,12 @@ export default {
 					800: '#ac001a',
 					900: '#94081d',
 					950: '#52000c'
-				}
+				},
+				sandy: '#FFE7BF',
+				burgundy: '#A10035',
+				aubergine: '#4A1727',
+				froly: '#FF869E',
+				eastbay: '#414C7D'
 			},
 			gridTemplateColumns: {
 				28: 'repeat(28, minmax(0, 1fr))'
