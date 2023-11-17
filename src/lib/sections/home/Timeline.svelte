@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { twJoin, twMerge } from 'tailwind-merge';
 
 	const timelines = [
@@ -36,7 +36,7 @@
 		}
 	];
 
-	const isDatePassed = (dateString) => new Date(dateString) < new Date();
+	const isDatePassed = (dateString: string) => new Date(dateString) < new Date();
 </script>
 
 <!-- lg mobile
@@ -49,7 +49,7 @@ xl-desktop -->
 		<div class="h-[0.2rem] w-full bg-white"></div>
 	</div>
 	<div class="flex items-center justify-center py-16">
-		<div class="relative flex justify-evenly lg:-left-12 2xl:-left-20 2xl:w-5/6 2xl:max-w-[2240px]">
+		<div class="hidden relative lg:flex justify-evenly lg:-left-12 2xl:-left-20 2xl:w-5/6 2xl:max-w-[2240px]">
 			<div
 				class="absolute bottom-2/4 left-0 h-1.5 bg-froly lg:w-[110%] 2xl:-left-6 2xl:w-[93vw] 2xl:max-w-[2400px]"
 			>
@@ -92,23 +92,50 @@ xl-desktop -->
 				</span>
 			{/each}
 		</div>
+
+		<div class="flex lg:hidden flex-col w-full mx-12 gap-4">
+			{#each timelines as timeline, idx}
+			<span
+				class="{idx % 2 === 0
+					? ''
+					: ''} flex flex-col"
+			>
+				<div
+					class="self-center w-2/3"
+				>
+					<div
+						class="relative flex w-full flex-col items-center justify-evenly rounded-xl border border-froly p-2 {isDatePassed(
+							timeline.date
+						)
+							? 'bg-sandy hover:bg-red-200 focus:bg-red-200'
+							: 'bg-[#47537C] hover:bg-[#8592be] text-sandy hover:text-black'} hover:shadow-md"
+					>
+						<div
+							class="{idx % 2 === 0
+								? 'lg:-bottom-20 lg:h-20 2xl:-bottom-[4.5rem] 2xl:h-[4.5rem]'
+								: 'lg:-top-[5.5rem] lg:h-[5.5rem] xl:-top-20 xl:h-20  '} absolute w-1.5 bg-froly lg:left-24 xl:left-28 2xl:left-36"
+						></div>
+						<span
+							class="flex items-center pt-4 text-center text-lg font-mali font-bold"
+							>{timeline.name}</span
+						>
+						<span
+							class="flex h-16 w-full items-center justify-center pb-4"
+						>
+							{timeline.date}
+						</span>
+					</div>
+					<div class="text-white text-center pt-4 {idx == 7 ? "hidden": ""}">
+						⇣
+					</div>
+				</div>
+			</span>
+		{/each}
+		</div>
 	</div>
 </div>
 
-<style>
-	.triangle {
-		position: absolute;
-		right: -1rem;
-		top: -1rem;
-		width: 0;
-		height: 0;
-		border-top: 1.25rem solid transparent;
-		border-left: 2.5rem solid #ff869e; /* Adjust color as needed */
-		border-bottom: 1.25rem solid transparent;
-	}
-</style>
-
-	<!-- const timelines = [
+<!-- const timelines = [
 	{
 		name: 'เปิดรับสมัคร',
 		tabs: [
@@ -223,3 +250,16 @@ xl-desktop -->
 		color: 'azul-600'
 	}
 	; -->
+
+<style>
+	.triangle {
+		position: absolute;
+		right: -1rem;
+		top: -1rem;
+		width: 0;
+		height: 0;
+		border-top: 1.25rem solid transparent;
+		border-left: 2.5rem solid #ff869e; /* Adjust color as needed */
+		border-bottom: 1.25rem solid transparent;
+	}
+</style>
