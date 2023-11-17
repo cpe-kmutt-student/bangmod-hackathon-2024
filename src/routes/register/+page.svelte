@@ -198,11 +198,11 @@
 					อาหารที่แพ้ / ประเภทอาหาร (เช่น มังสวิรัติ, ฮาลาล)
 				</Input>
 				<Input class="lg:col-span-2" name="teacher_drug" bind:value={$formContent.teacher_drug}
-					>ยาที่แพ้</Input
+				>ยาที่แพ้</Input
 				>
 			</div>
 			<Input name="teacher_disease" bind:value={$formContent.teacher_disease}
-				>โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ</Input
+			>โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ</Input
 			>
 			<div>เอกสารประกอบการสมัคร</div>
 			<div class="space-y-8 font-light">
