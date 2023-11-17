@@ -105,8 +105,10 @@
 	class={twMerge('flex min-h-screen flex-col bg-sandy py-8 lg:py-16', $$props.class)}
 >
 	<div class="mx-12 flex flex-col justify-center gap-y-8 md:mx-24">
-		<h3 class="font-mali text-4xl font-medium tracking-wide text-burgundy md:basis-1/3 md:text-5xl">
-			ขอบเขตเนื้อหาที่ใช้ในการแข่งขัน
+		<h3
+			class="text-center font-mali text-4xl font-medium tracking-wide text-burgundy sm:text-left md:basis-1/3 md:text-5xl"
+		>
+			ขอบเขตเนื้อหา<span class="hidden sm:inline">ที่ใช้ในการแข่งขัน</span>
 		</h3>
 		<div class="h-[0.2rem] w-full bg-burgundy" />
 
@@ -115,9 +117,9 @@
 				<div>
 					<button
 						on:click={() => toggleDropdown(idx)}
-						class="flex w-full items-center justify-between border border-black bg-aubergine p-8 text-3xl font-bold text-white md:px-12"
+						class="flex w-full items-center justify-between border border-black bg-aubergine p-8 text-2xl font-bold text-white md:px-12"
 					>
-						<span>{topic}</span>
+						<span class="w-full text-left">{topic}</span>
 						<ArrowDown
 							class={twJoin(
 								'transition-transform',
