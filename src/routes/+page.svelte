@@ -4,7 +4,7 @@
 	import Scope from '$lib/sections/home/Scope.svelte';
 
 	const sections = {
-		top: 'หน้าแรก',
+		home: 'หน้าแรก',
 		about: 'รายละเอียด',
 		qualification: 'คุณสมบัติ',
 		award: 'รางวัล',
@@ -26,14 +26,18 @@
 			{#each Object.entries(sections) as [section, name]}
 				<a
 					href={`#${section}`}
-					class="flex w-full justify-center bg-[#774B4D] py-4 hover:bg-aubergine/50">{name}</a
+					class="flex w-full justify-center bg-[#774B4D] py-4 hover:bg-aubergine/50"
+					on:click={() => {
+						section === 'home' ? document.body.scrollIntoView() : "";
+					}}
+					>{name}</a
 				>
 			{/each}
 			<a href="register" class="flex w-full justify-center bg-[#69273c] py-4 hover:bg-aubergine/50"
 				>สมัคร</a
 			>
 		</div>
-		<div class="flex md:hidden w-full items-center justify-end bg-[#774B4D]">
+		<div class="flex w-full items-center justify-end bg-[#774B4D] md:hidden">
 			<button
 				class="md:hidden"
 				aria-label="open hamburger"
@@ -42,7 +46,7 @@
 				}}
 			>
 				<svg
-					class="h-8 w-8 m-2"
+					class="m-2 h-8 w-8"
 					viewBox="0 0 24 24"
 					fill="none"
 					stroke="currentColor"
@@ -56,15 +60,16 @@
 				</svg>
 			</button>
 			{#if nav == 1}
-				<div class="fixed top-12 r-0 flex w-full flex-col items-center justify-center bg-[#774B4D]">
+				<div class="r-0 fixed top-12 flex w-full flex-col items-center justify-center bg-[#774B4D]">
 					{#each Object.entries(sections) as [section, name]}
 						<a
 							href={`#${section}`}
-							class="flex w-full py-2 justify-center bg-[#774B4D] hover:bg-aubergine/50">{name}</a
+							class="flex w-full justify-center bg-[#774B4D] py-2 hover:bg-aubergine/50">{name}</a
 						>
 					{/each}
-					<a href="register" class="flex w-full py-2 justify-center bg-[#69273c] hover:bg-aubergine/50"
-						>สมัคร</a
+					<a
+						href="register"
+						class="flex w-full justify-center bg-[#69273c] py-2 hover:bg-aubergine/50">สมัคร</a
 					>
 				</div>
 			{/if}
@@ -78,7 +83,11 @@
 <Timeline id="timeline" />
 <Scope id="scope" />
 <Contact id="contact" />
-<footer class="flex justify-between bg-sandy px-8 pb-16 font-latin font-light lg:px-16">
+<footer class="flex justify-between bg-sandy px-8 py-2 font-latin font-light lg:px-16">
 	<span>©2023 BangMod Hackathon 2024</span>
-	<a href="#home">Back to the top ↑</a>
+	<button
+		on:click={() => {
+			document.body.scrollIntoView();
+		}}>Back to the top ↑</button
+	>
 </footer>
