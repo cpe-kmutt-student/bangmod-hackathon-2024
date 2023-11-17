@@ -129,7 +129,7 @@ xl-desktop -->
 						</span>
 						<span
 							class={twJoin(
-								'pt-4 text-center text-white',
+								'pt-4 text-white flex items-center justify-center',
 								idx + 1 === timelines.length ? 'hidden' : ''
 							)}
 						>
