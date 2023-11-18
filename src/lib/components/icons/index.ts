@@ -6,3 +6,5 @@ export { default as ArrowDown } from './ArrowDown.svelte';
 export { default as ArrowRight } from './ArrowRight.svelte';
 export { default as Spinner } from './Spinner.svelte';
 export { default as Hamburger } from './Hamburger.svelte';
+export { default as Facebook } from './Facebook.svelte';
+export { default as Telephone } from './Telephone.svelte';

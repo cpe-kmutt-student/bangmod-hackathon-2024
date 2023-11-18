@@ -12,5 +12,6 @@
 	viewBox="0 0 22.2 23.3"
 	xmlns="http://www.w3.org/2000/svg"
 >
-	<path d="m11 23 10.5-11.4L11 .3M0 11.6h21.5" />
+	<path d="m11 23 10.5-11.4L11 .3" />
+	<path d="M0 11.6h21.5" />
 </svg>

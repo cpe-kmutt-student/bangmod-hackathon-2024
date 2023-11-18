@@ -1,10 +1,6 @@
 <svg
 	xmlns="http://www.w3.org/2000/svg"
-	xml:space="preserve"
-	id="Layer_1"
-	x="0"
-	y="0"
-	class="h-[450px] w-[529px] p-10 lg:h-[800px] lg:w-[800px]"
+	class="w-[529px] h-[450px] p-10 lg:h-[800px] lg:w-[800px]"
 	viewBox="0 0 529 450"
 >
 	<style>

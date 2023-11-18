@@ -9,6 +9,7 @@
 		Timeline
 	} from '$lib/components/homes';
 	import { Hamburger } from '$lib/components/icons';
+	import { Cookies01, Eclairs01, IceCream02, Jelly, Macarons01, Pretzel } from '$lib/components/vectors';
 
 	const sections = [
 		{
@@ -105,9 +106,18 @@
 	</div>
 </nav>
 <Hero id="home" />
-<About id="about" />
-<Qualification id="qualification" />
-<Award id="award" />
+<About class="z-10" id="about" />
+<div class="clipping relative">
+	<Qualification class="-z-10" id="qualification" />
+	<Award id="award" />
+	<Macarons01 class="absolute -left-10 -top-10 rotate-6 lg:-left-20 lg:-top-20" />
+	<IceCream02 class="absolute -right-10 -top-10 lg:-right-10 lg:-top-14" />
+	<Eclairs01 class="absolute -bottom-12 left-8 -scale-x-100 lg:-bottom-20 lg:left-10" />
+	<Jelly class="absolute -right-16 top-2/3 rotate-12 -scale-x-100" />
+	<Cookies01 class="absolute -left-20 lg:-left-28 top-[40%] -rotate-[25deg]" />
+	<Cookies01 class="absolute -left-20 lg:-left-28 top-[55%] rotate-[20deg]" />
+	<Pretzel class="absolute -right-20 top-1/3 -rotate-12 -scale-x-100"/>
+</div>
 <Timeline id="timeline" />
 <Scope id="scope" />
 <Contact id="contact" />
@@ -121,3 +131,9 @@
 		Back to the top ↑
 	</button>
 </footer>
+
+<style>
+	.clipping {
+		clip-path: inset(0 0 0 0);
+	}
+</style>
