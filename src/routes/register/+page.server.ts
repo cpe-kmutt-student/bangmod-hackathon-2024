@@ -32,8 +32,7 @@ export const actions: Actions = {
 		const form = await superValidate(data, TeamSchema);
 
 		if (!form.valid) {
-			console.log(form.errors);
-			return fail(400, { form, error: 'Form is not valid.\nSome input might be incorrect.' });
+			return fail(400, { form, error: 'ข้อมูลบางช่องอาจจะกรอกผิดหรือไม่ได้กรอก.' });
 		}
 
 		const teamId = crypto.randomUUID();
@@ -44,7 +43,7 @@ export const actions: Actions = {
 			TeamFileSchema.parse(files);
 		} catch (error) {
 			console.log(error);
-			return fail(501, { form, error: error });
+			return fail(501, { form, error: "ระบบรองรับไฟล์ PDF ขนาดไม่เกิน 5 MB เท่านั้น" });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [
@@ -65,18 +64,18 @@ export const actions: Actions = {
 			await Promise.all(uploadPromise);
 		} catch (error) {
 			console.log(error);
-			return fail(501, { form, error: error });
+			return fail(501, { form, error: JSON.stringify(error) });
 		}
 
 		const { error: teamInsertError } = await supabase.from('team').insert(team);
 		if (teamInsertError) {
 			console.log(teamInsertError);
-			return fail(500, { form, error: teamInsertError });
+			return fail(500, { form, error: JSON.stringify(teamInsertError) });
 		}
 
 		const { error: studentInsertError } = await supabase.from('student').insert(students);
 		if (studentInsertError) {
-			return fail(500, { form, error: studentInsertError });
+			return fail(500, { form, error: JSON.stringify(studentInsertError) });
 		}
 
 		await sendEmail(prepareMail(students, team), [

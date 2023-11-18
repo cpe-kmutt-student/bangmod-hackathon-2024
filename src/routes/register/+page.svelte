@@ -46,7 +46,7 @@
 
 	let errorModal: boolean;
 
-	$: errorModal = (form && form.error) as boolean;
+	$: errorModal = (form && form.error != null) as boolean;
 </script>
 
 <svelte:head>
@@ -54,17 +54,26 @@
 </svelte:head>
 
 <div
-	class="text-md relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border border-asphalt text-sm text-asphalt md:mt-20"
+	class="text-md relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border border-burgundy text-sm text-asphalt md:mt-20"
 >
 	<h1
-		class="absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 bg-white px-4 text-center font-mali text-4xl tracking-tight md:px-8 md:text-5xl"
+		class="absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 bg-sandy px-4 text-center font-mali text-4xl tracking-tight text-burgundy md:px-8 md:text-5xl"
 	>
 		Registration
 	</h1>
-	<form method="POST" enctype="multipart/form-data" use:enhance>
+	<form method="POST" enctype="multipart/form-data" use:enhance novalidate>
 		<fieldset class="m-4 mx-auto mt-12 w-3/4 max-w-[48rem] space-y-5">
-			<legend class="my-12 text-center text-2xl font-medium"> รายละเอียดเกี่ยวกับทีม</legend>
-			<Input type="text" name="name" errors={$errors.name} bind:value={$formContent.name} required>
+			<legend class="my-12 text-center text-2xl font-medium text-burgundy"
+				>รายละเอียดเกี่ยวกับทีม
+			</legend>
+			<Input
+				type="text"
+				name="name"
+				errors={$errors.name}
+				bind:value={$formContent.name}
+				placeholder="ชื่อทีม"
+				required
+			>
 				ชื่อทีม
 			</Input>
 			<div class="flex flex-col gap-x-8 gap-y-4 lg:flex-row">
@@ -72,6 +81,7 @@
 					type="text"
 					class="flex-auto lg:basis-10/12"
 					name="school_name"
+					placeholder="ชื่อโรงเรียน"
 					errors={$errors.school_name}
 					bind:value={$formContent.school_name}
 					required
@@ -91,10 +101,12 @@
 			</div>
 		</fieldset>
 
-		<hr class="mx-24 my-20 border-asphalt" />
+		<hr class="mx-24 my-20 border-burgundy" />
 
 		<fieldset class="m-4 mx-auto w-3/4 max-w-[48rem] space-y-5">
-			<legend class="my-12 text-center text-2xl font-medium">ข้อมูลเกี่ยวกับที่ปรึกษา</legend>
+			<legend class="my-12 text-center text-2xl font-medium text-burgundy"
+				>ข้อมูลเกี่ยวกับที่ปรึกษา
+			</legend>
 			<div class="flex flex-col gap-x-8 gap-y-4 lg:flex-row 2xl:gap-x-12">
 				<ComboBox
 					name="teacher_prefix"
@@ -167,8 +179,10 @@
 				name="teacher_address"
 				errors={$errors.teacher_address}
 				bind:value={$formContent.teacher_address}
+				placeholder=""
+				required
 			>
-				ที่อยู่ปัจจุบัน <span class="text-red-700">*</span>
+				ที่อยู่ปัจจุบัน
 			</Input>
 
 			<div class="grid gap-x-8 gap-y-4 lg:grid-cols-4">
@@ -198,11 +212,11 @@
 					อาหารที่แพ้ / ประเภทอาหาร (เช่น มังสวิรัติ, ฮาลาล)
 				</Input>
 				<Input class="lg:col-span-2" name="teacher_drug" bind:value={$formContent.teacher_drug}
-				>ยาที่แพ้</Input
+					>ยาที่แพ้</Input
 				>
 			</div>
 			<Input name="teacher_disease" bind:value={$formContent.teacher_disease}
-			>โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ</Input
+				>โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ</Input
 			>
 			<div>เอกสารประกอบการสมัคร</div>
 			<div class="space-y-8 font-light">
@@ -230,10 +244,10 @@
 
 		<!--	eslint-disable-next-line @typescript-eslint/no-unused-vars-->
 		{#each { length: student_number } as _, idx}
-			<hr class="mx-24 my-20 border-asphalt" />
+			<hr class="mx-24 my-20 border-burgundy" />
 
 			<fieldset class="m-4 mx-auto mt-0 w-3/4 max-w-[48rem] space-y-4">
-				<legend class="mb-12 mt-0 text-center text-2xl font-medium">
+				<legend class="mb-12 mt-0 text-center text-2xl font-medium text-burgundy">
 					ข้อมูลเกี่ยวกับผู้เข้าแข่งขันท่านที่ {idx + 1}
 				</legend>
 				<div class="grid gap-x-8 gap-y-4 lg:grid-cols-6">
@@ -251,6 +265,7 @@
 						name="students[{idx}].firstname"
 						errors={$errors?.students?.[idx].firstname}
 						bind:value={$formContent.students[idx].firstname}
+						placeholder="ขยัน"
 						required
 					>
 						ชื่อจริง (ภาษาไทย)
@@ -260,6 +275,7 @@
 						name="students[{idx}].lastname"
 						errors={$errors?.students?.[idx]?.lastname}
 						bind:value={$formContent.students[idx].lastname}
+						placeholder="หมั่นเพียร"
 						required
 					>
 						นามสกุล (ภาษาไทย)
@@ -268,6 +284,7 @@
 						name="students[{idx}].nickname"
 						errors={$errors?.students?.[idx].nickname}
 						bind:value={$formContent.students[idx].nickname}
+						placeholder="ขยัน"
 						required
 					>
 						ชื่อเล่น
@@ -287,6 +304,7 @@
 						name="students[{idx}].race"
 						errors={$errors?.students?.[idx].race}
 						bind:value={$formContent.students[idx].race}
+						placeholder="เชื้อชาติ"
 						required
 					>
 						เชื้อชาติ
@@ -295,6 +313,7 @@
 						name="students[{idx}].nationality"
 						errors={$errors?.students?.[idx].nationality}
 						bind:value={$formContent.students[idx].nationality}
+						placeholder="สัญชาติ"
 						required
 					>
 						สัญชาติ
@@ -303,6 +322,7 @@
 						name="students[{idx}].religion"
 						errors={$errors?.students?.[idx].religion}
 						bind:value={$formContent.students[idx].religion}
+						placeholder="ศาสนา"
 						required
 					>
 						ศาสนา
@@ -314,6 +334,7 @@
 						name="students[{idx}].phone"
 						errors={$errors?.students?.[idx].phone}
 						bind:value={$formContent.students[idx].phone}
+						placeholder="0999999999"
 						required
 					>
 						เบอร์โทรศัพท์
@@ -334,6 +355,7 @@
 						name="students[{idx}].email"
 						errors={$errors?.students?.[idx].email}
 						bind:value={$formContent.students[idx].email}
+						placeholder="khayan@mail.com"
 						required
 					>
 						อีเมล
@@ -352,6 +374,7 @@
 					name="students[{idx}].address"
 					errors={$errors?.students?.[idx].address}
 					bind:value={$formContent.students[idx].address}
+					placeholder=""
 					required
 				>
 					ที่อยู่ปัจจุบัน
@@ -410,7 +433,9 @@
 							errors={$errors?.students?.[idx].image}
 							required
 						>
-							รูปถ่ายนักเรียนผู้เข้าแข่งขัน <span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
+							รูปถ่ายนักเรียนผู้เข้าแข่งขัน <span class="text-scarlet-800"
+								>(PDF ขนาดน้อยกว่า 5 MB)</span
+							>
 						</FileInput>
 					</li>
 					<li class="ml-3 pl-2">
@@ -442,14 +467,16 @@
 							errors={$errors?.students?.[idx].student_certificate}
 							required
 						>
-							ปพ.7 ของผู้เข้าแข่งขันตัวจริง <span class="text-scarlet-800">(PDF ขนาดน้อยกว่า 5 MB)</span>
+							ปพ.7 ของผู้เข้าแข่งขันตัวจริง <span class="text-scarlet-800"
+								>(PDF ขนาดน้อยกว่า 5 MB)</span
+							>
 						</FileInput>
 					</li>
 				</ol>
 			</fieldset>
 		{/each}
 
-		<hr class="mx-12 my-20 border-asphalt md:mx-24" />
+		<hr class="mx-12 my-20 border-burgundy md:mx-24" />
 
 		<fieldset class="m-4 mx-auto mb-8 w-3/4 max-w-[48rem] space-y-5">
 			<p class="mb-6 font-light">
@@ -468,7 +495,7 @@
 			<button
 				type="submit"
 				disabled={!$verify || !$consent || submitting}
-				class="mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300 sm:px-20"
+				class="mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-[#47537C] disabled:text-[#47537C] sm:px-20"
 			>
 				{#if submitting}
 					<Spinner class="h-6 w-6" />
@@ -478,16 +505,17 @@
 		</fieldset>
 	</form>
 </div>
+
 {#if errorModal}
-	<div transition:fade class="fixed left-1 top-1 max-h-full w-fit max-w-[15rem] md:left-5 md:top-5">
+	<div transition:fade class="fixed right-1 top-1 max-h-full w-fit max-w-[15rem] md:right-5 md:top-5">
 		<!-- Modal content -->
 		<div class="relative rounded-lg bg-white shadow">
 			<!-- Modal header -->
-			<div class="flex items-start justify-between rounded-t border-b p-4">
-				<h3 class="text-md font-semibold text-scarlet-800 md:text-xl">An error occurred !</h3>
+			<div class="flex items-start justify-between rounded-t border-b p-2">
+				<h3 class="text-sm font-semibold text-scarlet-800 md:text-base">มีข้อผิดพลาด !</h3>
 				<button
 					type="button"
-					class="ml-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
+					class="ml-auto inline-flex h-6 w-6 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900"
 					on:click={() => (errorModal = false)}
 				>
 					<svg
@@ -508,9 +536,9 @@
 				</button>
 			</div>
 			<!-- Modal body -->
-			<div class="space-y-6 p-6">
-				<p class="whitespace-pre-line text-base font-light leading-relaxed text-asphalt">
-					{JSON.stringify(form?.error)}
+			<div class="space-y-6 p-3">
+				<p class="whitespace-pre-line text-sm font-light leading-relaxed text-asphalt">
+					{form?.error}
 				</p>
 			</div>
 		</div>

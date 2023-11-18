@@ -64,17 +64,19 @@
 </svelte:head>
 
 <div
-	class="text-md border-asphalt text-asphalt relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border text-sm md:mt-20"
+	class="text-md relative mx-auto mb-12 mt-12 w-[95%] max-w-screen-lg border border-burgundy text-sm text-asphalt md:mt-20"
 >
 	<h1
-		class="bg-white font-mali absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 px-4 text-center text-4xl tracking-tight md:px-8 md:text-5xl"
+		class="absolute left-1/2 top-0 w-fit -translate-x-1/2 -translate-y-1/2 bg-sandy px-4 text-center font-mali text-4xl tracking-tight text-burgundy md:px-8 md:text-5xl"
 	>
 		Privacy Policies
 	</h1>
 	<div class="mt-16 flex flex-col gap-8 px-12 md:gap-12 md:px-6">
 		{#each policies as policy}
 			<div class="flex w-full flex-col gap-4 md:flex-row">
-				<h2 class="text-center text-xl font-medium md:basis-3/5 md:text-left lg:text-lg">
+				<h2
+					class="text-center text-xl font-medium text-burgundy md:basis-3/5 md:text-left lg:text-lg"
+				>
 					{policy.name}
 				</h2>
 				<div class="w-full font-light md:col-span-3">
@@ -94,15 +96,15 @@
 					</ol>
 				</div>
 			</div>
-			<hr class="border" />
+			<hr class="border border-burgundy" />
 		{/each}
 		<form action="/register">
 			<fieldset class="m-4 mx-auto mb-8 w-3/4 space-y-5">
 				<div class="flex w-full flex-col gap-2 font-light md:flex-row">
-					<CheckBox name='consent' bind:checked={$consent} required>
+					<CheckBox name="consent" bind:checked={$consent} required>
 						ข้าพเจ้าได้อ่านเงื่อนไขและข้อกำหนดอย่างครบถ้วนแล้ว และยอมรับในเงื่อนไขและข้อกำหนดทั้งหมด
 					</CheckBox>
-					<CheckBox name='verify' class="lg:col-span-2" bind:checked={$verify} required>
+					<CheckBox name="verify" class="lg:col-span-2" bind:checked={$verify} required>
 						ข้าพเจ้าขอยืนยันว่าข้อมูลที่ใช้ในการสมัครเป็นข้อมูลจริง
 					</CheckBox>
 				</div>
@@ -110,9 +112,13 @@
 				<button
 					type="submit"
 					disabled={!$verify || !$consent}
-					class="border-azul-600 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-iron-300 disabled:text-iron-300 mx-auto flex h-12 w-64 items-center justify-center rounded-full border"
+					class="mx-auto flex h-12 w-64 items-center justify-center rounded-full border border-azul-600 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-[#47537C] disabled:text-[#47537C]"
 				>
-					ดำเนินการต่อ
+					{#if !$verify || !$consent}
+						กรุณายอมรับเงื่อนไข
+					{:else}
+						ดำเนินการต่อ
+					{/if}
 				</button>
 			</fieldset>
 		</form>

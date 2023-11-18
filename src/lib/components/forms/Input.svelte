@@ -7,13 +7,13 @@
 	export let required: boolean = false;
 
 	const borderClasses = {
-		base: 'border-iron-300 focus:border-iron-800 focus:border-2 invalid:border-scarlet-800 invalid:focus:border-scarlet-900',
+		base: 'border-iron-300 focus:border-iron-800 focus:border-2 invalid:[&:not(:placeholder-shown):not(:focus)]:border-scarlet-800 invalid:not(:placeholder-shown):focus:border-scarlet-900',
 		red: 'border-scarlet-800 focus:border-scarlet-900 focus:border-2'
 	};
 
 	const colorClasses = {
-		base: 'bg-soapstone text-asphalt invalid:text-scarlet-800 invalid:placeholder-scarlet-800',
-		red: 'bg-soapstone text-scarlet-800 placeholder-scarlet-800'
+		base: 'bg-[#fff9ed] text-asphalt invalid:[&:not(:placeholder-shown):not(:focus)]:text-scarlet-800 invalid:[&:not(:placeholder-shown):not(:focus)]:placeholder-scarlet-800',
+		red: 'bg-[#fff9ed] text-scarlet-800 placeholder-scarlet-800'
 	};
 
 	const defaultClass =
@@ -51,7 +51,7 @@
 		<span
 			class={twJoin(
 				errors ? 'text-scarlet-800' : 'text-asphalt',
-				'peer-invalid:text-scarlet-800'
+				'peer-invalid:[&:not(:peer-placeholder-shown):not(:focus)]:text-scarlet-800'
 			)}
 		>
 			<slot />
