@@ -7,7 +7,7 @@
 
 <div
 	{...$$restProps}
-	class={twMerge('fixed -z-10 flex h-screen w-full bg-sandy text-white', $$props.class)}
+	class={twMerge('fixed -z-10 flex h-screen w-full bg-sandy text-white mt-8', $$props.class)}
 >
 	<h1 class="sr-only">Bangmod Hackathon 2024</h1>
 	<div

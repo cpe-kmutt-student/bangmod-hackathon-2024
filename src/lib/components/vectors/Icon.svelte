@@ -1,36 +1,8 @@
 <svg
 	xmlns="http://www.w3.org/2000/svg"
-	class="w-[529px] h-[450px] p-10 lg:h-[800px] lg:w-[800px]"
+	class="w-[529px] h-[450px] p-10 lg:h-[720px] lg:w-[720px]"
 	viewBox="0 0 529 450"
 >
-	<style>
-		.st3 {
-			fill: none;
-			stroke: #fb7500;
-		}
-
-		.st7 {
-			fill: #6e4b1c;
-			fill-opacity: 0.91;
-		}
-
-		.st8 {
-			fill: #755120;
-			fill-opacity: 0.984;
-		}
-
-		.path {
-			stroke-dasharray: 528;
-			/* stroke-dashoffset: 2000; */
-			animation: draw 5s linear infinite;
-		}
-
-		@keyframes draw {
-			to {
-				stroke-dashoffset: 1056;
-			}
-		}
-	</style>
 	<path fill="#f9f6e8" d="M-3.4-1.6h529v450h-529v-450z" />
 	<path class="path" d="M318 450 V175" stroke="#CCAA4B" stroke-width="3" />
 	<path class="path" d="M1 1 H528" stroke="#CCAA4B" stroke-width="3" />
@@ -78,3 +50,31 @@
 	/>
 	<path d="m206.6 240-45.1 17.2m14.3-31.8 17.2 45.1" class="st3" />
 </svg>
+<style>
+	.st3 {
+		fill: none;
+		stroke: #fb7500;
+	}
+
+	.st7 {
+		fill: #6e4b1c;
+		fill-opacity: 0.91;
+	}
+
+	.st8 {
+		fill: #755120;
+		fill-opacity: 0.984;
+	}
+
+	.path {
+		stroke-dasharray: 528;
+		/* stroke-dashoffset: 2000; */
+		animation: draw 5s linear infinite;
+	}
+
+	@keyframes draw {
+		to {
+			stroke-dashoffset: 1056;
+		}
+	}
+</style>
