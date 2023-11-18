@@ -32,7 +32,7 @@
 					<div class="flex h-[30%] flex-col items-center md:h-full">
 						<svelte:component this={award.badge} class="h-full w-full" />
 						<h3 class="text-center text-2xl font-bold">{award.name}</h3>
-						<p class="self-start whitespace-pre-line text-center text-xl font-light">
+						<p class="whitespace-pre-line text-center text-xl font-light w-full">
 							{award.reward}
 						</p>
 					</div>

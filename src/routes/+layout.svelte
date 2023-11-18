@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '../app.pcss';
 
-	import { fly } from 'svelte/transition';
+	import { fade } from 'svelte/transition';
 
 	import type { PageData } from './$types';
 
@@ -10,8 +10,7 @@
 
 {#key data.url}
 	<div
-		in:fly={{ x: -200, duration: 300, delay: 300 }}
-		out:fly={{ x: 200, duration: 300 }}
+		transition:fade
 		class="w-full h-full overflow-x-hidden"
 	>
 		<slot />

@@ -8,16 +8,16 @@
 			date: '31 OCTOBER 2023'
 		},
 		{ name: 'ปิดรับสมัคร', type: 'ONLINE', date: '15 DECEMBER 2023' },
+		{ name: 'การแข่งขันรอบคัดเลือก 36 ทีม', type: 'ONSITE', date: '13 JANUARY 2024' },
 		{
 			name: 'ประกาศผล ผู้ผ่านการแข่งขันรอบคัดเลือก 36 ทีม',
 			type: 'ONLINE',
-			date: '29 DECEMBER 2023'
+			date: '18 JANUARY 2024'
 		},
-		{ name: 'การแข่งขันรอบคัดเลือก 36 ทีม', type: 'ONSITE', date: '19 JANUARY 2024' },
 		{
 			name: 'การแข่งขันรอบคัดเลือก 12 ทีม',
 			type: 'ONSITE',
-			date: '13 JANUARY 2024'
+			date: '29 JANUARY 2024'
 		},
 		{
 			name: 'การแข่งขันรอบคัดเลือก 2 ทีม',
@@ -85,7 +85,7 @@ xl-desktop -->
 								)}
 							/>
 							<span
-								class="flex items-center pt-4 text-center text-base lg:min-h-[56px] lg:px-1 lg:text-sm xl:min-h-[64px] xl:px-2 xl:text-base 2xl:min-h-[72px] 2xl:px-4 2xl:text-xl"
+								class="flex items-center pt-4 text-center font-mali text-base lg:min-h-[56px] lg:px-1 lg:text-sm xl:min-h-[64px] xl:px-2 xl:text-base 2xl:min-h-[72px] 2xl:px-4 2xl:text-xl"
 							>
 								{timeline.name}
 							</span>
@@ -120,7 +120,9 @@ xl-desktop -->
 										: 'lg:-top-[5.5rem] lg:h-[5.5rem] xl:-top-20 xl:h-20 '
 								)}
 							/>
-							<span class="flex items-center pt-4 text-center font-mali text-lg font-bold">
+							<span
+								class="flex items-center pt-4 text-center font-mali text-lg font-bold"
+							>
 								{timeline.name}
 							</span>
 							<span class="flex h-16 w-full items-center justify-center pb-4">
@@ -129,7 +131,7 @@ xl-desktop -->
 						</span>
 						<span
 							class={twJoin(
-								'pt-4 text-white flex items-center justify-center',
+								'flex items-center justify-center pt-4 text-white',
 								idx + 1 === timelines.length ? 'hidden' : ''
 							)}
 						>

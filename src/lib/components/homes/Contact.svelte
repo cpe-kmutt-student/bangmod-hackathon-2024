@@ -1,6 +1,8 @@
 <script>
 	import { twMerge } from 'tailwind-merge';
 
+	import { Facebook, Telephone } from '$lib/components/icons';
+
 	const staffs = [
 		{ name: 'เฟิร์ท', phone: '061-628-7673' },
 		{ name: 'เจร', phone: '095-928-3465' },
@@ -22,7 +24,7 @@
 				<div class="text-md flex font-bold md:text-xl">
 					<div class="flex gap-2 border border-black bg-white">
 						<div class="flex items-center justify-center">
-							<img src="/fb_logo.png" alt="facebook logo" class="p-4" />
+							<Facebook class="p-4 w-20 h-20 md:w-24 md:h-24" />
 						</div>
 						<div class="flex w-full items-center p-2">BANGMOD HACKATHON 2024</div>
 					</div>
@@ -38,11 +40,7 @@
 				<div class="flex w-full border border-black bg-white text-xl font-bold md:text-xl">
 					<div class="flex h-full items-center justify-center border-r border-black">
 						<div class="p-4">
-							<img
-								src="/tel_logo.png"
-								alt="telephone logo"
-								class="max-w-28 max-h-28 w-16 md:w-24"
-							/>
+							<Telephone class="p-4 w-20 h-20 md:w-24 md:h-24" />
 						</div>
 					</div>
 					<div class="flex w-full flex-col divide-y">

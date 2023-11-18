@@ -1,6 +1,8 @@
 <script>
 	import { twMerge } from 'tailwind-merge';
 
+	import { SundayStudent3, SundayTeacher, SundayTeam } from '$lib/components/vectors';
+
 	const qualifications = [
 		'รับสมัครเป็นทีม ทีมละ 2-3 คน',
 		'ผู้สมัครต้องเป็นนักเรียน ระดับชั้นมัธยมศึกษาตอนต้น, มัธยมศึกษาตอนปลาย หรือ นักศึกษาอาชีวศึกษา ในระดับปวช. หรือเทียบเท่า',
@@ -33,8 +35,8 @@
 			<div
 				class="flex w-full max-w-5xl flex-col items-center gap-8 gap-x-10 lg:flex-row lg:justify-around"
 			>
-				<div class="flex w-fit items-center justify-center border-2 border-black bg-white">
-					<img src="/sunday_team.svg" alt="" />
+				<div class="flex w-52 h-52 items-center justify-center border-2 border-black bg-white">
+					<SundayTeam />
 				</div>
 				<div class="flex max-w-xl flex-col gap-y-2 text-xl lg:gap-y-8">
 					{#each qualifications as qualify}
@@ -55,8 +57,8 @@
 			<div
 				class="flex w-full max-w-5xl flex-col items-center gap-8 gap-x-10 lg:flex-row lg:justify-around"
 			>
-				<div class="flex w-fit items-center justify-center border-2 border-black bg-white p-2">
-					<img src="/sunday_teacher.svg" alt="" />
+				<div class="flex w-52 h-52 items-center justify-center border-2 border-black bg-white p-2">
+					<SundayTeacher />
 				</div>
 				<div class="flex max-w-xl flex-col gap-y-2 text-xl lg:gap-y-8">
 					<h2 class="font-bold tracking-wide">อาจารย์ที่ปรึกษา</h2>
@@ -73,8 +75,8 @@
 			<div
 				class="flex w-full max-w-5xl flex-col items-center gap-8 gap-x-10 lg:flex-row lg:justify-around"
 			>
-				<div class="flex w-fit items-center justify-center border-2 border-black bg-white">
-					<img src="/sunday_student.svg" alt="" />
+				<div class="flex w-52 h-52 items-center justify-center border-2 border-black bg-white">
+					<SundayStudent3 />
 				</div>
 				<div class="flex max-w-xl flex-col gap-y-2 text-xl lg:gap-y-8">
 					<h2 class="font-bold tracking-wide">นักเรียน</h2>
