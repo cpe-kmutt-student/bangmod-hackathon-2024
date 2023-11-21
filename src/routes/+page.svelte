@@ -55,7 +55,7 @@
 			{#each sections as { section, title }}
 				<a
 					href={`#${section}`}
-					class="flex w-full justify-center bg-[#774B4D] py-4 hover:bg-aubergine/50"
+					class="flex w-full min-h-[56px] items-center justify-center bg-[#774B4D] text-center hover:bg-aubergine/50"
 					on:click={() => {
 						if (section === 'home') {
 							document.body.scrollIntoView();
