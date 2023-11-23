@@ -43,7 +43,7 @@ export const actions: Actions = {
 			TeamFileSchema.parse(files);
 		} catch (error) {
 			console.log(error);
-			return fail(501, { form, error: "ระบบรองรับไฟล์ PDF ขนาดไม่เกิน 5 MB เท่านั้น" });
+			return fail(501, { form, error: 'ระบบรองรับไฟล์ PDF ขนาดไม่เกิน 5 MB เท่านั้น' });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [

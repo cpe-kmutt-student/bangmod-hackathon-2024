@@ -76,36 +76,34 @@
 			>
 				ชื่อทีม
 			</Input>
-			<div class="flex flex-col gap-x-8 gap-y-4 lg:flex-row">
-				<Input
-					type="text"
-					class="flex-auto lg:basis-10/12"
-					name="school_name"
-					placeholder="ชื่อโรงเรียน"
-					errors={$errors.school_name}
-					bind:value={$formContent.school_name}
-					required
-				>
-					โรงเรียน
-				</Input>
-				<Input
-					type="number"
-					class="flex-auto lg:basis-3/12"
-					min="2"
-					max="3"
-					bind:value={student_number}
-					required
-				>
-					จำนวนสมาชิก
-				</Input>
+			<Input
+				type="text"
+				name="school_name"
+				placeholder="ชื่อโรงเรียน"
+				errors={$errors.school_name}
+				bind:value={$formContent.school_name}
+				required
+			>
+				โรงเรียน
+			</Input>
+			<div class='flex flex-col space-y-2'>
+				<span>จำนวนสมาชิก <span class="text-scarlet-800">*</span></span>
+				<label class='flex items-center space-x-2'>
+					<input type="radio" value={2} bind:group={student_number} checked/>
+					<span>2 คน</span>
+				</label>
+				<label class='flex items-center space-x-2'>
+					<input type="radio" value={3} bind:group={student_number} />
+					<span>3 คน</span>
+				</label>
 			</div>
 		</fieldset>
 
 		<hr class="mx-24 my-20 border-burgundy" />
 
 		<fieldset class="m-4 mx-auto w-3/4 max-w-[48rem] space-y-5">
-			<legend class="my-12 text-center text-2xl font-medium text-burgundy"
-				>ข้อมูลเกี่ยวกับที่ปรึกษา
+			<legend class="my-12 text-center text-2xl font-medium text-burgundy">
+				ข้อมูลเกี่ยวกับที่ปรึกษา
 			</legend>
 			<div class="flex flex-col gap-x-8 gap-y-4 lg:flex-row 2xl:gap-x-12">
 				<ComboBox
@@ -211,13 +209,13 @@
 				>
 					อาหารที่แพ้ / ประเภทอาหาร (เช่น มังสวิรัติ, ฮาลาล)
 				</Input>
-				<Input class="lg:col-span-2" name="teacher_drug" bind:value={$formContent.teacher_drug}
-					>ยาที่แพ้</Input
-				>
+				<Input class="lg:col-span-2" name="teacher_drug" bind:value={$formContent.teacher_drug}>
+					ยาที่แพ้
+				</Input>
 			</div>
-			<Input name="teacher_disease" bind:value={$formContent.teacher_disease}
-				>โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ</Input
-			>
+			<Input name="teacher_disease" bind:value={$formContent.teacher_disease}>
+				โรคประจําตัว / วิธีปฐมพยาบาลเมื่อเกิดอาการ
+			</Input>
 			<div>เอกสารประกอบการสมัคร</div>
 			<div class="space-y-8 font-light">
 				<FileInput
@@ -507,7 +505,10 @@
 </div>
 
 {#if errorModal}
-	<div transition:fade class="fixed right-1 top-1 max-h-full w-fit max-w-[15rem] md:right-5 md:top-5">
+	<div
+		transition:fade
+		class="fixed right-1 top-1 max-h-full w-fit max-w-[15rem] md:right-5 md:top-5"
+	>
 		<!-- Modal content -->
 		<div class="relative rounded-lg bg-white shadow">
 			<!-- Modal header -->
