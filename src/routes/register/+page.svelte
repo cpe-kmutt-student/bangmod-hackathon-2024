@@ -17,17 +17,20 @@
 	import type { ActionData, PageData } from './$types';
 
 	import { browser } from '$app/environment';
+	import { goto } from '$app/navigation';
 
 	$: if (browser) window.localStorage.form = JSON.stringify($formContent);
 
 	let student_number = 2;
-	let submitting = false;
 
 	export let data: PageData;
 
-	const { enhance, errors } = superForm(data.form, {
-		onSubmit: () => (submitting = true),
-		onResult: () => (submitting = false)
+	const { enhance, errors, delayed } = superForm(data.form, {
+		onResult({result}) {
+			if (result.type === 'success') {
+				setTimeout(() => goto('/register/completed'), 50);
+			}
+		}
 	});
 
 	const teacherNamePrefixItems = ['นาย', 'นาง', 'นางสาว'];
@@ -492,10 +495,10 @@
 
 			<button
 				type="submit"
-				disabled={!$verify || !$consent || submitting}
+				disabled={!$verify || !$consent || $delayed}
 				class="mx-auto my-32 flex items-center gap-12 rounded-full border border-azul-600 px-12 py-2 text-azul-600 enabled:hover:bg-azul-600 enabled:hover:text-white disabled:border-[#47537C] disabled:text-[#47537C] sm:px-20"
 			>
-				{#if submitting}
+				{#if $delayed}
 					<Spinner class="h-6 w-6" />
 				{/if}
 				<span class="h-6">ยืนยันการกรอกข้อมูล</span>
