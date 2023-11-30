@@ -53,7 +53,7 @@
 </script>
 
 <svelte:head>
-	<title>Register</title>
+	<title>Register - Bangmod Hackathon 2024</title>
 </svelte:head>
 
 <div

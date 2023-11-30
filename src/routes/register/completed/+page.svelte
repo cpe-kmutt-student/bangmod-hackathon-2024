@@ -1,3 +1,7 @@
+<svelte:head>
+	<title>Register Complete - Bangmod Hackathon 2024</title>
+</svelte:head>
+
 <div
 	class="text-md relative mx-auto mb-12 mt-12 flex h-3/4 w-[95%] max-w-screen-lg flex-col items-center justify-center text-sm text-asphalt md:mt-20"
 >
