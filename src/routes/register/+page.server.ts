@@ -10,7 +10,16 @@ import { supabase } from '$lib/server/supabase';
 
 import type { Actions, PageServerLoad } from './$types';
 
+import { PUBLIC_CLOSING_DATE } from '$env/static/public';
+
 export const load: PageServerLoad = async ({ url }) => {
+	const currentDate = new Date();
+	const deadline = new Date(PUBLIC_CLOSING_DATE);
+
+	if (currentDate >= deadline) {
+		throw redirect(302, '/');
+	}
+
 	const consent = url.searchParams.get('consent');
 	const verify = url.searchParams.get('verify');
 	if (!consent || !verify) {
@@ -24,6 +33,12 @@ export const load: PageServerLoad = async ({ url }) => {
 
 export const actions: Actions = {
 	default: async ({ request }) => {
+		const currentDate = new Date();
+		const deadline = new Date(PUBLIC_CLOSING_DATE);
+		if (currentDate >= deadline) {
+			throw redirect(302, '/');
+		}
+
 		const formData = await request.formData();
 		const { data, files } = deserializeNested(formData) as { data: Team; files: TeamFile };
 

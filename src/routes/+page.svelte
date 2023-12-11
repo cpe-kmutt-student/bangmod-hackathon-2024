@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { twJoin } from 'tailwind-merge';
+
 	import {
 		About,
 		Award,
@@ -10,6 +12,12 @@
 	} from '$lib/components/homes';
 	import { Hamburger } from '$lib/components/icons';
 	import { Cookies01, Eclairs01, IceCream02, Jelly, Macarons01, Pretzel } from '$lib/components/vectors';
+
+	import { PUBLIC_CLOSING_DATE } from '$env/static/public';
+
+
+	const notDeadline = new Date() < new Date(PUBLIC_CLOSING_DATE);
+	const registerHref = notDeadline ? "/register" : "javascript:void(0)";
 
 	const sections = [
 		{
@@ -65,8 +73,8 @@
 					{title}
 				</a>
 			{/each}
-			<a href="register" class="flex w-full justify-center bg-[#69273c] py-4 hover:bg-aubergine/50">
-				สมัคร
+			<a href={registerHref} class={twJoin("flex w-full justify-center bg-[#69273c] py-4", notDeadline ? "hover:bg-aubergine/50": "bg-[#47537C] text-sandy pointer-events-none")}>
+				{notDeadline ? "สมัคร" : "ปิดรับสมัครแล้ว"}
 			</a>
 		</div>
 		<div class="flex w-full items-center justify-end bg-[#774B4D] md:hidden">
@@ -95,10 +103,10 @@
 						</a>
 					{/each}
 					<a
-						href="register"
-						class="flex w-full justify-center bg-[#69273c] py-2 hover:bg-aubergine/50"
+						href={registerHref}
+						class={twJoin("flex w-full justify-center bg-[#69273c] py-2", notDeadline ? "hover:bg-aubergine/50": "bg-[#47537C] text-sandy pointer-events-none")}
 					>
-						สมัคร
+						{notDeadline ? "สมัคร" : "ปิดรับสมัครแล้ว"}
 					</a>
 				</div>
 			{/if}
