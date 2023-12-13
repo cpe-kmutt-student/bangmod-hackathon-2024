@@ -33,11 +33,6 @@ export const load: PageServerLoad = async ({ url }) => {
 
 export const actions: Actions = {
 	default: async ({ request }) => {
-		const currentDate = new Date();
-		const deadline = new Date(PUBLIC_CLOSING_DATE);
-		if (currentDate >= deadline) {
-			throw redirect(302, '/');
-		}
 
 		const formData = await request.formData();
 		const { data, files } = deserializeNested(formData) as { data: Team; files: TeamFile };
