@@ -74,18 +74,18 @@ export const actions: Actions = {
 			await Promise.all(uploadPromise);
 		} catch (error) {
 			console.log(error);
-			return fail(501, { form, error: JSON.stringify(error) });
+			return fail(501, { form, error: `Upload file error ${JSON.stringify(error)}` });
 		}
 
 		const { error: teamInsertError } = await supabase.from('team').insert(team);
 		if (teamInsertError) {
 			console.log(teamInsertError);
-			return fail(500, { form, error: JSON.stringify(teamInsertError) });
+			return fail(500, { form, error: `Database Insert error ${JSON.stringify(teamInsertError)}` });
 		}
 
 		const { error: studentInsertError } = await supabase.from('student').insert(students);
 		if (studentInsertError) {
-			return fail(500, { form, error: JSON.stringify(studentInsertError) });
+			return fail(500, { form, error: `Database Insert error ${JSON.stringify(studentInsertError)}` });
 		}
 
 		await sendEmail(prepareMail(students, team), [

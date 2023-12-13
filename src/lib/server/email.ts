@@ -26,11 +26,7 @@ const sendEmail = async (htmlContent: string, to: { email: string; name: string 
 		body: JSON.stringify(data)
 	});
 
-	if (!response.ok) {
-		throw new Error(await response.text());
-	}
-
-	return true;
+	return response.ok;
 };
 
 const prepareMail = (students: Student[], team: Omit<Team, 'students'>) => {
