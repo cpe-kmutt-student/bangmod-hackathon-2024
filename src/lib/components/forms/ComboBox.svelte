@@ -64,8 +64,8 @@
 	};
 
 	const colorClasses = {
-		base: 'bg-soapstone text-asphalt',
-		red: 'bg-soapstone text-scarlet-800 placeholder-scarlet-800'
+		base: 'bg-[#fff9ed] text-asphalt',
+		red: 'bg-[#fff9ed] text-scarlet-800 placeholder-scarlet-800'
 	};
 
 	const defaultClasses = {
@@ -105,7 +105,7 @@
 			on:paste
 			on:input
 			autocomplete="off"
-			class="peer w-full font-light outline-none"
+			class="peer w-full font-light outline-none bg-[#fff9ed]"
 			bind:value
 		/>
 		<ChevronDown

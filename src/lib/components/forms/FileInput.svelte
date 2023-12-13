@@ -36,8 +36,8 @@
 	};
 
 	const colorClasses = {
-		base: 'bg-soapstone text-asphalt',
-		red: 'bg-soapstone text-scarlet-800 placeholder-scarlet-800'
+		base: 'bg-[#fff9ed] text-asphalt',
+		red: 'bg-[#fff9ed] text-scarlet-800 placeholder-scarlet-800'
 	};
 
 	const defaultClasses = {
@@ -87,7 +87,7 @@
 		<span
 			class={twJoin(
 				"flex h-7 items-center justify-center gap-2 rounded-full px-4 font-latin text-sm text-soapstone",
-				errors ? 'bg-scarlet-800' : 'bg-asphalt'
+				errors ? 'bg-scarlet-800' : 'bg-aubergine'
 			)}
 		>
 			<Upload />

@@ -52,24 +52,24 @@ const StudentSchema = z.object({
 	student_certificate: z.string().min(1)
 });
 
-const MAX_FILE_SIZE = 5242880;
+const MAX_FILE_SIZE = 10485760;
 
 const StudentFileSchema = z.object({
 	image: z
 		.instanceof(File)
-		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
+		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 10MB.')
 		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	citizen_card: z
 		.instanceof(File)
-		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
+		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 10MB.')
 		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	student_card: z
 		.instanceof(File)
-		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
+		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 10MB.')
 		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	student_certificate: z
 		.instanceof(File)
-		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
+		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 10MB.')
 		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.')
 });
 
@@ -99,11 +99,11 @@ const TeamSchema = z.object({
 const TeamFileSchema = z.object({
 	teacher_citizen_card: z
 		.instanceof(File)
-		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
+		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 10MB.')
 		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	teacher_verify: z
 		.instanceof(File)
-		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 5MB.')
+		.refine((file) => file?.size <= MAX_FILE_SIZE, 'Max image size is 10MB.')
 		.refine((file) => file?.type === 'application/pdf', 'Only .pdf formats are supported.'),
 	students: z.array(StudentFileSchema).min(2).max(3)
 });

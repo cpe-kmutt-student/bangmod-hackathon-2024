@@ -5,15 +5,26 @@ export default {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			sans: ['Kanit', ...defaultTheme.fontFamily.sans],
+			sans: ['Maitree', ...defaultTheme.fontFamily.sans],
 			serif: ['Old Standard TT', ...defaultTheme.fontFamily.serif],
 			latin: ['Outfit'],
-			decorate: ['Homemade Apple']
+			decorate: ['Homemade Apple'],
+			circle: ['Tenor Sans'],
+			mali: ['Mali']
 		},
 		extend: {
 			colors: {
 				soapstone: '#fefcfc',
 				asphalt: '#0d0d02',
+				beer: '#febb28',
+				saddle: '#8a4b18',
+				butternut: '#fb7500',
+				lupine: '#ccaa4a',
+				sandy: '#FFE7BF',
+				burgundy: '#A10035',
+				aubergine: '#4A1727',
+				froly: '#FF869E',
+				eastbay: '#414C7D',
 				iron: {
 					50: '#f6f6f7',
 					100: '#efeff0',
@@ -54,21 +65,9 @@ export default {
 					950: '#52000c'
 				}
 			},
-			animation: {
-				marquee: 'marquee 25s linear infinite',
-				marquee2: 'marquee2 25s linear infinite'
-			},
-			keyframes: {
-				marquee: {
-					'0%': { transform: 'translateX(0%)' },
-					'100%': { transform: 'translateX(-100%)' }
-				},
-				marquee2: {
-					'0%': { transform: 'translateX(100%)' },
-					'100%': { transform: 'translateX(0%)' }
-				}
+			gridTemplateColumns: {
+				28: 'repeat(28, minmax(0, 1fr))'
 			}
 		}
-	},
-	plugins: []
+	}
 };

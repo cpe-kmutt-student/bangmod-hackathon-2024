@@ -14,8 +14,8 @@
 	};
 
 	const colorClasses = {
-		base: 'bg-soapstone text-asphalt',
-		red: 'bg-soapstone text-scarlet-800 placeholder-scarlet-800'
+		base: 'bg-[#fff9ed] text-asphalt',
+		red: 'bg-[#fff9ed] text-scarlet-800 placeholder-scarlet-800'
 	};
 
 	const defaultClass =
@@ -62,11 +62,11 @@
 				on:mouseleave
 				on:paste
 				on:input
-				class="h-full w-full outline-none"
+				class="h-full w-full outline-none bg-[#fff9ed]"
 				bind:value
 			/>
 			<input
-				class="pointer-events-none absolute top-0 h-full w-full opacity-0"
+				class="pointer-events-none absolute top-0 h-full w-full opacity-0 bg-[#fff9ed]"
 				type="date"
 				tabindex="-1"
 				on:input={setDate}

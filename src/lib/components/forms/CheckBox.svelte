@@ -9,7 +9,7 @@
 	export let required: boolean = false;
 
 	const borderClasses = {
-		base: 'border-iron-300 focus:border-iron-800 focus:border-2',
+		base: 'border-[#47537C] focus:border-iron-800 focus:border-2',
 		red: 'border-scarlet-800 focus:border-scarlet-900 focus:border-2'
 	};
 

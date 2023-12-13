@@ -3,14 +3,23 @@ import { superValidate } from 'sveltekit-superforms/server';
 
 import { prepareMail, sendEmail } from '$lib/server/email';
 import { deserializeNested, prepareData } from '$lib/server/form';
-import { TeamSchema } from '$lib/server/schema';
+import { TeamFileSchema, TeamSchema } from '$lib/server/schema';
 import type { Team, TeamFile } from '$lib/server/schema';
 import { UploadFile } from '$lib/server/storage';
 import { supabase } from '$lib/server/supabase';
 
 import type { Actions, PageServerLoad } from './$types';
 
+import { PUBLIC_CLOSING_DATE } from '$env/static/public';
+
 export const load: PageServerLoad = async ({ url }) => {
+	const currentDate = new Date();
+	const deadline = new Date(PUBLIC_CLOSING_DATE);
+
+	if (currentDate >= deadline) {
+		throw redirect(302, '/');
+	}
+
 	const consent = url.searchParams.get('consent');
 	const verify = url.searchParams.get('verify');
 	if (!consent || !verify) {
@@ -24,6 +33,12 @@ export const load: PageServerLoad = async ({ url }) => {
 
 export const actions: Actions = {
 	default: async ({ request }) => {
+		const currentDate = new Date();
+		const deadline = new Date(PUBLIC_CLOSING_DATE);
+		if (currentDate >= deadline) {
+			throw redirect(302, '/');
+		}
+
 		const formData = await request.formData();
 		const { data, files } = deserializeNested(formData) as { data: Team; files: TeamFile };
 
@@ -32,23 +47,18 @@ export const actions: Actions = {
 		const form = await superValidate(data, TeamSchema);
 
 		if (!form.valid) {
-			console.log(form.errors);
-			return fail(400, { form, error: 'Form is not valid.\nSome input might be incorrect.' });
+			return fail(400, { form, error: 'ข้อมูลบางช่องอาจจะกรอกผิดหรือไม่ได้กรอก.' });
 		}
 
 		const teamId = crypto.randomUUID();
 
 		const { students, team } = prepareData(teamId, data, files);
 
-		const { error: teamInsertError } = await supabase.from('team').insert(team);
-		if (teamInsertError) {
-			console.log(teamInsertError);
-			return fail(500, { form, error: teamInsertError });
-		}
-
-		const { error: studentInsertError } = await supabase.from('student').insert(students);
-		if (studentInsertError) {
-			return fail(500, { form, error: studentInsertError });
+		try {
+			TeamFileSchema.parse(files);
+		} catch (error) {
+			console.log(error);
+			return fail(501, { form, error: 'ระบบรองรับไฟล์ PDF ขนาดไม่เกิน 5 MB เท่านั้น' });
 		}
 
 		const uploadPromise: Promise<unknown>[] = [
@@ -67,23 +77,35 @@ export const actions: Actions = {
 
 		try {
 			await Promise.all(uploadPromise);
-			await sendEmail(prepareMail(students, team), [
-				{
-					name: `${team.teacher_prefix}${team.teacher_firstname} ${team.teacher_lastname}`,
-					email: team.teacher_email
-				},
-				...students.map((student) => {
-					return {
-						name: `${student.name_prefix}${student.firstname} ${student.lastname}`,
-						email: student.email
-					};
-				})
-			]);
 		} catch (error) {
 			console.log(error);
-			return fail(501, { form, error: error });
+			return fail(501, { form, error: JSON.stringify(error) });
 		}
 
-		throw redirect(302, '/register/completed');
+		const { error: teamInsertError } = await supabase.from('team').insert(team);
+		if (teamInsertError) {
+			console.log(teamInsertError);
+			return fail(500, { form, error: JSON.stringify(teamInsertError) });
+		}
+
+		const { error: studentInsertError } = await supabase.from('student').insert(students);
+		if (studentInsertError) {
+			return fail(500, { form, error: JSON.stringify(studentInsertError) });
+		}
+
+		await sendEmail(prepareMail(students, team), [
+			{
+				name: `${team.teacher_prefix}${team.teacher_firstname} ${team.teacher_lastname}`,
+				email: team.teacher_email
+			},
+			...students.map((student) => {
+				return {
+					name: `${student.name_prefix}${student.firstname} ${student.lastname}`,
+					email: student.email
+				};
+			})
+		]);
+
+		return { form };
 	}
 };
